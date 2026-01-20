@@ -1,0 +1,58 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Non_parametric</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED"><span class="Red-Bold">ウィルコクソンの符号順位統計量</span> - 期待値，分散値</p>
+<p class="X-Large-Bold-RED">&nbsp;</p>
+<p class="Large-Bold-Red">ウィルコクソンの符号順位統計量の期待値</p>
+<p>１回目と２回目に差がないとすると（帰無仮説，H<sub>0</sub>），それぞれの順位の確率は1/2（ベルヌーイ分布）となるので，</p>
+<p>\(\Large  \displaystyle E(T)= E \left[ \sum_{i=1}^{n} i \ p \right]  \)</p>
+<p>\(\Large  \displaystyle= \frac{1}{2}  \left[ \sum_{i=1}^{n} i  \right]  \)</p>
+<p>\(\Large  \displaystyle= \frac{1}{2}  \frac{n (n+1)}{2}  \)</p>
+<p>\(\Large  \displaystyle=   \frac{n (n+1)}{4}  \)</p>
+<p>&nbsp;</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">ウィルコクソンの符号順位統計量の分散値</p>
+<p>\(\Large  \displaystyle V(T)= V \left[ \sum_{i=1}^{n} i \ p \right]  \)</p>
+<p>\(\Large  \displaystyle= \frac{1}{4}  \left[ \sum_{i=1}^{n} i^2  \right]  \)</p>
+<p>\(\Large  \displaystyle= \frac{1}{4}  \frac{n (n+1)(2n+1)}{6}  \)</p>
+<p>\(\Large  \displaystyle=   \frac{n (n+1)(2n+1)}{24}  \)</p>
+<p>となります．</p>
+<p>（なんかしっくりこない．．．なぜ分散なのに二乗和なんだろう？）</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>次ページに，参考させていただいた，<a href="https://radi-toko.com/wilcoxon-signed-rank-test/" target="_blank">こちらのサイト</a>の計算方法について検討してみました．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Non_parametric-04.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Non_parametric-04-03.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

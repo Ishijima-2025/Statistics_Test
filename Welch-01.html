@@ -1,0 +1,107 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Welch</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">Welchの自由度の求め方-01</p>
+<p>Welchの検定の数学的導出は，Webサイトを調べてもあまり詳しくは述べられておりません．</p>
+<p>唯一（たぶん），<a href="https://qiita.com/tabintone/items/1ab13e431d59402f6ee3" target="_blank">こちら</a>，のサイトが詳細に述べられておりますが，ところどころ飛躍（私の理解不足だけかと思いますが）があり，完全には理解できませんでした．</p>
+<p>そこで，大元のWelchの論文までさかのぼって検証することにしました．</p>
+<p>自分なりに．．．納得はしたのですが，合っているかどうかといわれると．．．．ちょっと不安です．</p>
+<p>参考にしたオリジナル論文は，</p>
+<p class="Blue">The Specification of Rules for Rejecting Too Variable a Product, with Particular Reference to an Electric Lamp Problem <br>
+B. L. Welch Supplement to the Journal of the Royal Statistical Society, Vol. 3, No. 1 (1936), pp. 29-48 (20 pages) <br>
+https://doi.org/10.2307/2983676</p>
+<p class="Blue">The Significance of the Difference Between Two Means when the Population Variances are Unequal <br>
+B. L. Welch Biometrika, Vol. 29, No. 3/4 (Feb., 1938), pp. 350-362 (13 pages) https://doi.org/10.2307/2332010</p>
+<p class="Blue">The Generalization of `Student's' Problem when Several Different Population Variances are Involved <br>
+B. L. Welch Biometrika, Vol. 34, No. 1/2 (Jan., 1947), pp. 28-35 (8 pages) <br>
+https://doi.org/10.2307/2332510</p>
+<p>です．1936年までさかのぼるとは思いませんでした．．．昭和11年．．．2.26事件があった年です．．．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">分散，データ数，ともに異なる場合</span></p>
+<p>母分散について過程をおかない場合は，<a href="Interval Estimation-08.html">ここ</a>，に記したように，</p>
+<p>\(\Large    \displaystyle    Z = 
+- \frac{  ( \bar{X} - \bar{Y}) - ( \mu_X - \mu_Y)}{\sqrt{\frac{\sigma_X^2}{n_X}  + \frac{\sigma_Y^2}{n_Y} }}<br />
+\sim N(0,1) \)</p>
+<p> が標準化して区間推定すればいいことになります．ここで，検定の手段として，母平均が等しいと仮定した場合には，</p>
+<p>\(\Large    \displaystyle    Z = 
+ \frac{   \bar{X} - \bar{Y} }{\sqrt{\frac{\sigma_X^2}{n_X}  + \frac{\sigma_Y^2}{n_Y} }} <br />
+ \)</p>
+<p>もしくは，</p>
+<p>\(\Large    \displaystyle    \bar{X} - \bar{Y} = 
+ Z \sqrt{\frac{\sigma_X^2}{n_X}  + \frac{\sigma_Y^2}{n_Y}} <br />
+\)</p>
+<p>となります．</p>
+<p>ここで，Xについて考えると，X<sub>1</sub>, X<sub>2</sub>, ... X<sub>n</sub>が独立で，平均μ，分散σ<sub>X</sub><sup>2</sup>の正規分布に従うとき，</p>
+<p>\(\Large    \displaystyle    X = \frac{1}{ \sigma_X^2} \sum_{i=1}^m \left( X_i - \bar{X} \right)^2 = \chi^2 (n-1)<br />
+\)</p>
+<p>と，Xは自由度n-1のカイ二乗分布に従う，ということなります，したがって，</p>
+<p>\(\Large    \displaystyle     \frac{1}{ \sigma_X^2} \sum_{i=1}^n \left( X_i - \bar{X} \right)^2 =     \frac{m - 1}{ \sigma_X^2} \frac{\sum_{i=1}^n \left( X_i - \bar{X} \right)^2}{m-1}<br />
+\)</p>
+<p>\(\Large    \displaystyle      =     \frac{(m - 1) s_X^2}{ \sigma_X^2}<br />
+\)</p>
+<p>となりますので，これを，</p>
+<p>\(\Large    \displaystyle      \chi_X^2=     \frac{(m - 1) s_X^2}{ \sigma_X^2}<br />
+\)</p>
+<p>とします，同様に，Yも，</p>
+<p>\(\Large    \displaystyle      \chi_Y^2=     \frac{(n - 1) s_Y^2}{ \sigma_Y^2}<br />
+\)</p>
+<p>とします．これらの関数は，上に記したように，<span class="Red">自由度n-1のカイ二乗分布に従います．</span></p>
+<p>参考にしたサイトに準拠するため，Xのデータ数をｍ，Ｙのデータ数をｎとしています．　</p>
+<p>&nbsp;</p>
+<p>ここで新たに，ｖという統計量を定義します．</p>
+<p>\(\Large    \displaystyle    v = \frac{\bar{X} - \bar{Y}}{ \sqrt{\frac{s_X^2}{m}  + \frac{s_Y^2}{n}} }<br />
+\)</p>
+<p>すると，</p>
+<p>\(\Large    \displaystyle    v = \frac{\bar{X} - \bar{Y}}{ \sqrt{\frac{s_X^2}{m}  + \frac{s_Y^2}{n}} }<br />
+= \frac{\bar{X} - \bar{Y}}{ \sqrt{\frac{ \chi_X^2 \sigma_X^2}{m(m-1)}  + \frac{ \chi_Y^2 \sigma_Y^2}{n(n-1)}} }\)</p>
+<p>となり，</p>
+<p>\(\Large    \displaystyle    <br />
+= \frac{Z \sqrt{\frac{\sigma_X^2}{n_X}  + \frac{\sigma_Y^2}{n_Y}} }{ \sqrt{\frac{ \chi_X^2 \sigma_X^2}{m(m-1)}  + \frac{ \chi_Y^2 \sigma_Y^2}{n(n-1)}} }\)</p>
+<p>\(\Large    \displaystyle 
+= \frac{Z }<br>
+{ \sqrt{     \displaystyle 
+\frac{\frac{ \chi_X^2 \ \sigma_X^2}{m(m-1)}  + \frac{ \chi_Y^2 \ \sigma_Y^2}{n(n-1)}}{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}}} }\)</p>
+<p>\(\Large    \displaystyle 
+= \frac{Z }<br>
+{ \sqrt{     a \chi_X^2 \  + b \chi_Y^2 } }\)</p>
+<p>ここで，</p>
+<p>\(\Large    \displaystyle 
+a = \frac{\frac{ \chi_X^2 \ \sigma_X^2}{m(m-1)}  }{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} \)</p>
+<p>\(\Large    \displaystyle 
+b = \frac{\frac{  \chi_Y^2 \ \sigma_Y^2}{n(n-1)}}{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} \)</p>
+<p>となります．</p>
+<p>次ページに続きます．</p>
+<p>&nbsp;</p>
+<p><span class="style10"><a href="Interval Estimation-08.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Welch-02.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

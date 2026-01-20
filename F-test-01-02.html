@@ -1,0 +1,152 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>F-test</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">F検定_F分布の導出</p>
+<p>F分布の導出に当たっては，<a href="https://kiririmode.hatenablog.jp/entry/20231112/1699715409" target="_blank">こちら</a>，<a href="https://qcplanets.com/method/statistics-method/f-distribution-function/" target="_blank">こちら</a>，<a href="https://avilen.co.jp/personal/knowledge-article/f-density-function/" target="_blank">こちら</a>，<a href="https://lab.sdm.keio.ac.jp/ogi/shibaura/ed6-1108.pdf" target="_blank">こちら</a>，を参考にさせていただきました，ありがとうございます．</p>
+<p>まず，独立に，χ<sup>2</sup>(m<sub>1</sub>)，χ<sup>2</sup>(m<sub>2</sub>)に従う確率変数，W<sub>1</sub>, W<sub>2</sub>があるとき，</p>
+<p>\( \Large \displaystyle      F = \frac{ \frac{W_1}{m_1}}{ \frac{W_2}{m_2}} \)</p>
+<p>が従う分布を，自由度(m<sub>1</sub>,m<sub>2</sub>)のF分布と呼び，F(m<sub>1</sub>,m<sub>2</sub>)と表します． </p>
+<p>自由度mのカイ二乗分布の確率密度関数は， </p>
+<p>\( \Large \displaystyle      f(u) = \frac{ 1}{2^{\frac{m}{2}} \Gamma \left( \frac{m}{2} \right)} u^{ \frac{m}{2} -1 } exp \left( - \frac{u}{2} \right)\)</p>
+<p>となりますので，χ<sup>2</sup>(m<sub>1</sub>)，χ<sup>2</sup>(m<sub>2</sub>)は，</p>
+<p>\( \Large \displaystyle      f(w_1) = \frac{ 1}{2^{\frac{m_1}{2}} \Gamma \left( \frac{m_1}{2} \right)} w_1^{ \frac{m_1}{2} -1 } exp \left( - \frac{w_1}{2} \right)\)</p>
+<p>\( \Large \displaystyle      g(w_2) = \frac{ 1}{2^{\frac{m_2}{2}} \Gamma \left( \frac{m_2}{2} \right)} w_2^{ \frac{m_2}{2} -1 } exp \left( - \frac{w_2}{2} \right)\)</p>
+<p>これら二つの式が，</p>
+<p>\( \Large \displaystyle      F = \frac{ \frac{W_1}{m_1}}{ \frac{W_2}{m_2}} \)</p>
+<p>の分子，分母になるわけですが，それぞれが独立であり，同時に起こる確率，<span class="Red-Bold">同時確率密度関数</span>，は独立の積となります．</p>
+<p>\( \Large \displaystyle      f_{W_1, W_2} (w_1, w_2) = f(w_1) \ g(w_2) \)</p>
+<p>となります．</p>
+<p class="Large-Bold-Blue">　なぜ，割り算なのに掛け算を使って求めるの？</p>
+<p>と，結構悩みましたが．．．．．後に出てくる，<span class="Large-Bold-Red">変数変換，ヤコビアン</span>，にその答えがあったようです．．．．やっと気づきました，また後半で．．．．</p>
+<p>\( \Large \displaystyle      f_{W_1, W_2} (w_1, w_2) = f(w_1) \ g(w_2) \)<br>
+\( \Large \displaystyle = \left[ \frac{ 1}{2^{\frac{m_1}{2}} \Gamma \left( \frac{m_1}{2} \right)} w_1^{ \frac{m_1}{2} -1 } exp \left( - \frac{w_1}{2} \right) \right]<br>
+\left[ \frac{ 1}{2^{\frac{m_2}{2}} \Gamma \left( \frac{m_2}{2} \right)} w_2^{ \frac{m_2}{2} -1 } exp \left( - \frac{w_2}{2} \right) \right] \)</p>
+<p>\( \Large \displaystyle = \frac{ 1}{2^{\frac{m_1+m_2}{2}} \Gamma \left( \frac{m_1}{2} \right) \Gamma \left( \frac{m_2}{2}\right)} w_1^{ \frac{m_1}{2} -1 }  w_2^{ \frac{m_2}{2} -1 }exp \left( - \frac{w_1+w_2}{2} \right)
+\)</p>
+<p>&nbsp;</p>
+<p>ここで，変数変換，</p>
+<p>\( \Large \displaystyle      \begin{eqnarray}   \left\{     \begin{array}{l}       x = \frac{ \frac{W_1}{m_1}}{ \frac{W_2}{m_2}} \\       y = w_2   \end{array}   \right. \end{eqnarray} \iff<br>
+\) \( \Large \displaystyle      \begin{eqnarray}   \left\{     \begin{array}{l}       w_1 = \frac{ m_1}{ m_2} yx\\        w_2 = y \end{array}   \right. \end{eqnarray} <br>
+\)</p>
+<p>を行います．この中で，</p>
+<p>\( \Large \displaystyle             x = \frac{ \frac{W_1}{m_1}}{ \frac{W_2}{m_2}} 
+\)</p>
+<p>が重要となってきます（私的には）．</p>
+<p>これは，まさしく求めたい関数となります．変数変換で，ｘという変数を導入しましたので（割り算），このｘの変数の分布を計算できればＦの分布を求めることができます．</p>
+<p>このヤコビアンは，</p>
+<p>\(\Large  \displaystyle J = det \begin{vmatrix} \frac{\partial w_1}{ \partial x} &amp; \frac{\partial w_1}{ \partial y}  \\ \frac{\partial w_2}{ \partial x}  &amp; \frac{\partial w_2}{ \partial y}  \end{vmatrix} \)</p>
+<p>\(\Large  \displaystyle  = det \begin{vmatrix} \frac{ m_1}{ m_2} y &amp; \frac{m_1}{ m_2} x \\ 0  &amp; 1  \end{vmatrix} \)</p>
+<p>\(\Large  \displaystyle  =  \frac{ m_1}{ m_2} y  \)</p>
+<p>となりますので，このヤコビアンを使って変数変換すると，</p>
+<p>\( \Large \displaystyle f_{X,Y} (x,y) = \frac{ 1}{2^{\frac{m_1+m_2}{2}} \Gamma \left( \frac{m_1}{2} \right) \Gamma <br>
+  \left( \frac{m_2}{2}\right)} \left( \frac{ m_1}{ m_2} yx \right)^{ \frac{m_1}{2} -1 }  y^{ \frac{m_2}{2} -1 }<br>
+  exp \left( - \frac{\frac{ m_1}{ m_2} yx+y}{2} \right)
+\frac{ m_1}{ m_2} y\)</p>
+<p>\( \Large \displaystyle = \frac{ 1}{2^{\frac{m_1+m_2}{2}} \Gamma \left( \frac{m_1}{2} \right) \Gamma <br>
+\left( \frac{m_2}{2}\right)} \left( \frac{ m_1}{ m_2}  \right)^{ \frac{m_1}{2}  }  x^{ \frac{m_1}{2} -1 } y^{ \frac{m_1 + m_2}{2} -1 }<br>
+\ exp \left\{ - \frac{y}{2} \left( \frac{ m_1}{ m_2} x+1 \right)\right\}
+\)</p>
+<p>となる．ｘが求めたい変数なので，ｙを全域で積分します．ｙの積分範囲は０～∞なので，</p>
+<p>\( \Large \displaystyle f_X(x) = \int_0^{\infty} f_{X,Y} (x,y) dy \)</p>
+<p>\( \Large \displaystyle = \int_0^{\infty}\frac{ 1}{2^{\frac{m_1+m_2}{2}} \Gamma \left( \frac{m_1}{2} \right) \Gamma <br>
+\left( \frac{m_2}{2}\right)} \left( \frac{ m_1}{ m_2}  \right)^{ \frac{m_1}{2}  }  x^{ \frac{m_1}{2} -1 } y^{ \frac{m_1 + m_2}{2} -1 }<br>
+\ exp \left\{ - \frac{y}{2} \left( \frac{ m_1}{ m_2} x+1 \right)\right\}
+dy \)</p>
+<p>\( \Large \displaystyle = \frac{ 1}{2^{\frac{m_1+m_2}{2}} \Gamma \left( \frac{m_1}{2} \right) \Gamma <br>
+\left( \frac{m_2}{2}\right)} \left( \frac{ m_1}{ m_2}  \right)^{ \frac{m_1}{2}  }  x^{ \frac{m_1}{2} -1 } <br>
+\cdot \int_0^{\infty}  y^{ \frac{m_1 + m_2}{2} -1 }<br>
+\ exp \left\{ - \frac{y}{2} \left( \frac{ m_1}{ m_2} x+1 \right)\right\}
+dy \)</p>
+<p>を計算すればいいことになります．ここで，積分領域のみを計算します．，</p>
+<p>\( \Large \displaystyle I = \int_0^{\infty}  y^{ \frac{m_1 + m_2}{2} -1 }<br>
+\ exp \left\{ - \frac{y}{2} \left( \frac{ m_1}{ m_2} x+1 \right)\right\}
+dy \)</p>
+<p>ここで，変数変換で，</p>
+<p>\( \Large \displaystyle t =   \frac{y}{2} \left( \frac{ m_1}{ m_2} x+1 \right) = \frac{y}{2} \left( \frac{m_1 x + m_2}{m_2} \right) \)</p>
+<p>とします，すると，</p>
+<p>\( \Large \displaystyle y =  \frac{2 m_2}{m_1 x + m_2} t \)</p>
+<p>\( \Large \displaystyle dy =  \frac{2 m_2}{m_1 x + m_2} dt \)</p>
+<p>となります．積分範囲は変わりません．</p>
+<p>\( \Large \displaystyle I = \int_0^{\infty}  \left( \frac{2 m_2}{m_1 x + m_2} t\right)^{ \frac{m_1 + m_2}{2} -1 }<br>
+\ exp (-t) 
+\ \frac{2 m_2}{m_1 x + m_2} dt \)</p>
+<p>\( \Large \displaystyle  = \left( \frac{2 m_2}{m_1 x + m_2} \right)^{ \frac{m_1 + m_2}{2}  } \int_0^{\infty}  t^{ \frac{m_1 + m_2}{2} -1 }<br>
+\ exp (-t) 
+dt \)</p>
+<p>となります，ガンマ関数は，</p>
+<p>\( \Large \displaystyle  \Gamma (z) = \int_0^{\infty}  t^{z-1} 
+\ exp (-t) 
+dt \)</p>
+<p>ですので，</p>
+<p>\( \Large \displaystyle  I = \left( \frac{2 m_2}{m_1 x + m_2} \right)^{ \frac{m_1 + m_2}{2}  } \Gamma \left( \frac{m_1 + m_2}{2} \right) \)</p>
+<p>となります．元に戻すと，</p>
+<p>\( \Large \displaystyle f_X(x) = \frac{ 1}{2^{\frac{m_1+m_2}{2}} \Gamma \left( \frac{m_1}{2} \right) \Gamma <br>
+\left( \frac{m_2}{2}\right)} \left( \frac{ m_1}{ m_2}  \right)^{ \frac{m_1}{2}  }  x^{ \frac{m_1}{2} -1 } <br>
+\cdot \left( \frac{2 m_2}{m_1 x + m_2} \right)^{ \frac{m_1 + m_2}{2}  } \Gamma \left( \frac{m_1 + m_2}{2} \right) \)</p>
+<p>\( \Large \displaystyle  = \frac{ \Gamma \left( \frac{m_1 + m_2}{2} \right)}{ \Gamma \left( \frac{m_1}{2} \right) \Gamma <br>
+\left( \frac{m_2}{2}\right)} \left( \frac{ m_1}{ m_2}  \right)^{ \frac{m_1}{2}  }   <br>
+\left( \frac{ m_2}{m_1 x + m_2} \right)^{ \frac{m_1 + m_2}{2}  }  x^{ \frac{m_1}{2} -1 }\)</p>
+<p>もしくは，</p>
+<p>\( \Large \displaystyle  = \frac{ \Gamma \left( \frac{m_1 + m_2}{2} \right)}{ \Gamma \left( \frac{m_1}{2} \right) \Gamma 
+\left( \frac{m_2}{2}\right)} <br>
+ \frac{ m_1^{ \frac{m_1}{2}  } }{ m_2^{ \frac{m_1}{2}  } }  <br>
+m_2^{ \frac{m_1 + m_2}{2}  } \left( \frac{ 1}{m_1 x + m_2} \right)^{ \frac{m_1 + m_2}{2}  }  <br>
+x^{ \frac{m_1}{2} -1 }\)</p>
+<p>\( \Large \displaystyle  = \frac{ \Gamma \left( \frac{m_1 + m_2}{2} \right)}{ \Gamma \left( \frac{m_1}{2} \right) \Gamma 
+\left( \frac{m_2}{2}\right)} <br>
+ m_1^{ \frac{m_1}{2}  }
+m_2^{ \frac{ m_2}{2}  } <br>
+\left( \frac{ 1}{m_1 x + m_2} \right)^{ \frac{m_1 + m_2}{2}  } <br>
+x^{ \frac{m_1}{2} -1 }\)</p>
+<p>と書き換えることができます．</p>
+<p>ここで，<span class="Blue-Bold">ベータ関数</span>，</p>
+<p>\(\Large  \displaystyle B \left( \frac{m_1  }{2},  \frac{m_2  }{2}\right) <br>
+  = 
+  \frac{ \Gamma \left( \frac{m_1  }{2} \right) \Gamma \left( \frac{ m_2 }{2} \right)}{\Gamma \left( \frac{m_1 +m_2 }{2} \right)} \)</p>
+<p>を使うと．</p>
+<p>\(\Large  \displaystyle f_X (x) = \frac{1}{ B \left( \frac{m_1  }{2},  \frac{m_2  }{2}\right)} <br>
+\left( \frac{m_1}{m_2} \right) ^{ \frac{m_1}{2}} <br>
+\left( \frac{1}{ \frac{m_1}{m_2} x + 1} \right)^{ \frac{m_1 + m_2}{2}}<br>
+x^{ \frac{m_1}{2} -1}
+\)</p>
+<p>もしくは，</p>
+<p>\(\Large  \displaystyle f_X (x) = \frac{1}{ B \left( \frac{m_1  }{2},  \frac{m_2  }{2}\right)} <br>
+  m_1^{ \frac{m_1}{2}  }
+m_2^{ \frac{ m_2}{2}  } <br>
+\left( \frac{ 1}{m_1 x + m_2} \right)^{ \frac{m_1 + m_2}{2}  } <br>
+x^{ \frac{m_1}{2} -1 }\)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="F-test-01.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

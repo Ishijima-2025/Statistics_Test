@@ -1,0 +1,178 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>t-test</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">検定-02</span></h1>
+<h1 class="Large-Bold-Red">&nbsp;</h1>
+<p><span class="Large-Bold-Red">対応がある場合</span>で，<span class="Red-Bold">母分散がわからない場合</span>をまず考えていきましょう．</p>
+<p>\(\Large     \displaystyle     - t_{\alpha/2} (n-1)  \hspace{12 pt}\leq   \hspace{12 pt}   \frac{ \bar{x}_d}{ \sqrt{\frac{\color{red}{s_d}^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1) \)</p>
+<p>サンプルデータは，<a href="https://bellcurve.jp/statistics/course/9453.html" target="_blank">統計ウェッブ 24-5</a>，を参考にさせていただきました．</p>
+<p>そのまま値を使うのはあまりよくないかな？と思い，少し値を変えています．</p>
+<p>&nbsp;</p>
+<table width="200" border="1">
+  <tr>
+    <td></td>
+    <td>before</td>
+    <td>after</td>
+    <td>difference</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td align="right">170</td>
+    <td align="right">140</td>
+    <td align="right">30</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td align="right">150</td>
+    <td align="right">155</td>
+    <td align="right">-5</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td align="right">160</td>
+    <td align="right">140</td>
+    <td align="right">20</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td align="right">140</td>
+    <td align="right">135</td>
+    <td align="right">5</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td align="right">150</td>
+    <td align="right">150</td>
+    <td align="right">0</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="right">&nbsp;</td>
+    <td align="right">&nbsp;</td>
+    <td align="right">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Average</td>
+    <td align="right">154</td>
+    <td align="right">144</td>
+    <td align="right">10</td>
+  </tr>
+  <tbody>
+  </tbody>
+</table>
+<p>ここで，n=5，なので，差分の不偏分散は，</p>
+<p>\(\Large    \displaystyle s_d^2 = \frac{(30-10)^2+(-5-10)^2+(20-10)^2+(5-10)^2+(0-10)^2}{5-1} = 212.5 \)</p>
+<p>t値は，</p>
+<p>\(\Large    \displaystyle t = \frac{10}{\sqrt {\frac{212.5}{5}}} = 1.53393 \)</p>
+<p>ｔ境界値（片側）は，エクセル関数から，</p>
+<p>\(\Large    \displaystyle =T.INV(1-0.05,5-1) = 2.131847 \)</p>
+<p>となり，ｔ値は，推定した区間の中に入っているので，仮説，</p>
+<p><span class="Red-Bold"> 　二つの母集団の母平均には差がない</span></p>
+<p>が認められるため，</p>
+<p>　<span class="Large-Bold-Red">二つの母平均に差がないことが確率的に実証される</span></p>
+<p>ことになり，<span class="Blue-Bold">before -&gt; after，で変化があったとは言えない</span>，ことになります．</p>
+<p class="Red-Bold">エクセル</p>
+<p>の，データ分析，でも，</p>
+<p class="Blue-Bold">t-検定:    一対の標本による平均の検定ツール</p>
+<table width="379" border="1">
+  <tr>
+    <td width="140"></td>
+    <td width="148"></td>
+    <td width="69"></td>
+  </tr>
+  <tr>
+    <td>　</td>
+    <td>変数 1</td>
+    <td>変数 2</td>
+  </tr>
+  <tr>
+    <td>平均</td>
+    <td align="right">154</td>
+    <td align="right">144</td>
+  </tr>
+  <tr>
+    <td>分散</td>
+    <td align="right">130</td>
+    <td align="right">67.5</td>
+  </tr>
+  <tr>
+    <td>観測数</td>
+    <td align="right">5</td>
+    <td align="right">5</td>
+  </tr>
+  <tr>
+    <td>ピアソン相関</td>
+    <td align="right">-0.08006</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>仮説平均との差異</td>
+    <td align="right">0</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>自由度</td>
+    <td align="right">4</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#F9FF00">t </td>
+    <td align="right" bgcolor="#F9FF00">1.53393</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>P(T&lt;=t) 片側</td>
+    <td align="right">0.099915</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#F9FF00">t 境界値 片側</td>
+    <td align="right" bgcolor="#F9FF00">2.131847</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>P(T&lt;=t) 両側</td>
+    <td align="right">0.199829</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>t 境界値 両側</td>
+    <td align="right">2.776445</td>
+    <td>　</td>
+  </tr>
+</table>
+<p>と一致しています．</p>
+<p>次は，<span class="Large-Bold-Red">対応のないデータの場合</span>で，<span class="Red-Bold">母分散が未知で等しい場合</span>です．</p>
+
+<p><span class="style10"><a href="t-test-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="t-test-03.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

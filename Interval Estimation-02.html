@@ -1,0 +1,73 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-02</span></h1>
+<h1 class="Large-Bold-Red">中心極限定理</h1>
+<p>まずは，”<span class="Large-Bold-Red">中心極限定理</span>”です．</p>
+<p>これは，”<span class="Blue-Bold">母集団の平均μ，分散σ<sup>2</sup>の場合，サンプルサイズが大きくなるにつれて標本平均の分布は，平均μ，分散分散σ<sup>2</sup>/nに近づく</span>”</p>
+<p>というもののようです（<a href="https://bellcurve.jp/statistics/course/8543.html" target="_blank">統計ウェッブ</a>より抜粋）</p>
+<p>なんとなく，サンプル数を増やしていくと精度が上がる，というイメージですが，この証明が結構ややこしい．．．</p>
+<p>特性関数．．．．母関数．．．．などを使っていくのが王道のようで，なんとか数式は追えますが，頭に入ってこない．．．</p>
+<p>ざっくりいうと，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/SDandSE-01.html">標準誤差</a>，のようなもんだな，と私は理解しています．．．（間違いだ！と怒られそうですが．．）</p>
+<p>ただ，<a href="http://www.snap-tck.com/room04/c01/stat/stat01/stat0103.html#note08" target="_blank">こちら</a>，<a href="https://mathwords.net/hyouzyungosa" target="_blank">こちら</a>，がなんとなく直感的に説明されていたので，それをなぞらさせていただきます．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Blue">・平均，分散</p>
+<p>まずは，母集団の平均μ，分散σ<sup>2</sup>から，ｎ個の標本の平均ｍ，分散Vを求めていきます．</p>
+<p><span class="Blue-Bold">平均：</span>\(\Large \displaystyle   m = \bar{x} = \frac{x_1 + x_2 + ....+ x_i + ....+ x_n}{n} = \frac{1}{n} \sum_{i=1}^{n} x_i \)</p>
+<p><span class="Blue-Bold">分散：</span>\(\Large \displaystyle   V =  \frac{1}{n} \sum_{i=1}^{n} (x_i - m)^2 \)</p>
+<p>この工程をたくさん行った際の，期待値，分散は，</p>
+<p><span class="Blue-Bold">期待値：</span>\(\Large \displaystyle    E \left(\frac{ \displaystyle    \sum_{i=1}^{n} x_i}{n} \right) <br />
+= \frac{E \left( \displaystyle    \sum_{i=1}^{n} x_i \right)}{n}<br />
+= \frac{n \mu}{n} 
+= \mu \)</p>
+<p>となり，期待値は母集団の平均となります．</p>
+<p><span class="Blue-Bold">分散：</span>\(\Large \displaystyle    V \left(\frac{ \displaystyle    \sum_{i=1}^{n} x_i}{n} \right) <br />
+= \frac{ \displaystyle    \sum_{i=1}^{n} V(x_i) }{n^2}<br />
+= \frac{n \sigma^2}{n^2} 
+= \frac{ \sigma^2}{n}\)</p>
+<p>となり，平均値の分散は回数ｎを増やしていくと，徐々に小さくなっていくことがわかります．</p>
+<p>これが，”中心極限定理”と今のところ私は理解しておきます．．．．（間違っているかもしれませんが．．．）．</p>
+<p>この式は，</p>
+<p>\(\Large \displaystyle     \frac{ \sigma^2}{n} = \frac{ SD^2}{n}\)</p>
+<p>であるので，</p>
+<p>\(\Large \displaystyle      \frac{ SD^2}{n} \equiv SE^2 \)</p>
+<p>と標準誤差の定義ともなります（これがメインの導出かもしれませんが．．）</p>
+<p>&nbsp;</p>
+<p>言い訳ばかりの式の展開でしたが．．．もう少し勉強してみます</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-01.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Interval Estimation-03.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

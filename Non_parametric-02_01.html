@@ -1,0 +1,71 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Non_parametric</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">ウィルコクソンの順位和検定，小さい方？大きい方？</p>
+<p>&nbsp;</p>
+<p>なぜ，期待値，分散値が一致し，ｚ値は符号が逆転し，絶対値が同じ値となるかを検討してみました．</p>
+<p>&nbsp;</p>
+<p>まず，<span class="Blue-Bold">総和がｎで，n<sub>A</sub>=n<sub>B</sub>，の場合</span>を考えていきます．</p>
+<p>期待値は，総和の半分となるので，</p>
+<p>\(\Large  \displaystyle S= \frac{n(n+1)}{2}　\)</p>
+<p>n=10, n<sub>A</sub>=5, n<sub>B</sub>=5，の場合，</p>
+<p>\(\Large  \displaystyle \frac{1}{2} S= \frac{1}{2} \frac{10(10+1)}{2} =27.5　\)</p>
+<p>と全ページの値となります．</p>
+<p>したがって，</p>
+<p>\(\Large  \displaystyle S= W_A + W_B　\)</p>
+<p>となります．ｚ値の場合，分散値の計算はＡもＢも関係なく同じ値となるので，分子のみ考えていきます．</p>
+<p>期待値は上記のように等しいので，</p>
+<p>\(\Large  \displaystyle W_A - E = W_A - \frac{1}{2} S = (S - W_B) - \frac{1}{2} S = - W_B - \frac{1}{2} S\)</p>
+<p>つまり，</p>
+<p>\(\Large  \displaystyle  W_A  = - W_B \)</p>
+<p>となり，</p>
+<p>ｚ値は符号が逆転し，絶対値が同じ値となります．</p>
+<p>&nbsp;</p>
+<p>次に，<span class="Blue-Bold">総和がｎで，n<sub>A</sub>≠n<sub>B</sub>，の場合</span>を考えていきます．</p>
+<p>\(\Large  \displaystyle S= \frac{n(n+1)}{2} = W_A + W_B \)</p>
+<p>\(\Large  \displaystyle E(W_A)= \frac{n_A ( n_A + n_B +1)}{2} = \frac{n_A ( n +1)}{2}　\)</p>
+<p>\(\Large  \displaystyle E(W_B)= \frac{n_B ( n_A + n_B +1)}{2} = \frac{n_B ( n +1)}{2}　\)</p>
+<p>\(\Large  \displaystyle \{W_A - E(W_A)\}+ \{W_B - E(W_B)\} \)</p>
+<p>\(\Large  \displaystyle = \{W_A - \frac{n_A ( n +1)}{2}\} + \{W_B - \frac{n_B ( n +1)}{2}\}\)</p>
+<p>\(\Large  \displaystyle = W_A + W_B - \left( \frac{n_A ( n +1)}{2} + \frac{n_B ( n +1)}{2} \right) \)</p>
+<p>\(\Large  \displaystyle = W_A + W_B -  \frac{(n_A + n_B)( n +1)}{2}  \)</p>
+<p>\(\Large  \displaystyle = W_A + W_B -  \frac{n( n +1)}{2}  \)</p>
+<p>\(\Large  \displaystyle = S -  S = 0 \)</p>
+<p>となるので，</p>
+<p>\(\Large  \displaystyle \{W_A - E(W_A)\}+ \{W_B - E(W_B)\} = 0 \)</p>
+<p>\(\Large  \displaystyle W_A - E(W_A) = - \{W_B - E(W_B)\} \)</p>
+<p>と数が異なる場合も符号が逆転するだけとなります．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Non_parametric-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">正規分布の<span class="X-Large-Bold-Blue">差</span>の再現性</p>
+<p><span class="Red-Bold">分散，データ数，ともに異なる場合</span></p>
+<p>独立な確率変数X，Yがそれぞれ確率分布PX(x), PY(y)に従うとします．</p>
+<p> 各確率変数の和，X+Yが従う確率分布をPX+Y(z)とする 確率P(X+Y=z)を考えると，</p>
+<p class="Large-Bold-Blue">　X<span class="Large-Bold-Red">-</span>Y=z</p>
+<p>となるのは， </p>
+<p class="Large-Bold-Blue">　X=x, Y=z-x</p>
+<p>としたとき，両者の差がｚとなるすべての組み合わせとなります．</p>
+<p> XはPX(x)，YはPY(z-x)に従うので，両者が同時に起こる確率は，<span class="Large-Bold-Blue">PX(x)PY(z-x)</span> です．</p>
+<p>\( \Large    P_{X\color{red}{-}Y} (z) = \displaystyle \int_{-\infty}^{ \infty } P_{X,Y} (t,\color{red}{t-z})  dt
+　\)</p>
+<p>X，Yがそれぞれ独立であると仮定したので，\( \Large    P_{X,Y} (z) = P_X(x) P_Y (y)
+　\)　が成立します．したがって，</p>
+<p>\( \Large    P_{X\color{red}{-}Y} (z) = \displaystyle \int_{-\infty}^{ \infty } P_{X} (t) P_Y(z-t) dt
+　\)</p>
+<p>となります．それぞれが正規分布に従うので，</p>
+<p>\( \Large    P_{X} (x) = \frac{1}{\sqrt{2 \pi \frac{\sigma_X^2}{n_X}}} 
+exp \left[- \frac{(x-\mu_X)^2}{2 \frac{\sigma_X^2}{n_X}} \right] \)</p>
+<p>\( \Large    P_{Y} (x) = \frac{1}{\sqrt{2 \pi \frac{\sigma_Y^2}{n_Y}}} 
+exp \left[- \frac{(x-\mu_Y)^2}{2 \frac{\sigma_Y^2}{n_Y}} \right] \)</p>
+<p>となりますので，代入すると，</p>
+<p>\( \Large    \begin{eqnarray} P_{X\color{red}{-}Y} (z) &amp;=&amp; \displaystyle \int_{-\infty}^{ \infty } \frac{1}{\sqrt{2 \pi \frac{\sigma_X^2}{n_X}}} 
+exp \left[- \frac{(t-\mu_X)^2}{2 \frac{\sigma_X^2}{n_X}} \right] <br />
+\frac{1}{\sqrt{2 \pi \frac{\sigma_Y^2}{n_Y}}} 
+exp \left[- \frac{(\color{red}{t-z}-\mu_Y)^2}{2 \frac{\sigma_Y^2}{n_Y}} \right]dt
+　\\<br />
+&amp;=&amp; \frac{1}{2 \pi \sqrt{\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}}} \displaystyle \int_{-\infty}^{ \infty }  
+exp \left[- \frac{(t-\mu_X)^2}{2 \frac{\sigma_X^2}{n_X}} - \frac{(\color{red}{t-z}-\mu_Y)^2}{2 \frac{\sigma_Y^2}{n_Y}} \right]dt
+　\\<br />
+\end{eqnarray}  \)</p>
+<p>と表すことができます．</p>
+<p>指数部分は，</p>
+<p>\(  \begin{eqnarray} &amp;&amp; - \frac{(t-\mu_X)^2}{2 \frac{\sigma_X^2}{n_X}} - \frac{(\color{red}{t-z}-\mu_Y)^2}{2 \frac{\sigma_Y^2}{n_Y}} \\<br />
+  &amp;=&amp; 
+- \frac{\frac{\sigma_Y^2}{n_Y}(t^2-2 \mu_X t+ \mu_X^2) + \frac{\sigma_X^2}{n_X} (z^2+t^2+\mu_Y^2 \color{red}{-} 2 \mu_Y t-2zt \color{red}{+} 2 \mu_Y z)}{2 \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}} \\<br />
+&amp;=&amp; 
+- \frac{(\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}) \color{red}{t^2}-2(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z \color{red}{+} \frac{\sigma_X^2}{n_X} \mu_Y) \color{red}{t} + \frac{\sigma_Y^2}{n_Y} \mu_X^2 + \frac{\sigma_X^2}{n_X} z^2 + \frac{\sigma_X^2}{n_X} \mu_Y^2 \color{red}{+} 2 \frac{\sigma_X^2}{n_X} \mu_Y z} {2 \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}}\\<br />
+&amp;=&amp; 
+- \frac{\frac{\sigma_X^2}{n_X}+\frac{\sigma_Y^2}{n_Y}}{2\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}} \left\{ \color{red}{t^2}-\frac{2(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z \color{red}{+} \frac{\sigma_X^2}{n_X} \mu_Y)}{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \color{red}{t} + \frac{
+ \frac{\sigma_Y^2}{n_Y} \mu_X^2 + \frac{\sigma_X^2}{n_X} z^2 + \frac{\sigma_X^2}{n_X} \mu_Y^2 \color{red}{+} 2 \frac{\sigma_X^2}{n_X} \mu_Y z} { \frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right\} \\<br />
+\end{eqnarray}  \)</p>
+<p>\( \Large     t^2 + 2b t + c =  (t+b)^2 - b^2 +c \)より，</p>
+<p>\(  \begin{eqnarray} <br />
+&amp;=&amp; 
+- \frac{\frac{\sigma_X^2}{n_X}+\frac{\sigma_Y^2}{n_Y}}{2\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}} <br />
+\left\{ \color{red}{t^2}-\frac{2(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z \color{red}{+} \frac{\sigma_X^2}{n_X} \mu_Y)}{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \color{red}{t} + \left[ \frac{(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z \color{red}{+} \frac{\sigma_X^2}{n_X} \mu_Y)}{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right]^2 - \left[ \frac{(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z \color{red}{+} \frac{\sigma_X^2}{n_X} \mu_Y)}{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right]^2+ \frac{
+ \frac{\sigma_Y^2}{n_Y} \mu_X^2 + \frac{\sigma_X^2}{n_X} z^2 + \frac{\sigma_X^2}{n_X} \mu_Y^2 \color{red}{+} 2 \frac{\sigma_X^2}{n_X} \mu_Y z} { \frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right\} \\<br />
+ &amp;=&amp; 
+- \frac{\frac{\sigma_X^2}{n_X}+\frac{\sigma_Y^2}{n_Y}}{2\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}} <br />
+\left\{ \left[ \color{red}{t}-\frac{(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z \color{red}{+} \frac{\sigma_X^2}{n_X} \mu_Y)}{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right]^2  - \left[ \frac{(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z \color{red}{+} \frac{\sigma_X^2}{n_X} \mu_Y)}{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right]^2+ \frac{
+ \frac{\sigma_Y^2}{n_Y} \mu_X^2 + \frac{\sigma_X^2}{n_X} z^2 + \frac{\sigma_X^2}{n_X} \mu_Y^2 \color{red}{+} 2 \frac{\sigma_X^2}{n_X} \mu_Y z} { \frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right\} \\ <br />
+\end{eqnarray}  \)</p>
+<p>第二，三項は，</p>
+<p>\(  \begin{eqnarray} <br />
+  &amp;&amp; 
+- \frac{\frac{\sigma_X^2}{n_X}+\frac{\sigma_Y^2}{n_Y}}{2\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}} <br />
+\left\{   - \left[ \frac{(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z \color{red}{+} \frac{\sigma_X^2}{n_X} \mu_Y)}{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right]^2+ \frac{
+ \frac{\sigma_Y^2}{n_Y} \mu_X^2 + \frac{\sigma_X^2}{n_X} z^2 + \frac{\sigma_X^2}{n_X} \mu_Y^2 \color{red}{+} 2 \frac{\sigma_X^2}{n_X} \mu_Y z} { \frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right\} \\ <br />
+ &amp;=&amp; 
+- \frac{\frac{\sigma_X^2}{n_X}+\frac{\sigma_Y^2}{n_Y}}{2\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}} <br />
+\left\{   -  \frac{(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z \color{red}{+} \frac{\sigma_X^2}{n_X} \mu_Y)^2}{(\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y})^2} + \frac{
+ (\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y})(\frac{\sigma_Y^2}{n_Y} \mu_X^2 + \frac{\sigma_X^2}{n_X} z^2 + \frac{\sigma_X^2}{n_X} \mu_Y^2 \color{red}{+} 2 \frac{\sigma_X^2}{n_X} \mu_Y z)} { (\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y})^2} \right\} \\ <br />
+ &amp;=&amp; - \frac{\frac{\sigma_X^2}{n_X}+\frac{\sigma_Y^2}{n_Y}}{2\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}} \left\{ \begin
+ {array}{1}<br />
+-  \frac{\color{cyan}{\sigma_Y^4 \mu_X^2} + \color{red}{\sigma_X^4 z^2}  +\color{green}{\sigma_X^4 \mu_Y^2} + 2 \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y} \mu_X z \color{red}{+}2\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y} \mu_X \mu_Y \color{blue}{\color{red}{+}2\sigma_X^4  \mu_Y z}}{(\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y})^2}\\<br />
+  \frac{
+  \frac{\sigma_X^2}{n_X}\frac{\sigma_Y^2}{n_Y} \mu_X^2 + \color{red}{\sigma_X^4 z^2} + \color{green}{\sigma_X^4 \mu_Y^2} \color{red}{+} \color{blue}{2 \sigma_X^4 \mu_Y z}+\color{cyan}{\sigma_Y^4 \mu_X^2} + \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}z^2 + \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}\mu_Y^2 \color{red}{+} 2 \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}\mu_Y z} { (\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y})^2}<br />
+  \end{array} \right\}
+ \\  <br />
+\end{eqnarray}  \)</p>
+<p>色の部分がキャンセルされるので，</p>
+<p>\(  \begin{eqnarray} <br />
+  &amp;=&amp; - \frac{\frac{\sigma_X^2}{n_X}+\frac{\sigma_Y^2}{n_Y}}{2\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}} \left\{ <br />
+  \frac{ -2 \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y} \mu_X z \color{red}{-} 2\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y} \mu_X \mu_Y + 
+  \frac{\sigma_X^2}{n_X}\frac{\sigma_Y^2}{n_Y} \mu_X^2  + \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}z^2 + \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}\mu_Y^2 \color{red}{+} 2 \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}\mu_Y z}{(\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y})^2}<br />
+  \right\}
+\\ <br />
+&amp;=&amp; - \frac{\frac{\sigma_X^2}{n_X}+\frac{\sigma_Y^2}{n_Y}}{2\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}} \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y} \left\{ <br />
+\frac{ -2  \mu_X z + 2 \mu_X \mu_Y + 
+   \mu_X^2  + z^2 + \mu_Y^2 \color{red}{+} 2 \mu_Y z}{(\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y})^2}<br />
+\right\}
+ \\<br />
+&amp;=&amp; - \frac{ \{ z-(\mu_X \color{red}{-} \mu_Y) \}^2}{2(\frac{\sigma_X^2}{n_X}  + \frac{\sigma_Y^2}{n_Y})}  \\ <br />
+\end{eqnarray}  \)</p>
+<p>と簡単になる．　</p>
+<p>指数部分に戻すと，</p>
+<p>\(  \begin{eqnarray} <br />
+ &amp;&amp; -\frac{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}}{2\frac{\sigma_X^2}{n_X}  \frac{\sigma_Y^2}{n_Y}} \left[ \color{red}{t}-\frac{(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z \color{red}{+} \frac{\sigma_X^2}{n_X} \mu_Y)}{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right]^2<br />
+ - \frac{ \{ z-(\mu_X \color{red}{-} \mu_Y) \}^2}{2(\frac{\sigma_X^2}{n_X}  + \frac{\sigma_Y^2}{n_Y})}  \\ <br />
+\end{eqnarray}  \)</p>
+<p>したがって，</p>
+<p>\(     \begin{eqnarray} P_{X+Y} (z) <br />
+&amp;=&amp; \frac{1}{2 \pi \sqrt{\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}}} \displaystyle \int_{-\infty}^{ \infty }  
+exp \left[-\frac{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}}{2\frac{\sigma_X^2}{n_X}  \frac{\sigma_Y^2}{n_Y}} \left\{ \color{red}{t}-\frac{(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z - \frac{\sigma_X^2}{n_X} \mu_Y)}{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right\}^2<br />
+- \frac{ \{ z-(\mu_X \color{red}{-} \mu_Y) \}^2}{2(\frac{\sigma_X^2}{n_X}  + \frac{\sigma_Y^2}{n_Y})} \right]dt
+　\\<br />
+&amp;=&amp; \frac{1}{2 \pi \sqrt{\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}}} exp \left[- \frac{ \{ z-(\mu_X \color{red}{-} \mu_Y) \}^2}{2(\frac{\sigma_X^2}{n_X}  + \frac{\sigma_Y^2}{n_Y})} \right] \displaystyle \int_{-\infty}^{ \infty }  
+exp \left[-\frac{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}}{2\frac{\sigma_X^2}{n_X}  \frac{\sigma_Y^2}{n_Y}} \left\{ \color{red}{t}-\frac{(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z \color{red}{+} \frac{\sigma_X^2}{n_X} \mu_Y)}{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right\}^2<br />
+\right]dt
+　\\<br />
+\end{eqnarray}  \)</p>
+<p>積分項目は，</p>
+<p>\(     \begin{eqnarray} &amp;&amp; \displaystyle \int_{-\infty}^{ \infty }  
+exp \left[-\frac{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}}{2\frac{\sigma_X^2}{n_X}  \frac{\sigma_Y^2}{n_Y}} \left\{ \color{red}{t}-\frac{(\frac{\sigma_Y^2}{n_Y} \mu_X + \frac{\sigma_X^2}{n_X} z \color{red}{+} \frac{\sigma_X^2}{n_X} \mu_Y)}{\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}} \right\}^2<br />
+\right]dt
+　\\<br />
+&amp;=&amp; \displaystyle \int_{-\infty}^{ \infty }  
+exp \left[-a\{ t-b\}^2
+  \right]dt
+  \\<br />
+\end{eqnarray}  \)</p>
+<p>と簡単に記載することができ，</p>
+<p>\( \Large    t-b
+= w　\)とすると，</p>
+<p>\( \Large    dt
+= dw　\)</p>
+<p>\(     \begin{eqnarray} <br />
+&amp;=&amp; \displaystyle \int_{-\infty}^{ \infty }  
+exp \left[-a w^2
+  \right]dt
+  \\<br />
+  &amp;=&amp; \sqrt{\frac{\pi}{a}} \\
+  <br />
+\end{eqnarray}  \)</p>
+<p>したがって，</p>
+<p>\(     \begin{eqnarray} P_{X+Y} (z) <br />
+  &amp;=&amp; \frac{1}{2 \pi \sqrt{\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}}} exp \left[- \frac{ \{ z-(\mu_X \color{red}{-} \mu_Y) \}^2}{2(\frac{\sigma_X^2}{n_X}  + \frac{\sigma_Y^2}{n_Y})} \right] <br />
+\sqrt{ \frac{\pi (2 \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y})}{
+\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}}}　\\<br />
+&amp;=&amp; \frac{1}{2 \pi \sqrt{\frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y}}} \sqrt{ \frac{\pi (2 \frac{\sigma_X^2}{n_X} \frac{\sigma_Y^2}{n_Y})}{
+\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}}} exp \left[- \frac{ \{ z-(\mu_X \color{red}{-} \mu_Y) \}^2}{2(\frac{\sigma_X^2}{n_X}  + \frac{\sigma_Y^2}{n_Y})} \right] 
+　\\<br />
+&amp;=&amp; \frac{1}{ \sqrt{2 \pi(\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y})}}  exp \left[- \frac{ \{ z-(\mu_X \color{red}{-} \mu_Y) \}^2}{2(\frac{\sigma_X^2}{n_X}  + \frac{\sigma_Y^2}{n_Y})} \right] 
+　\\<br />
+\end{eqnarray}  \)</p>
+<p>これは，<br />
+  <span class="Large-Bold-Red">　平均：\( \Large    \mu_X \color{red}{-} \mu_Y　\)<br />
+　分散：\( \Large    \frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y}　\)</span><br />
+の正規分布である．</p>
+<p>&nbsp;</p>
+<p><a href="Normal distribution-02.html"><img src="L-arrow.png" width="57" height="34" alt=""/></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a><a href="file:///D|/Dropbox/Homepage/index.html"></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

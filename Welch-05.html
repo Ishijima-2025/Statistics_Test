@@ -1,0 +1,100 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Welch</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">Welchの自由度の求め方-05</p>
+<p><br />
+<span class="Blue-Bold">Welchの1947年の論文</span>，</p>
+<p class="Blue">The Generalization of `Student's' Problem when Several Different Population Variances are Involved <br>
+B. L. Welch Biometrika, Vol. 34, No. 1/2 (Jan., 1947), pp. 28-35 (8 pages) <br>
+https://doi.org/10.2307/2332510</p>
+<p>には，以下の記述があります</p>
+<p>\(\Large    \displaystyle 
+f = \frac{ \left(     \displaystyle 
+\sum \lambda_i \sigma_i^2 \right)^2}{    \displaystyle 
+\sum \frac{ \lambda_i^2 \sigma_i^4}{f_i}} \hspace{60pt} (28) \)</p>
+<p>とあります．ここで，論文では，</p>
+<p>\(\Large    \displaystyle 
+\lambda_i = \frac{1}{n_i} \)</p>
+<p>\(\Large    \displaystyle 
+f_i = n_i - 1 \)</p>
+<p>とのことです．</p>
+<p>そのあとの文章は，</p>
+<p class="Blue">Not knowing the σi's in (28),  there are several ways in which we may now proceed, depending on what weight we  may be willing to attach to any vague a priori notions we may possess of their  relative magnitudes (cf. Welch, 1938). If we are not willing to assume  anything, perhaps the best choice is</p>
+<p>翻訳すると（DeepLにお願いしました）</p>
+<p class="Blue">(28)のσ<sub>i</sub>を知らない場合、σ<sub>i</sub>の相対的な大きさについて曖昧な先験的概念をどの程度重視するかによって、いくつかの方法が考えられる（Welch, 1938参照）。もし何も仮定したくないのであれば、おそらく最良の選択は，</p>
+<p>\(\Large    \displaystyle 
+f = \frac{ \left(     \displaystyle 
+\sum \lambda_i s_i^2 \right)^2 - 2 \left( \displaystyle 
+\sum \frac{ \lambda_i^2 s_i^4  }{f_i + 2}\right)}<br>
+{    \displaystyle 
+\left( \sum \frac{ \lambda_i^2 s_i^4  }{f_i + 2}\right)} \hspace{60pt} (29) \)</p>
+<p class="Blue">It may  be shown that the numerator of (29) has, in repeated samples, an average value \(\Large    \displaystyle \sum \left(     \displaystyle 
+\lambda_i \sigma_i^2 \right)^2 \) , and the denominator has average value of  X. In a certain sense, therefore,(29) is a fair estimate of (28).</p>
+<p class="Blue">(29)の分子は反復標本において平均値 \(\Large    \displaystyle \sum \left(     \displaystyle 
+\lambda_i \sigma_i^2 \right)^2 \) を持ち、分母は平均値Xを持つことが示される。したがって、ある意味で(29)は(28)の公正な推定値である。</p>
+<p>と現在通常使われている記号とは異なる記号ですね．</p>
+<p>ここで，i=1,2，として現在の記号で書き換えると，</p>
+<p>(28)</p>
+<p>\(\Large    \displaystyle 
+ = \frac{ \left(     \displaystyle 
+\sum \lambda_i \sigma_i^2 \right)^2}{    \displaystyle 
+\sum \frac{ \lambda_i^2 \sigma_i^4}{f_i}}  \)</p>
+<p>\(\Large    \displaystyle 
+  f = \frac{ \displaystyle 
+  \left(     \frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2} \right)^2}<br>
+  {    \displaystyle 
+  \frac{\left( \frac{  \sigma_1^2}{n_1} \right)^2}{n_1 - 1} + \frac{\left( \frac{  \sigma_2^2}{n_2} \right)^2}{n_2 - 1}}  \)</p>
+<p>と今までの議論での式と一致します．</p>
+<p>&nbsp;</p>
+<p>(29)</p>
+<p>\(\Large    \displaystyle 
+f = \frac{ \left(     \displaystyle 
+\sum \lambda_i s_i^2 \right)^2 - 2 \left( \displaystyle 
+\sum \frac{ \lambda_i^2 s_i^4  }{f_i + 2}\right)}<br>
+{    \displaystyle 
+\left( \sum \frac{ \lambda_i^2 s_i^4  }{f_i + 2}\right)}  \)</p>
+<p>\(\Large    \displaystyle 
+f = \frac{ \left(     \displaystyle 
+\frac{ s_1^2}{n_1} + \frac{ s_2^2}{n_2} \right)^2 - 2 \left( \displaystyle 
+\frac{ s_1^4  }{n_1^2 (n_1 +1)} + \frac{ s_2^4  }{n_2^2 (n_2 +1)} \right)}<br>
+{     \displaystyle 
+\frac{ s_1^4  }{n_1^2 (n_1 +1)} + \frac{ s_2^4  }{n_2^2 (n_2 +1)} }  \)</p>
+<p>とかなりややこしくなります．</p>
+<p>なぜ，こんな数式になったのかはわかりませんでした．．．</p>
+<p>とりあえず，これらの式の正当性をシミュレーションしてみます．</p>
+<p class="Blue">&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style10"><a href="Welch-04.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Welch-06.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

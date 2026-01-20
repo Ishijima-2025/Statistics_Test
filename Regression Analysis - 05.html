@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Regression-Analysis</title>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+.style10 {color: #000000; }
+.style1 {color: #0000FF}
+</style>
+</head>
+
+<body>
+<h1 class="style1">回帰分析　-　05</h1>
+<p class="Large-Bold-Blue">傾き，\(\Large \displaystyle   \hat{a_1} \)，切片，\(\Large \displaystyle   \hat{a_0} \)，の期待値</p>
+<p>各パラメータの分散推定に行く前に，</p>
+<p class="Large-Bold-Blue">　期待値</p>
+<p>を求めてみましょう．</p>
+<p class="Large-Bold-Blue">・期待値の性質</p>
+<p>まずは，期待値の性質から，</p>
+<p>\(\Large \displaystyle  E[aX] = c E[X] \)</p>
+<p>\(\Large \displaystyle  E[X+c] =  E[X] + c\)</p>
+<p>\(\Large \displaystyle  E[X+Y] =  E[X] + E[Y]\)</p>
+<p>\(\Large \displaystyle  E[XY] =  E[X] E[Y] \)　（X,Yが無相関な場合）</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Blue">\(\Large  \displaystyle   
+\hat{a_1} \)，の期待値</p>
+<p>まず，\(\Large  \displaystyle   
+\hat{a_1} \)，の期待値から．</p>
+<p>\(\Large \begin{eqnarray} \displaystyle   \hat{a_1} &amp;=&amp; a_1   
+  +  \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)  u_i   }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2} 
+  \\<br />
+  &amp;=&amp; a_1   
+  +  \sum_{i=1}^{n} \omega_i u_i 
+  \\<br />
+  \end{eqnarray}  \)</p>
+<p>となるので，</p>
+<p>\(\Large  \begin{eqnarray} \displaystyle E  (  \hat{a_1}    ) &amp;=&amp; E  \left(  a_1   
+  +  \sum_{i=1}^{n} \omega_i u_i    \right) \\<br />
+  &amp;=&amp;  a_1   
+  + E  \left(    \sum_{i=1}^{n} \omega_i u_i    \right) \\<br />
+  &amp;=&amp;  a_1   
+  +     \sum_{i=1}^{n} \omega_i E (u_i)     \\<br />
+  &amp;=&amp;  a_1   
+  \\<br />
+  \end{eqnarray}  \)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Blue">\(\Large  \displaystyle   
+\hat{a_0} \)，の期待値</span></p>
+<p>\(\Large \displaystyle   \hat{a_0} \)，と　\(\Large \displaystyle   \hat{a_1} \)，の関係は，</p>
+<p>\(\Large \displaystyle  \bar{Y}  = a_0 + a_1 \bar{X} + \bar{u} \), 　<a href="Regression Analysis - 05.html">ここ</a>から</p>
+<p>\(\Large  \displaystyle  \bar{Y} 
+  = 
+\hat{a_0} - \hat{a_1}   \bar{X} \),　 <a href="Regression Analysis - 03.html">ここ</a>から</p>
+<p>から，</p>
+<p>\(\Large  \displaystyle   
+\hat{a_0} = a_0 - \left(  \hat{a_1}   - a_1 \right) \bar{X} + \bar{u} \)</p>
+<p>となります．期待値は，</p>
+<p>\(\Large  \begin{eqnarray}\displaystyle   
+E[\hat{a_0}] &amp;=&amp; E \left[a_0 - \left(  \hat{a_1}   - a_1 \right) \bar{X} + \bar{u} \right] \\<br /> 
+&amp;=&amp; E[ a_0 ] - 
+E \left[ \left(  \hat{a_1}   - a_1 \right) \bar{X} \right]+ E \left[ \bar{u} \right] \\<br />
+&amp;=&amp; E[ a_0 ] - 
+ \bar{X} E \left[  \hat{a_1}   - a_1 \right]+ E \left[ \bar{u} \right] \\<br />
+ &amp;=&amp;  E[ a_0 ] - 
+ \bar{X} E \left[  \hat{a_1} \right] + \bar{X} E \left[  a_1 \right]+ E \left[ \bar{u} \right] \\ <br />
+ &amp;=&amp;  a_0 - 
+ \bar{X} a_1 + \bar{X}   a_1 + 0 \\ <br />
+ &amp;=&amp;  a_0  \\ <br />
+\end{eqnarray}  \)</p>
+<p>となります，ある意味，当たり前の結果となります．</p>
+<p>&nbsp;</p>
+<p>では，いよいよ<span class="Large-Bold-Blue">傾き，\(\Large \displaystyle   \hat{a_1} \)，の分散</span>を求めていきましょう．</p>
+<p>&nbsp;</p>
+<p><span class="style10"><a href="Regression Analysis - 04.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Regression Analysis - 06.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+</body>
+</html>

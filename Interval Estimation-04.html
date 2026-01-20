@@ -1,0 +1,104 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-04</span></h1>
+<h1 class="Large-Bold-Red">母平均がわかっていなくて，母分散もわかっていない場合の区間推定　：　ｔ検定</h1>
+<p>前ページに示しましたように，”母分散σがわかっている場合”の区間推定の計算方法を示しました．</p>
+<p>\(\Large    \bar{x} - 1.96 \times \sqrt{\frac{\sigma^2}{n}} \hspace{12 pt}\leq   \hspace{12 pt}   \mu \hspace{12 pt} \leq  \hspace{12 pt}  \bar{x} + 1.96 \times \sqrt{\frac{\sigma^2}{n}}  \)</p>
+<p>すなわち，</p>
+<p>　<span class="Blue-Bold">測定平均，\(\Large    \bar{x}   \)</span>　と<span class="Blue-Bold">母分散σ<sup>2</sup></span>，と<span class="Blue-Bold">試行回数ｎ</span>がわかれば，<span class="Large-Bold-Red">母平均μの範囲がわかる＝区間推定</span>ができる</p>
+<p>というものでした．</p>
+<p>しかし，そもそもわからないものを推定するのですから，<span class="Blue-Bold">母分散σ<sup>2</sup></span>，だってわからないのが当然でしょう．</p>
+<p>測定からわかるのはせいぜい，<span class="Blue-Bold">不偏分散</span>，ぐらい．．．</p>
+<p>\(\Large    \displaystyle   s^2 = \frac{ \displaystyle   \sum_{i=1}^n (x_i - \bar{x})^2}{n-1} \)</p>
+<p>じゃあ，何とか，<span class="Blue-Bold">σ<sup>2</sup></span>と<span class="Blue-Bold">ｓ</span>が入った関係式を見つけ出し，それをうまく組み合わせることにより，<span class="Blue-Bold">σ<sup>2</sup></span>を消去し，<span class="Blue-Bold">ｓ</span>を残せば，実際に得られたデータから区間推定ができるんじゃないかと考えたのが，</p>
+<p>　<span class="Large-Bold-Red">ｔ検定</span></p>
+<p>です（と思います．．．．．）．</p>
+<p>つまり，母分散がわかっている状態での区間推定で使われている指標をZとすると，</p>
+<p>\(\Large  Z =\displaystyle  \frac{\bar{x} - \mu}{ \sqrt{\frac{\sigma^2}{n}}} \rightarrow  \frac{\bar{x} - \mu}{ \sqrt{\frac{s^2}{n}}} = t   \)</p>
+<p>と変換すればいいのです．これからの導出は，<a href="https://www.youtube.com/watch?v=TV6bpAkpKlg" target="_blank">こちらのサイト</a>，を参考にしました，ありがとうございます．まず，</p>
+<p>\(\Large    \displaystyle   s^2 = \frac{ \displaystyle   \sum_{i=1}^n (x_i - \bar{x})^2}{n-1} \)</p>
+<p>です，すると，</p>
+<p>\(\Large  t = \displaystyle \frac{\bar{x} - \mu}{ \sqrt{\frac{s^2}{n}}} =   \frac{\bar{x} - \mu}{ \sqrt{ \displaystyle \frac{1}{n} \displaystyle \frac{ \displaystyle   \sum_{i=1}^n (x_i - \bar{x})^2}{n-1}}}\)</p>
+<p>となります．</p>
+<p>ここで，新しい指標，U，を導入します．ここには，<span class="Blue-Bold">σ<sup>2</sup></span>と<span class="Blue-Bold">ｓ</span>が入っているので期待大です</p>
+<p>\(\Large  \displaystyle U = \frac{(n-1) s^2}{ \sigma^2} =   \frac{ \displaystyle \sum_{i=1}^n (x_i - \bar{x})^2}{ \sigma^2} = \chi_{n-1}^2\)</p>
+<p>最後の，</p>
+<p>\(\Large  \displaystyle \chi_{n-1}^2\)</p>
+<p>は自由度１のカイ二乗分布となります（導出はこちらで）</p>
+<p>\(\Large  \displaystyle s^2 = \frac{ U \sigma^2}{ n-1} \)</p>
+<p>となるので，</p>
+<p>\(\Large  \displaystyle Z =\displaystyle  \frac{\bar{x} - \mu}{ \sqrt{\frac{\sigma^2}{n}}}     \rightarrow  \bar{x} - \mu = \sqrt{ \frac{\sigma^2}{n}} Z\)</p>
+<p>\(\Large  \displaystyle t = \frac{\bar{x} - \mu}{ \sqrt{\frac{s^2}{n}}}        \rightarrow   \frac{\sqrt{ \frac{\sigma^2}{n}} Z}{ \sqrt{\frac{s^2}{n}}}        <br />
+  = 
+\displaystyle \frac{\sqrt{ \frac{\sigma^2}{n}} Z}{ \displaystyle \sqrt{\frac{1}{n} \frac{U \sigma^2}{n-1}}}<br />
+= \frac{Z}{\sqrt{ \frac{U}{n-1}}}
+\)</p>
+<p>と<span class="Large-Bold-Red">ｔの分布は，自由度n-1のカイ二乗分布（U）とZ（標準化正規分布）に従う分布</span>となります．</p>
+<p>実際のｔの値は，</p>
+<p>\(\Large  \displaystyle t 
+= 
+\frac{\sqrt{ \frac{\sigma^2}{n}} Z}{ \sqrt{\frac{s^2}{n}}}        
+\)</p>
+<p>ですが，</p>
+<p>\(\Large  Z =\displaystyle  \frac{\bar{x} - \mu}{ \sqrt{\frac{\sigma^2}{n}}}    \)</p>
+<p>ですので，</p>
+<p>\(\Large  \displaystyle t 
+= 
+\frac{\sqrt{ \frac{\sigma^2}{n}} Z}{ \sqrt{\frac{s^2}{n}}}        
+= 
+\frac{\bar{x} - \mu}{ \sqrt{\frac{s^2}{n}}}\)</p>
+<p>として実験結果から計算することができます．</p>
+<p>つまり，</p>
+<p><span class="Blue-Bold">母分散がわかっている場合</span>は，</p>
+<p>\(\Large     \displaystyle     - 1.96  \hspace{52 pt}\leq   \hspace{12 pt}   \frac{\mu - \bar{x}}{ \sqrt{\frac{\color{red}{\sigma}^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   1.96   \)</p>
+<p><span class="Blue-Bold">母分散がわからない場合</span>には，</p>
+<p>\(\Large     \displaystyle     - t_{\alpha/2} (n-1)  \hspace{12 pt}\leq   \hspace{12 pt}   \frac{\mu - \bar{x}}{ \sqrt{\frac{\color{red}{s}^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1) \)</p>
+<p>となるのです．</p>
+<p>ｔ分布自体は，</p>
+<p>\(\Large     \displaystyle     f(t) = \frac{ \Gamma (\frac{n}{2}) }{ \sqrt{(n-1) \pi} \ \Gamma ( \frac{n-1}{2})} \left( 1 + \frac{t^2}{n-1} \right)^{- \frac{n}{2}}\)</p>
+<p>となりますが，この導出は．．．．．<a href="https://www.hello-statisticians.com/explain-terms-cat/t_dist1.html" target="_blank">ここ</a>，にありますが．．．勉強します．</p>
+<p>なんとか解けました！，<a href="Interval Estimation-04_01.html">ここ</a>，に記しました！</p>
+<p>実際の波形は，</p>
+<p><img src="Interval Estimation-02.png" width="735" height="411" alt=""/></p>
+<p>と若干先鋭化した正規分布のような形となります．</p>
+<p>&nbsp;</p>
+<p>では，ここで重要となる，</p>
+<p>\(\Large  \displaystyle  \chi_{n-1}^2 \)</p>
+<p>という，<span class="Large-Bold-Red">自由度１のカイ二乗分布</span>を検討していきましょう．</p>
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-03.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Interval Estimation-05.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

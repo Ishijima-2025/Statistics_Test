@@ -1,0 +1,264 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Non_parametric</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED"><span class="Red-Bold">ウィルコクソンの順位和検定・</span><span class="Red-Bold">マン・ホイットニーのU検定</span></p>
+<p>&nbsp;</p>
+<p><a href="Non_parametric-03-01.html">前のページ</a>と同じ結果から評価をしていきましょう．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・データ数が同じ場合</p>
+<p>&nbsp;</p>
+<p>この結果を全体に対して順位を付与します．</p>
+<table width="368" border="1">
+  <tbody>
+    <tr>
+      <td width="62" style="text-align: center">No.</td>
+      <td width="70" style="text-align: center">A</td>
+      <td width="55" style="text-align: center">&nbsp;</td>
+      <td width="70" style="text-align: center">B</td>
+      <td width="55" style="text-align: center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">順位</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">順位</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td width="70" style="text-align: center">27</td>
+      <td class="Red" style="text-align: center">3</td>
+      <td width="70" style="text-align: center">30</td>
+      <td class="Red" style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td width="70" style="text-align: center">33</td>
+      <td class="Red" style="text-align: center">8</td>
+      <td width="70" style="text-align: center">34</td>
+      <td class="Red" style="text-align: center">9</td>
+    </tr>
+    <tr>
+      <td height="26" style="text-align: center">3</td>
+      <td width="70" style="text-align: center">24</td>
+      <td class="Red" style="text-align: center">2</td>
+      <td width="70" style="text-align: center">37</td>
+      <td class="Red" style="text-align: center">10</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td width="70" style="text-align: center">22</td>
+      <td class="Red" style="text-align: center">1</td>
+      <td width="70" style="text-align: center">28</td>
+      <td class="Red" style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td width="70" style="text-align: center">29</td>
+      <td class="Red" style="text-align: center">5</td>
+      <td width="70" style="text-align: center">32</td>
+      <td class="Red" style="text-align: center">7</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">n</td>
+      <td style="text-align: center">5</td>
+      <td class="Red" style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">5</td>
+      <td class="Red" style="text-align: center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">R</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">19</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">36</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">U</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">21</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">4</td>
+    </tr>
+  </tbody>
+</table>
+<p class="Red-Bold">・ウィルコクソンの順位和検定</p>
+<p class="Blue-Bold">・A</p>
+<p>\(\Large  \displaystyle W_A= 3+8+2+1+5 = 19　\)</p>
+<p>\(\Large  \displaystyle E(W_A)= \frac{n_A ( n_A + n_B +1)}{2} = \frac{5 (5+5+1)}{2} = 27.5　\)</p>
+<p>\(\Large  \displaystyle V(W_A)= \frac{n_A \ n_B ( n_A + n_B +1)}{12} = \frac{5 \cdot 5 (5+5+1)}{12} = \frac{275}{12} = 22.92　\)</p>
+<p>この結果からｚ値を求めます．</p>
+<p>\(\Large  \displaystyle z_A = \frac{W_A-E(W_A)}{\sqrt{V(W_A)}} =  \frac{19-27.5}{\sqrt{22.92}} = -1.775　\)</p>
+<p>標準正規分布における両側５％の範囲は，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/Interval%20Estimation-03.html">こちら</a>に，記載しましたように，±1.96，となるので，</p>
+<p>\(\Large  \displaystyle -1.96 &lt; \frac{W_A-E(W_A)}{\sqrt{V(W)}} &lt; 1.96　\)</p>
+<p class="Blue-Bold">・B</p>
+<p>\(\Large  \displaystyle W_B= 6+9+10+4+7 = 36　\)</p>
+<p>\(\Large  \displaystyle E(W_B)= \frac{n_B ( n_A + n_B +1)}{2} = \frac{5 (5+5+1)}{2} = 27.5　\)</p>
+<p>\(\Large  \displaystyle V(W_B)= \frac{n_A \ n_B ( n_A + n_B +1)}{12} = \frac{5 \cdot 5 (5+5+1)}{12} = \frac{275}{12} = 2.92　\)</p>
+<p>この結果からｚ値を求めます．</p>
+<p>\(\Large  \displaystyle z_B = \frac{W_B-E(W_B)}{\sqrt{V(W_B)}} =  \frac{36-27.5}{\sqrt{22.92}} = 1.775　\)</p>
+<p>と，A,Bそれぞれからのｚ値は符号が変わりますが，同じ値となります．</p>
+<p>標準正規分布における両側５％の範囲は，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/Interval%20Estimation-03.html">こちら</a>に，記載しましたように，±1.96，となるので，</p>
+<p>\(\Large  \displaystyle -1.96 &lt; \frac{W_B-E(W_B)}{\sqrt{V(W)}} &lt; 1.96　\)</p>
+<p>なので，範囲内，つまり有意差があるとは限らないことになります．</p>
+<p>&nbsp;</p>
+<p class="Red-Bold">・マン・ホイットニーのU検定</p>
+<p><span class="Blue-Bold">・A</span></p>
+<p>\(\Large  \displaystyle U_A = n_1 n_2 + \frac{n_1 (n_1 + 1)}{2} -R_1 = 5 \times 5 + \frac{5 (5+1)}{2} - 19 = 21　\)</p>
+<p>\(\Large  \displaystyle E(U)= \frac{ n_A  n_B}{2} = \frac{5 \times 5}{2} = 12.5　\)</p>
+<p>\(\Large  \displaystyle V(U_A)= \frac{n_A \ n_B ( n_A + n_B +1)}{12} = \frac{5 \cdot 5 (5+5+1)}{12} = \frac{275}{12} = 22.92　\)</p>
+<p>この結果からｚ値を求めます．</p>
+<p>\(\Large  \displaystyle z_A = \frac{U_A-E(U_A)}{\sqrt{V(W_A)}} =  \frac{21-12.5}{\sqrt{22.92}} = 1.775　\)</p>
+<p><span class="Blue-Bold">・B</span></p>
+<p>\(\Large  \displaystyle U_B = n_1 n_2 + \frac{n_2 (n_2 + 1)}{2} -R_2 = 5 \times 5 + \frac{5 (5+1)}{2} - 36 = 4　\)</p>
+<p>\(\Large  \displaystyle E(U)= \frac{ n_A  n_B}{2} = \frac{5 \times 5}{2} = 12.5　\)</p>
+<p>\(\Large  \displaystyle V(U_B)= \frac{n_A \ n_B ( n_A + n_B +1)}{12} = \frac{5 \cdot 5 (5+5+1)}{12} = \frac{275}{12} = 22.92　\)</p>
+<p>この結果からｚ値を求めます．</p>
+<p>\(\Large  \displaystyle z_B = \frac{U_B-E(U_B)}{\sqrt{V(W_B)}} =  \frac{4-12.5}{\sqrt{22.92}} = -1.775　\)</p>
+<p>と，<span class="Red-Bold">ウィルコクソンの順位和検定・マン・ホイットニーのU検定</span>，の結果が一致することがわかります．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・データ数が異なる場合</p>
+<table width="368" border="1">
+  <tbody>
+    <tr>
+      <td width="62" style="text-align: center">No.</td>
+      <td width="46" style="text-align: center">A</td>
+      <td width="55" style="text-align: center">&nbsp;</td>
+      <td width="46" style="text-align: center">B</td>
+      <td width="55" style="text-align: center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">順位</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">順位</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td width="70" style="text-align: center">27</td>
+      <td class="Red" style="text-align: center">3</td>
+      <td width="70" style="text-align: center">30</td>
+      <td class="Red" style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td width="70" style="text-align: center">33</td>
+      <td class="Red" style="text-align: center">7</td>
+      <td width="70" style="text-align: center">34</td>
+      <td class="Red" style="text-align: center">8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td width="70" style="text-align: center">24</td>
+      <td class="Red" style="text-align: center">2</td>
+      <td width="70" style="text-align: center">37</td>
+      <td class="Red" style="text-align: center">9</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td width="70" style="text-align: center">22</td>
+      <td class="Red" style="text-align: center">1</td>
+      <td width="70" style="text-align: center">28</td>
+      <td class="Red" style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td width="70" style="text-align: center">29</td>
+      <td class="Red" style="text-align: center">5</td>
+      <td width="70" style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">n</td>
+      <td style="text-align: center">5</td>
+      <td class="Red" style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">4</td>
+      <td class="Red" style="text-align: center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">R</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">18</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">27</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">U</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">17</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">3</td>
+    </tr>
+  </tbody>
+</table>
+<p class="Red-Bold">・ウィルコクソンの順位和検定</p>
+<p class="Blue-Bold">・A</p>
+<p>\(\Large  \displaystyle W_A= 3+7+2+1+5 = 18　\)</p>
+<p>\(\Large  \displaystyle E(W_A)= \frac{n_A ( n_A + n_B +1)}{2} = \frac{5 (5+4+1)}{2} = 25　\)</p>
+<p>\(\Large  \displaystyle V(W_A)= \frac{n_A \ n_B ( n_A + n_B +1)}{12} = \frac{5 \cdot 4 (5+4+1)}{12} = \frac{200}{12} = 16.67　\)</p>
+<p>この結果からｚ値を求めます．</p>
+<p>\(\Large  \displaystyle z_A = \frac{W_A-E(W_A)}{\sqrt{V(W_A)}} =  \frac{18-25}{\sqrt{16.67}} = -1.715　\)</p>
+<p>標準正規分布における両側５％の範囲は，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/Interval%20Estimation-03.html">こちら</a>に，記載しましたように，±1.96，となるので，</p>
+<p>\(\Large  \displaystyle -1.96 &lt; \frac{W_A-E(W_A)}{\sqrt{V(W)}} &lt; 1.96　\)</p>
+<p class="Blue-Bold">・B</p>
+<p>\(\Large  \displaystyle W_B= 6+8+9+4 = 27　\)</p>
+<p>\(\Large  \displaystyle E(W_B)= \frac{n_B ( n_A + n_B +1)}{2} = \frac{4 (5+4+1)}{2} = 20　\)</p>
+<p>\(\Large  \displaystyle V(W_B)= \frac{n_A \ n_B ( n_A + n_B +1)}{12} = \frac{5 \cdot 44 (5+4+1)}{12} = \frac{200}{12} = 16.67　\)</p>
+<p>この結果からｚ値を求めます．</p>
+<p>\(\Large  \displaystyle z_B = \frac{W_B-E(W_B)}{\sqrt{V(W_B)}} =  \frac{27-20}{\sqrt{16.67}} = 1.715　\)</p>
+<p>と，A,Bそれぞれからのｚ値は符号が変わりますが，同じ値となります．</p>
+<p>標準正規分布における両側５％の範囲は，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/Interval%20Estimation-03.html">こちら</a>に，記載しましたように，±1.96，となるので，</p>
+<p>\(\Large  \displaystyle -1.96 &lt; \frac{W_B-E(W_B)}{\sqrt{V(W)}} &lt; 1.96　\)</p>
+<p>なので，範囲内，つまり有意差があるとは限らないことになります．</p>
+<p>&nbsp;</p>
+<p class="Red-Bold">・マン・ホイットニーのU検定</p>
+<p><span class="Blue-Bold">・A</span></p>
+<p>\(\Large  \displaystyle U_A = n_1 n_2 + \frac{n_1 (n_1 + 1)}{2} -R_1 = 5 \times 4 + \frac{5 (5+1)}{2} - 18 = 17　\)</p>
+<p>\(\Large  \displaystyle E(U)= \frac{ n_A  n_B}{2} = \frac{5 \times 4}{2} = 10　\)</p>
+<p>\(\Large  \displaystyle V(U_A)= \frac{n_A \ n_B ( n_A + n_B +1)}{12} = \frac{5 \cdot 4 (5+4+1)}{12} = \frac{200}{12} = 16.67　\)</p>
+<p>この結果からｚ値を求めます．</p>
+<p>\(\Large  \displaystyle z_A = \frac{U_A-E(U_A)}{\sqrt{V(W_A)}} =  \frac{17-10}{\sqrt{16.67}} = 1.715　\)</p>
+<p><span class="Blue-Bold">・B</span></p>
+<p>\(\Large  \displaystyle U_B = n_1 n_2 + \frac{n_2 (n_2 + 1)}{2} -R_2 = 5 \times 4 + \frac{4(4+1)}{2} - 27 = 3　\)</p>
+<p>\(\Large  \displaystyle E(U)= \frac{ n_A  n_B}{2} = \frac{5 \times 4}{2} = 10　\)</p>
+<p>\(\Large  \displaystyle V(U_B)= \frac{n_A \ n_B ( n_A + n_B +1)}{12} = \frac{5 \cdot 4 (5+4+1)}{12} = \frac{200}{12} = 16.67　\)</p>
+<p>この結果からｚ値を求めます．</p>
+<p>\(\Large  \displaystyle z_B = \frac{U_A-E(U_A)}{\sqrt{V(W_A)}} =  \frac{3-10}{\sqrt{16.67}} = -1.715　\)</p>
+<p>と，<span class="Red-Bold">ウィルコクソンの順位和検定・マン・ホイットニーのU検定</span>，の結果が一致することがわかります．</p>
+<p>&nbsp;</p>
+<p>次は，<span class="Red-Bold">ウィルコクソンの順位和検定・マン・ホイットニーのU検定</span>，をシミュレーションしていきましょう．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Non_parametric-03-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Non_parametric-03-04.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

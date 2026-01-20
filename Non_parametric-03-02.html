@@ -1,0 +1,94 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Non_parametric</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED"><span class="Red-Bold">マン・ホイットニーのU検定</span> - 期待値と分散値</p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">マン・ホイットニーのU検定の期待値と分散値</span>，を検討してきます．</p>
+<p><span class="Blue">優った数</span>は，<span class="Red-Bold">U</span>，<span class="Blue">順位の合計</span>は，<span class="Red-Bold">R</span>，との関係は，</p>
+<p>\(\Large  \displaystyle U_1= n_1 n_2 + \frac{n_1 (n_1+ 1)}{2} -R_1 　\)</p>
+<p>\(\Large  \displaystyle U_2= n_1 n_2 + \frac{n_2 (n_2+ 1)}{2} -R_2　\)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・期待値</p>
+<p>このRの期待値は，<a href="Non_parametric-02_02.html">こちら</a>，にあるように，</p>
+<p>\(\Large  \displaystyle E(R_1)= \sum_{i=1}^{n_1} E(R_i) =n_1 \frac{1+2+...+N}{N} = n_1 \frac{N(N+1)}{2} \frac{1}{N} = n_1 \frac{N+1}{2} =  \frac{n_1 (n_1 + n_2 +1)}{2}　\)</p>
+<p>\(\Large  \displaystyle E(R_2)= \sum_{i=1}^{n_2} E(R_i) =n_2 \frac{1+2+...+N}{N} = n_2 \frac{N(N+1)}{2} \frac{1}{N} = n_2 \frac{N+1}{2} =  \frac{n_2 (n_1 + n_2 +1)}{2}　\)</p>
+<p>となりますので，</p>
+<p>\(\Large  \displaystyle U_1= n_1 n_2 + \frac{n_1 (n_1+ 1)}{2} -R_1 　\)</p>
+<p>\(\Large  \displaystyle = n_1 n_2 + \frac{n_1 (n_1+ 1)}{2} -   \frac{n_1 (n_1 + n_2 +1)}{2} \)</p>
+<p>\(\Large  \displaystyle = n_1 n_2 + \frac{n_1 (n_1+ 1)}{2} -   \frac{n_1 (n_1  +1) + n_1 n_2 }{2} \)</p>
+<p>\(\Large  \displaystyle =    \frac{ n_1 n_2 }{2} \)</p>
+<p>\(\Large  \displaystyle U_2= n_1 n_2 + \frac{n_2 (n_2+ 1)}{2} -R_2 　\)</p>
+<p>\(\Large  \displaystyle = n_1 n_2 + \frac{n_2 (n_2+ 1)}{2} -   \frac{n_2 (n_1 + n_2 +1)}{2} \)</p>
+<p>\(\Large  \displaystyle = n_1 n_2 + \frac{n_2 (n_2+ 1)}{2} -   \frac{n_2 (n_2  +1) + n_1 n_2 }{2} \)</p>
+<p>\(\Large  \displaystyle =    \frac{ n_1 n_2 }{2} \)</p>
+<p>と両者等しく，\(\Large  \displaystyle     \frac{ n_1 n_2 }{2} \)，となります．</p>
+<p>なぜ，\(\Large  \displaystyle     \frac{ n_1 n_2 }{2} \)，となるのか．．．</p>
+<p>もっとも単純な考えは，まず，</p>
+<p>n<sub>A</sub>=3, n<sub>B</sub>=2,を考えます．</p>
+<p>マン-ホイットニーの考えは，<br>
+　<span class="Blue-Bold">相手に勝った数の総和 </span><br>
+なので， <br>
+　最大：AAABB=6 <br>
+　最小：BBAAA=0 <br>
+となります．この最大値は，<span class="Red-Bold">n<sub>A</sub>×n<sub>B</sub></span>となり最小値は０となるので，その期待値は半分の<span class="Red-Bold">n<sub>A</sub>×n<sub>B</sub>/2</span>，という考え．</p>
+<p> なんとなく合っていそうな気がしますが，本当に半分が期待値になるかはわからないですね．．．</p>
+<p>厳密解はわかりませんでしたので，法則性を検討してみました．</p>
+<p>ややこしいので，<a href="Non_parametric-03-02_01.html">別ページ</a>，にまとめてみました．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・分散値</p>
+<p>分散値は，<span class="Red-Bold">マン・ホイットニーのU値の定義から</span>，</p>
+<p>\(\Large  \displaystyle U_1= n_1 n_2 + \frac{n_1 (n_1+ 1)}{2} -R_1 　\)</p>
+<p>となるので，<span class="Blue-Bold">分散値</span>は，</p>
+<p>\(\Large  \displaystyle V(U_1)= V \left( n_1 n_2 + \frac{n_1 (n_1+ 1)}{2} -R_1 \right) 　\)</p>
+<p>ですが，各項独立なので，</p>
+<p>\(\Large  \displaystyle V(U_1)= V(n_1 n_2) + V \left( \frac{n_1 (n_1+ 1)}{2} \right) +V \left( -R_1 \right) 　\)</p>
+<p>となりますが，第一項，第二項は定数なので，分散値は０．したがって，</p>
+<p>\(\Large  \displaystyle V(U_1)= V \left( R_1 \right) 　\)</p>
+<p><span class="Blue-Bold">Rは，順位の合計</span>なので，まさしく<span class="Red-Bold">ウィルコクソンの順位和検定</span>で使われているパラメータなので，</p>
+<p>\(\Large  \displaystyle V(U_1)= V \left( R_1 \right)  = \frac{n_1 \ n_2 ( n_1 + n_2 +1)}{12}　\)</p>
+<p>分散値が，<span class="Red-Bold">ウィルコクソンの順位和検定</span>と<span class="Red-Bold">マン・ホイットニーのU検定</span>で同じとなるので，この二つの検定は同等と言われているのでしょう．</p>
+<p>標準正規分布における両側５％の範囲は，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/Interval%20Estimation-03.html">こちら</a>に，記載しましたように，±1.96，となるので，</p>
+<p>\(\Large  \displaystyle -1.96 &lt; \frac{U-E(U)}{\sqrt{V(U)}} &lt; 1.96　\)</p>
+<p>つまり，</p>
+<p>\(\Large  \displaystyle -1.96 &lt; \frac{U-\frac{n_1 n_2}{2}}{\sqrt{\frac{n_1 \ n_2 ( n_1 + n_2 +1)}{12}}} &lt; 1.96　\)</p>
+<p>を評価すればよいことがわかります．</p>
+<p>&nbsp;</p>
+<p>タイデータがある場合には，<span class="Red-Bold">ウィルコクソンの順位和検定</span>と同様に補正が入りますが．．．．導出できませんでした．．．</p>
+<p>&nbsp;</p>
+<p>次に，実際のデータから検定していきましょう．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Non_parametric-03.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Non_parametric-03-03.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

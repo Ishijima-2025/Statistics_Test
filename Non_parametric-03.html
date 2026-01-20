@@ -1,0 +1,600 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Non_parametric</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED"><span class="Red-Bold">マン・ホイットニーのU検定</span></p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">マン・ホイットニーのU検定</span>，を検討してきます．</p>
+<p>私の理解では，</p>
+<p>　<span class="Red-Bold">自分たちのグループはそれぞれ相手に対してどのぐらい勝っているか？</span></p>
+<p>となります．</p>
+<p>まずは一番簡単なケースを考えていきましょう．〇と×が以下の順位になった場合を考えます．</p>
+<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td width="50" style="text-align: center">１</td>
+      <td style="text-align: center">２</td>
+      <td style="text-align: center">３</td>
+      <td style="text-align: center">４</td>
+    </tr>
+    <tr>
+      <td width="50" style="text-align: center">〇</td>
+      <td width="50" style="text-align: center">×</td>
+      <td width="50" style="text-align: center">〇</td>
+      <td width="50" style="text-align: center">×</td>
+    </tr>
+  </tbody>
+</table>
+<p><span class="Blue">優った数</span>は，<span class="Red-Bold">U</span>，という記号となり，<br>
+  　〇は×に対して，２，１ずつ勝っているので合計は３<br>
+　×は丸に対して，１つ優っているので，合計は１</p>
+<p><span class="Blue">順位の合計</span>は，<span class="Red-Bold">R</span>，という記号となり，<br>
+  　〇：1 + 3 = 4<br>
+　×：2＋ 4 = 6</p>
+<p>となります．これらの関係は，</p>
+<p>\(\Large  \displaystyle U_i = n_1 n_2 + \frac{n_i (n_i + 1)}{2} -R_i 　\)</p>
+<p>となりますので，</p>
+<p>\(\Large  \displaystyle U_O = n_A n_B + \frac{n_A (n_A + 1)}{2} -R_A = 2 \times 2 + \frac{2 (2+1)}{2} - 4 = 3　\)</p>
+<p>\(\Large  \displaystyle U_{\times} = n_A n_B + \frac{n_B (n_B + 1)}{2} -R_B = 2 \times 2 + \frac{2 (2+1)}{2} - 6 = 1　\)</p>
+<p>と一致することがわかります．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・データ数が同じ場合</p>
+<p>もうすこし複雑は例を，<a href="https://bellcurve.jp/statistics/course/26101.html" target="_blank">こちらのサイト</a>のデータをすこし改変させて利用させていただきました．</p>
+<p>マン・ホイットニーのU検定の利点は，順位で検定するので，<span class="Red">素点が変化しても順位が変化しない限り結果は同じ</span>になります．</p>
+<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td style="text-align: center">No.</td>
+      <td style="text-align: center">A</td>
+      <td style="text-align: center">B</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td width="70" style="text-align: center">27</td>
+      <td width="70" style="text-align: center">30</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td width="70" style="text-align: center">33</td>
+      <td width="70" style="text-align: center">34</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td width="70" style="text-align: center">24</td>
+      <td width="70" style="text-align: center">37</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td width="70" style="text-align: center">22</td>
+      <td width="70" style="text-align: center">28</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td width="70" style="text-align: center">29</td>
+      <td width="70" style="text-align: center">32</td>
+    </tr>
+  </tbody>
+</table>
+<p>この結果を全体に対して順位を付与します．</p>
+<table width="368" border="1">
+  <tbody>
+    <tr>
+      <td width="62" style="text-align: center">No.</td>
+      <td width="46" style="text-align: center">A</td>
+      <td width="55" style="text-align: center">&nbsp;</td>
+      <td width="46" style="text-align: center">B</td>
+      <td width="55" style="text-align: center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">順位</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">順位</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td width="70" style="text-align: center">27</td>
+      <td class="Red" style="text-align: center">3</td>
+      <td width="70" style="text-align: center">30</td>
+      <td class="Red" style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td width="70" style="text-align: center">33</td>
+      <td class="Red" style="text-align: center">8</td>
+      <td width="70" style="text-align: center">34</td>
+      <td class="Red" style="text-align: center">9</td>
+    </tr>
+    <tr>
+      <td height="26" style="text-align: center">3</td>
+      <td width="70" style="text-align: center">24</td>
+      <td class="Red" style="text-align: center">2</td>
+      <td width="70" style="text-align: center">37</td>
+      <td class="Red" style="text-align: center">10</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td width="70" style="text-align: center">22</td>
+      <td class="Red" style="text-align: center">1</td>
+      <td width="70" style="text-align: center">28</td>
+      <td class="Red" style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td width="70" style="text-align: center">29</td>
+      <td class="Red" style="text-align: center">5</td>
+      <td width="70" style="text-align: center">32</td>
+      <td class="Red" style="text-align: center">7</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">合計</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">19</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">36</td>
+    </tr>
+  </tbody>
+</table>
+<p>順位で並べ替えていきます．そして，A，Bがそれぞれいくつ優っているかを計算していきます．</p>
+<table width="368" border="1">
+  <col width="70" span="11">
+  <tr>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">A</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">A</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">A</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">B</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">A</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">B</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">B</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">A</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">B</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">B</td>
+    <td width="70" style="text-align: center">Win</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFF700" style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">5</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td bgcolor="#FFF700" style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">5</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td bgcolor="#FFF700" style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">5</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td bgcolor="#FFF700" style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">4</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td bgcolor="#FFF700" style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">2</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">Sum_win</td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td align="right" bgcolor="#FFB100" style="text-align: center">21</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td bgcolor="#FFF700" style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">2</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td bgcolor="#FFF700" style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">1</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td bgcolor="#FFF700" style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">1</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td bgcolor="#FFF700" style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">0</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td bgcolor="#FFF700" style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">0</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">Sum_win</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td bgcolor="#FFFFFF" style="text-align: center">&nbsp;</td>
+    <td align="right" bgcolor="#FFB100" style="text-align: center">4</td>
+  </tr>
+</table>
+<p>同様に，</p>
+<p>\(\Large  \displaystyle U_A = n_1 n_2 + \frac{n_1 (n_1 + 1)}{2} -R_1 = 5 \times 5 + \frac{5 (5+1)}{2} - 19 = 21　\)</p>
+<p>\(\Large  \displaystyle U_B = n_1 n_2 + \frac{n_2 (n_2 + 1)}{2} -R_2 = 5 \times 5 + \frac{5 (5+1)}{2} - 36 = 4　\)</p>
+<p>と一致することがわかります．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・データ数が異なる場合</p>
+<p>上記の例は，データ数が同じ場合でしたが，データ数が異なる場合も検討してきましょう．</p>
+<p>上記のデータからBの5番目のデータを削除します．</p>
+<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td style="text-align: center">No.</td>
+      <td style="text-align: center">A</td>
+      <td style="text-align: center">B</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td width="70" style="text-align: center">27</td>
+      <td width="70" style="text-align: center">30</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td width="70" style="text-align: center">33</td>
+      <td width="70" style="text-align: center">34</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td width="70" style="text-align: center">24</td>
+      <td width="70" style="text-align: center">37</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td width="70" style="text-align: center">22</td>
+      <td width="70" style="text-align: center">28</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td width="70" style="text-align: center">29</td>
+      <td width="70" bgcolor="#FF0004" style="text-align: center">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+<p>この結果を全体に対して順位を付与します．</p>
+<table width="368" border="1">
+  <tbody>
+    <tr>
+      <td width="62" style="text-align: center">No.</td>
+      <td width="46" style="text-align: center">A</td>
+      <td width="55" style="text-align: center">&nbsp;</td>
+      <td width="46" style="text-align: center">B</td>
+      <td width="55" style="text-align: center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">順位</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">順位</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td width="70" style="text-align: center">27</td>
+      <td class="Red" style="text-align: center">3</td>
+      <td width="70" style="text-align: center">30</td>
+      <td class="Red" style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td width="70" style="text-align: center">33</td>
+      <td class="Red" style="text-align: center">7</td>
+      <td width="70" style="text-align: center">34</td>
+      <td class="Red" style="text-align: center">8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td width="70" style="text-align: center">24</td>
+      <td class="Red" style="text-align: center">2</td>
+      <td width="70" style="text-align: center">37</td>
+      <td class="Red" style="text-align: center">9</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td width="70" style="text-align: center">22</td>
+      <td class="Red" style="text-align: center">1</td>
+      <td width="70" style="text-align: center">28</td>
+      <td class="Red" style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td width="70" style="text-align: center">29</td>
+      <td class="Red" style="text-align: center">5</td>
+      <td width="70" style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">合計</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">18</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">27</td>
+    </tr>
+  </tbody>
+</table>
+<p>順位で並べ替えていきます．そして，A，Bがそれぞれいくつ優っているかを計算していきます．</p>
+<table width="368" border="1">
+  <col width="70" span="11">
+  <tr>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">A</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">A</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">A</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">B</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">A</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">B</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">A</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">B</td>
+    <td width="70" bgcolor="#B7E0BD" style="text-align: center">B</td>
+    <td width="70" style="text-align: center">Win</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFF700" style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">4</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td bgcolor="#FFF700" style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">4</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td bgcolor="#FFF700" style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">4</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td bgcolor="#FFF700" style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">3</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td bgcolor="#FFF700" style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">2</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">Sum_win</td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td style="text-align: center"></td>
+    <td align="right" bgcolor="#FFB100" style="text-align: center">17</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td bgcolor="#FFF700" style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">2</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td bgcolor="#FFF700" style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">1</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td bgcolor="#FFF700" style="text-align: center">B</td>
+    <td style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">0</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td style="text-align: center">A</td>
+    <td style="text-align: center">B</td>
+    <td bgcolor="#FFF700" style="text-align: center">B</td>
+    <td align="right" bgcolor="#C5BFFF" style="text-align: center">0</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">Sum_win</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td style="text-align: center">&nbsp;</td>
+    <td bgcolor="#FFFFFF" style="text-align: center">&nbsp;</td>
+    <td bgcolor="#FFFFFF" style="text-align: center">&nbsp;</td>
+    <td align="right" bgcolor="#FFB100" style="text-align: center">3</td>
+  </tr>
+</table>
+<p>同様の計算をすると，</p>
+<p>\(\Large  \displaystyle U_A = n_1 n_2 + \frac{n_1 (n_1 + 1)}{2} -R_1 = 5 \times 4 + \frac{5 (5+1)}{2} - 18 = 17　\)</p>
+<p>\(\Large  \displaystyle U_B = n_1 n_2 + \frac{n_2 (n_2 + 1)}{2} -R_2 = 5 \times 4 + \frac{4 (4+1)}{2} - 27 = 3　\)</p>
+<p>と一致することがわかります．</p>
+<p>次に，<span class="Red-Bold">マン・ホイットニーのU検定の期待値と分散値</span>，を検討してきます．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Non_parametric-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Non_parametric-03-02.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

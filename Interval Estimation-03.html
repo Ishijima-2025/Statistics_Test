@@ -1,0 +1,97 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-03</span></h1>
+<h1 class="Large-Bold-Red">母平均がわかっていなくて，母分散がわかっている場合の区間推定</h1>
+<p>そんな場合（母集団の平均がわからないのに，分散がわかっているなんて），はまずありえないのですが（普通は母平均も母分散もわからない），この計算が基本となります．</p>
+<p>母集団の平均μ，分散σ<sup>2</sup>の場合，その集団の分布は，</p>
+<p>\(\Large \displaystyle   p(x) =  \frac{1}{\sqrt{ 2 \pi \sigma^2}} exp \left[ - \frac{(x - \mu)^2}{2 \sigma^2} \right]\)</p>
+<p>です．ｎ回施行した場合の平均値の分布は，さきの中心極限定理にあるように分散値が1/nとなりますので，</p>
+<p>\(\Large \displaystyle   p(\bar{x}) =  \frac{1}{\sqrt{ 2 \pi \frac{\sigma^2}{n}}} exp \left[ - \frac{(\bar{x} - \mu)^2}{2 \frac{\sigma^2}{n}} \right]\)</p>
+<p>という正規分布になります．この正規分布の中で９５％の範囲に入っている範囲の値，が平均値からの母平均の推定となります</p>
+<p><img src="95 percent-01.png" width="533" height="365" alt=""/></p>
+<p>つまり，</p>
+<p>\(\Large \displaystyle   \int_{\mu - a}^{\mu + a} \frac{1}{\sqrt{ 2 \pi \frac{\sigma^2}{n}}} exp \left[ - \frac{(\bar{x} - \mu)^2}{2 \frac{\sigma^2}{n}} \right] \ dx = 0.95 \)</p>
+<p>となる，a，を求めればいいことになります．</p>
+<p>ここでの計算の王道は，標準化，することです．標準化とは，</p>
+<p>\(\Large  exp \left[ -\frac{(\bar{x} - \mu)^2}{2 \frac{\sigma^2}{n}} \right] \rightarrow  exp \left[ - \frac{t^2}{2} \right]  \)</p>
+<p>と平均μ=0，分散σ<sup>2</sup>=1を指します．</p>
+<p>計算から言うと，変数変換を，</p>
+<p>\(\Large  exp \left[ -\frac{(\bar{x} - \mu)^2}{2 \frac{\sigma^2}{n}} \right] \rightarrow  exp \left[ - t^2 \right]  \)</p>
+<p>としたほうが簡単なのですが，この，標準化，という統計における中心的考えがありますので，計算を楽にする，というよりは，この王道に従うほうが後々スッキリしそうです．王道に従って，</p>
+<p>\(\Large  \frac{(\bar{x} - \mu)^2}{ \frac{\sigma^2}{n}} \equiv t^2   \)</p>
+<p>とすれば，</p>
+<p>\(\Large  \frac{\bar{x} - \mu}{ \sqrt{\frac{\sigma^2}{n}}} = t   \)</p>
+<p>\(\Large  \bar{x} = \sqrt{\frac{\sigma^2}{n}}  t + \mu \)</p>
+<p>\(\Large  d \bar{x} = \sqrt{\frac{\sigma^2}{n}}  \ dt  \)</p>
+<p>となるので，\(\Large   \bar{x}   \)の範囲からｔの範囲を計算すると，</p>
+<p>\(\Large  \mu -a \hspace{12 pt} \rightarrow  \hspace{12 pt} \bar{x} \hspace{12 pt} \rightarrow  \hspace{12 pt} \mu +a\)</p>
+<p>\(\Large  \frac{-a}{ \sqrt{\frac{\sigma^2}{n}}} \hspace{17 pt} \rightarrow  \hspace{13 pt} t \hspace{14 pt} \rightarrow  \hspace{12 pt} \frac{a}{ \sqrt{\frac{\sigma^2}{n}}} \)</p>
+<p>したがって，</p>
+<p>\(\Large \displaystyle   \frac{1}{\sqrt{ 2 \pi \frac{\sigma^2}{n}}} \int_{\mu - a}^{\mu + a}  exp \left[ - \frac{(\bar{x} - \mu)^2}{2 \frac{\sigma^2}{n}} \right] \ dx = 0.95 \)</p>
+<p>\(\Large \displaystyle   = \frac{1}{\sqrt{ 2 \pi \frac{\sigma^2}{n}}} \sqrt{\frac{\sigma^2}{n}} \displaystyle \int_{\frac{-a}{ \sqrt{\frac{\sigma^2}{n}}}}^{\frac{a}{ \sqrt{\frac{\sigma^2}{n}}}}  exp \left[ - \frac{t^2}{2 } \right] \ dx = 0.95 \)</p>
+<p>\(\Large \displaystyle   = \frac{1}{\sqrt{ 2 \pi }}  \displaystyle \int_{\frac{-a}{ \sqrt{\frac{\sigma^2}{n}}}}^{\frac{a}{ \sqrt{\frac{\sigma^2}{n}}}}  exp \left[ - \frac{t^2}{2 } \right] \ dx = 0.95 \)</p>
+<p>この分布は， 　平均：０ 　分散：１ の標準正規分布となります．</p>
+<p></p>
+<p>\(\Large \displaystyle   = \frac{1}{\sqrt{ 2 \pi }}  \displaystyle   exp \left[ - \frac{t^2}{2 } \right] \)</p>
+<p></p>
+<p></p>
+<p>この分布の95％を占める割合（左右対称）は，累積標準化正規分布関数が，0.975(1-0.05/2)の値を求めればいいので， エクセル関数では，</p>
+NORM.INV(0.975,0,1)= 1.969964...=1.96
+<p> となります． もしくは，<a href="https://unit.aist.go.jp/mcml/rg-orgp/uncertainty_lecture/normsdist.html" target="_blank">ここ</a>，つまり，</p>
+<p>\(\Large \displaystyle   \pm \frac{  a}{ \sqrt{\frac{\sigma^2}{n}}} = \pm 1.96 \)</p>
+<p>\(\Large \displaystyle     a =1.96 \times \sqrt{\frac{\sigma^2}{n}} \)</p>
+<p>となります，\(\Large   \bar{x} \)の範囲は，</p>
+<p>\(\Large  \mu -a \hspace{12 pt} \rightarrow  \hspace{12 pt} \bar{x} \hspace{12 pt} \rightarrow  \hspace{12 pt} \mu +a\)</p>
+<p>なので，</p>
+<p>\(\Large  \mu - 1.96 \times \sqrt{\frac{\sigma^2}{n}} \hspace{12 pt}\leq   \hspace{12 pt} \bar{x} \hspace{12 pt} \leq  \hspace{12 pt} \mu +1.96 \times \sqrt{\frac{\sigma^2}{n}}\)</p>
+<p>\(\Large   \bar{x} \), と \(\Large   \mu \),を入れ替えると，</p>
+<p>\(\Large  \mu - 1.96 \times \sqrt{\frac{\sigma^2}{n}} - \mu - \bar{x} \hspace{12 pt}\leq   \hspace{12 pt} \bar{x} - \mu - \bar{x} \hspace{12 pt} \leq  \hspace{12 pt} \mu +1.96 \times \sqrt{\frac{\sigma^2}{n}}- \mu - \bar{x} \)</p>
+<p>\(\Large   - \bar{x} - 1.96 \times \sqrt{\frac{\sigma^2}{n}} \hspace{12 pt}\leq   \hspace{12 pt}  - \mu \hspace{12 pt} \leq  \hspace{12 pt} - \bar{x} +1.96 \times \sqrt{\frac{\sigma^2}{n}}  \)</p>
+<p>-1を掛けると，</p>
+<p>\(\Large    \bar{x} + 1.96 \times \sqrt{\frac{\sigma^2}{n}} \hspace{12 pt}\geq   \hspace{12 pt}   \mu \hspace{12 pt} \geq  \hspace{12 pt}  \bar{x} - 1.96 \times \sqrt{\frac{\sigma^2}{n}}  \)</p>
+<p>左右を入れ替えると，</p>
+<p>\(\Large    \bar{x} - 1.96 \times \sqrt{\frac{\sigma^2}{n}} \hspace{12 pt}\leq   \hspace{12 pt}   \mu \hspace{12 pt} \leq  \hspace{12 pt}  \bar{x} + 1.96 \times \sqrt{\frac{\sigma^2}{n}}  \)</p>
+<p>もしくは，</p>
+<p>\(\Large     \displaystyle     - 1.96  \hspace{12 pt}\leq   \hspace{12 pt}   \frac{\mu - \bar{x}}{ \sqrt{\frac{\sigma^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   1.96   \)</p>
+<p>と<span class="X-Large-Bold-RED">母平均，μ，の範囲を推定</span>できます．</p>
+<p>&nbsp;</p>
+<p>さて，1.96，という値は，エクセル関数，もしくは表から求めましたが，きちんと計算（誤差関数を使いますが）できるはずです．</p>
+<p>それは，<a href="Interval Estimation-03_01.html">ここ</a>，に記載します．</p>
+<p>また，95％という数字に関しての議論は，<a href="Interval Estimation-03_04.html">ここ</a>，に議論します．</p>
+<p>&nbsp;</p>
+<p>つぎに，<span class="Large-Bold-Red">母平均がわかっていなくて，母分散もわかっていない場合の区間推定</span>，について検討していきましょう．</p>
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Interval Estimation-04.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

@@ -1,0 +1,127 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Welch</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">Welchの自由度の求め方-04</p>
+<p><br />
+前述した，</p>
+<p>\(\Large    \displaystyle 
+w =      a \chi_X^2 \  + b \chi_Y^2 \)</p>
+<p>が近似的に，\(\Large    \displaystyle G \left( \frac{f}{2},2 g \right)  \)に従うとすると，前ページにありますように，<span class="Blue">w/gは自由度ｆのカイ二乗分布</span>に従います．</p>
+<p>サンプル数ｎの場合は自由度n-1のカイ二乗分布を使うと，<a href="Interval Estimation-05.html">ここ</a>，で示しましたが，今回の計算には，サンプル数という概念がありません（n<sub>X</sub>, n<sub>Y</sub>というサンプル数があるが，一般的なサンプル数nではない）</p>
+<p>ですので，Welchの検定の場合には，新たなファクターｆを用いて，“<span class="Large-Bold-Red">自由度ｆのt分布に従う</span>”ことになるわけです．</p>
+<p>自由度ｆのｔ分布は，</p>
+<p>\(\Large    \displaystyle t = \frac{Z}{ \sqrt{ \frac{U}{f}}} \)</p>
+<p>となることは，<a href="Interval Estimation-05.html">ここ</a>，で示しました．</p>
+<p>Z：標準正規分布</p>
+<p>でした．したがって，</p>
+<p>\(\Large    \displaystyle t = \frac{Z}{ \sqrt{ \frac{w/g}{f}}} = \frac{Z}{ \sqrt{ \frac{a \chi_X^2 \  + b \chi_Y^2}{gf}}} \)</p>
+<p>となります．ここで，</p>
+<p>\(\Large    \displaystyle 
+gf =             a(m-1) + b(n-1) \)</p>
+<p>\(\Large    \displaystyle 
+a = \frac{\frac{  \sigma_X^2}{m(m-1)}  }{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} \)</p>
+<p>\(\Large    \displaystyle 
+  b = \frac{\frac{   \sigma_Y^2}{n(n-1)}}{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} \)</p>
+<p>なので，</p>
+<p>\(\Large    \displaystyle 
+gf =\frac{\frac{  \sigma_X^2}{m(m-1)}  }{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} (m-1) + \frac{\frac{   \sigma_Y^2}{n(n-1)}}{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} (n-1) \)</p>
+<p>となるので，</p>
+<p>\(\Large    \displaystyle 
+gf =\frac{1  }{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} <br>
+\left[ \frac{  \sigma_X^2}{m}  + \frac{   \sigma_Y^2}{n} \right] = 1\)</p>
+<p>と簡単になりますので，</p>
+<p>\(\Large    \displaystyle t = \frac{Z}{ \sqrt{ \frac{w/g}{f}}} = \frac{Z}{ \sqrt{ a \chi_X^2 \  + b \chi_Y^2}} \)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p>自由度ｆは，</p>
+<p>\(\Large    \displaystyle 
+f =       \frac{ \left\{ a (m-1) + b (n-1) \right\}^2 }{  a^2 (m-1) + b^2 (n-1) } \)</p>
+<p>ですが，</p>
+<p>\(\Large    \displaystyle 
+a = \frac{\frac{  \sigma_X^2}{m(m-1)}  }{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}}, \ b = \frac{\frac{   \sigma_Y^2}{n(n-1)}}{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}}\)</p>
+<p>でしたので，</p>
+<p>\(\Large    \displaystyle 
+f =       \frac{ \left\{ a (m-1) + b (n-1) \right\}^2 }{  a^2 (m-1) + b^2 (n-1) } \)</p>
+<p>\(\Large    \displaystyle 
+ =       \frac{\frac{\frac{  \sigma_X^2}{m(m-1)}  }{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} (m-1) + \frac{\frac{   \sigma_Y^2}{n(n-1)}}{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} (n-1)}<br>
+ {  \left[ \frac{\frac{  \sigma_X^2}{m(m-1)}  }{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} \right]^2 (m-1) + \left[ \frac{\frac{   \sigma_Y^2}{n(n-1)}}{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} \right]^2 (n-1) } \)</p>
+<p>\(\Large    \displaystyle 
+ =       \frac{\frac{\frac{  \sigma_X^2}{m}  }{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}}<br>
+ + \frac{\frac{  \sigma_Y^2}{n}}{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} }<br>
+{  \left[ \frac{1  }{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} \right]^2<br>
+\left[ \left\{ \frac{ \sigma_X^2}{m(m-1)}  \right\}^2 (m-1) <br>
++ \left\{ \frac{   \sigma_Y^2}{n(n-1)} \right\}^2 (n-1) \right] } \)</p>
+<p>\(\Large    \displaystyle 
+ =       \frac{\frac{  \sigma_X^2}{m}  <br>
++ \frac{   \sigma_Y^2}{n} }<br>
+{   \frac{\left( \frac{  \sigma_X^2}{m}  \right)^2}{m-1}<br>
++ \frac {\left( \frac{   \sigma_Y^2}{n} \right)^2}{n-1}  } \)</p>
+<p>となります．ただ，<span class="Blue-Bold">この式には母分散が含まれているため，母分散を母分散の推定量，不偏分散で置き換えます．</span></p>
+<p>書き直すと，</p>
+<p>\(\Large    \displaystyle 
+  f =       \frac{     \displaystyle \frac{s_X^2}{m} <br>
+  + \frac{   s_Y^2}{n} }<br>
+  {       \displaystyle \frac{\left( \frac{  s_X^2}{m}  \right)^2}{m-1}<br>
+  + \frac {\left( \frac{   s_Y^2}{n} \right)^2}{n-1}  } \)</p>
+<p>もしくは，</p>
+<p>\(\Large    \displaystyle 
+  f =       \frac{     \displaystyle \frac{s_X^2}{m} <br>
++ \frac{   s_Y^2}{n} }<br>
+{       \displaystyle \frac{  s_X^4}{m^2(m-1)}<br>
++ \frac {   s_Y^4}{n^ 2(n-1)}  } \)</p>
+<p>となります．．．．</p>
+<p>&nbsp;</p>
+<p>なぜ，</p>
+<p>　<span class="Blue-Bold">この式には母分散が含まれているため，母分散を母分散の推定量，不偏分散で置き換えます．</span></p>
+<p>なのか．．．私にはわかりません．．．</p>
+<p>さらに，</p>
+<p>\(\Large    \displaystyle t = \frac{Z}{ \sqrt{ \frac{w/g}{f}}} = \frac{Z}{ \sqrt{ a \chi_X^2 \  + b \chi_Y^2}} \)</p>
+<p>において，</p>
+<p>\(\Large    \displaystyle 
+a = \frac{\frac{  \sigma_X^2}{m(m-1)}  }{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}}, \ b = \frac{\frac{   \sigma_Y^2}{n(n-1)}}{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}}\)</p>
+<p>と<span class="Blue-Bold">母分散</span>が入っているのに，実際の<span class="Blue-Bold">Welchの検定</span>においては，</p>
+<p>\(\Large    \displaystyle t_0 = \frac{ (\overline{x}_1 - \overline{x}_2) -( \mu_1 - \mu_2)} {\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}　\)</p>
+<p>となっている．確かに，<a href="Interval Estimation-08_02.html">ここ</a>，を見ると，</p>
+<p>\(     \displaystyle  P_{X-Y} (z) = \frac{1}{      \displaystyle  \sqrt{2 \pi(\frac{\sigma_X^2}{n_X} + \frac{\sigma_Y^2}{n_Y})}}  <br>
+  exp \left[     \displaystyle  - \frac{ \{ z-(\mu_X \color{red}{-} \mu_Y) \}^2}{2(\frac{\sigma_X^2}{n_X}  + \frac{\sigma_Y^2}{n_Y})} \right] 
+  \)</p>
+<p>とありますが，ここでもさりげなく<span class="Blue-Bold">母分散が不偏分散に変わっている</span>．．．</p>
+<p>ここら辺の厳密性については，私にはわかりません．</p>
+<p class="Blue">一般的なｔ検定においては，母分散を消去するために苦労してきたのに，Welchにおいてはさらりと近似している．．．．</p>
+<p>（私の理解不足であり，実際にはきちんとした厳密な計算の結果なのかもしれません．．．．）</p>
+<p>よくネットでは，<span class="Blue-Bold">ｔ検定より，Welchの検定を勧める</span>，とありますが，<span class="Blue">確かに母分散が等しいかどうかわからない状況では，Welchの検定の方が妥当</span>なのかもしれませんが，（私の今までの理解では），<span class="Blue-Bold">Welchの計算も結構近似使っているなあ</span>．．という印象です．．．</p>
+<p>では，次ページに，<span class="Blue-Bold">Welchの論文</span>ではどのような記述があるかを確認していきます．</p>
+<p>&nbsp;</p>
+<p><span class="style10"><a href="Welch-03.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Welch-05.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

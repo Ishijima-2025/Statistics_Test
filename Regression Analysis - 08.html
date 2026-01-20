@@ -1,0 +1,410 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Regression-Analysis</title>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+.style10 {color: #000000; }
+.style1 {color: #0000FF}
+</style>
+</head>
+
+<body>
+<h1 class="style1">回帰分析　-　08</h1>
+<p class="Large-Bold-Blue">&nbsp;</p>
+<p>\(\Large   \displaystyle   
+  \sigma^2    \)の定義は，</p>
+<p>\(\Large  \displaystyle    V[u_i 
+  ] \equiv \sigma^2  \)</p>
+<p>でした（<a href="Regression Analysis - 06.html">ここ</a>から）.</p>
+<p><span class="Blue-Bold">u<sub>i</sub></span>は，</p>
+<p>\(\Large \displaystyle  Y_i  = a_0 + a_1 X_i + u_i \)</p>
+<p>です．つまり，<span class="Blue-Bold">真の値，α，β，を用いた場合の，X<sub>i</sub>,Y<sub>i</sub>の残差</span>，ということです．</p>
+<p>これとよく似た式が，</p>
+<p>\(\Large \displaystyle  Y_i  = \hat{a_0} + \hat{a_1} X_i + \hat{u_i} \)</p>
+<p>各パラメータの違いは，</p>
+<p class="Blue-Bold">\(\Large \displaystyle  a_0 \)　：　切片の真の値<br />
+\(\Large \displaystyle  a_1 \)　：　傾きの真の値<br />
+\(\Large \displaystyle  u_i \)　：　X<sub>i</sub>を与えた場合のY<sub>i</sub>と真の値との残差</p>
+<p class="Blue-Bold">\(\Large \displaystyle  \hat{a_0} \)　：　切片の推定値<br />
+\(\Large \displaystyle  \hat{a_1} \)　：　傾きの推定値<br />
+\(\Large \displaystyle  \hat{u_i} \)　：　X<sub>i</sub>を与えた場合のY<sub>i</sub>と推定値との残差</p>
+<p>となります．</p>
+<p>問題は，</p>
+<p class="Large-Red">　我々は真の値，α，β，を知ることはできない<br />
+　あくまで，推定値，\(\Large \displaystyle   \hat{a_0}, \hat{a_1} \) のみ，推定できる</p>
+<p>つまり，</p>
+<p class="Large-Red">　u<sub>i</sub>はわからない，\(\Large \displaystyle   \hat{u_i} \) のみ，計算できる</p>
+<p>ということです．</p>
+<p>なので</p>
+<p>\(\Large  \displaystyle    V[u_i 
+  ] \equiv \sigma^2  \)，</p>
+<p>を完全に計算することはできない（はず）です．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Blue">・エクセルでの推定</p>
+<p>では，実際のソフトではどのような計算をしているのでしょうか？</p>
+<p>代表例として<span class="Blue-Bold">エクセル</span>，を調べてみます．</p>
+<p><a href="Regression Analysis - 04.html">こちら</a>と同じデータで考えていきます．</p>
+<table width="235" border="1">
+  <tbody>
+    <tr>
+      <td width="125" style="text-align: center">i</td>
+      <td width="36">\( X_i     \)</td>
+      <td width="52"><p>\( Y_i     \)</p></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: right">5</td>
+      <td style="text-align: right">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: right">3</td>
+      <td style="text-align: right">1</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: right">2</td>
+      <td style="text-align: right">3</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: right">4</td>
+      <td style="text-align: right">4</td>
+    </tr>
+  </tbody>
+</table>
+<p> エクセルで	近似すると，</p>
+<p><img src="Regression-Analysis---02.png" width="517" height="324" alt=""/></p>
+<p>となり，<br />
+  <span class="Blue-Bold">　傾き　：　0.70<br />
+    　切片　：　0.50</span><br />
+  となります．また，”データ”→”データ分析”→”回帰分析”，から，</p>
+<table cellspacing="0" cellpadding="0" border=".1">
+  <col width="130" />
+  <col width="210" />
+  <col width="96" span="3" />
+  <col width="126" />
+  <col width="209" />
+  <col width="96" span="2" />
+  <tr>
+    <td width="130">概要</td>
+    <td width="210"></td>
+    <td width="96"></td>
+    <td width="96"></td>
+    <td width="96"></td>
+    <td width="126"></td>
+    <td width="209"></td>
+    <td width="96"></td>
+    <td width="96"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">回帰統計</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>重相関 R</td>
+    <td align="right">0.729800449</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>重決定 R2</td>
+    <td align="right">0.532608696</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>補正 R2</td>
+    <td align="right">0.376811594</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>標準誤差</td>
+    <td align="right">1.197219</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>観測数</td>
+    <td align="right">5</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>分散分析表</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>　</td>
+    <td>自由度</td>
+    <td>変動</td>
+    <td>分散</td>
+    <td>観測された分散比</td>
+    <td>有意 F</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>回帰</td>
+    <td align="right">1</td>
+    <td align="right">4.9</td>
+    <td align="right">4.9</td>
+    <td align="right">3.41860465</td>
+    <td align="right">0.161593686</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>残差</td>
+    <td align="right">3</td>
+    <td align="right">4.3</td>
+    <td align="right">1.43333333</td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>合計</td>
+    <td align="right">4</td>
+    <td align="right">9.2</td>
+    <td>　</td>
+    <td>　</td>
+    <td>　</td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFF000">　</td>
+    <td bgcolor="#FFF000">係数</td>
+    <td bgcolor="#FFF000">標準誤差</td>
+    <td>t </td>
+    <td>P-値</td>
+    <td>下限 95%</td>
+    <td>上限 95%</td>
+    <td>下限 95.0%</td>
+    <td>上限 95.0%</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFF000">切片</td>
+    <td align="right" bgcolor="#FFF000">0.5</td>
+    <td align="right" bgcolor="#FFF000">1.25565388</td>
+    <td align="right">0.3981989</td>
+    <td align="right">0.71712901</td>
+    <td align="right">-3.496051052</td>
+    <td align="right">4.496051052</td>
+    <td align="right">-3.4960511</td>
+    <td align="right">4.49605105</td>
+  </tr>
+  <tr>
+    <td bgcolor="#FFF000">X 値 1</td>
+    <td align="right" bgcolor="#FFF000">0.7</td>
+    <td align="right" bgcolor="#FFF000">0.37859389</td>
+    <td align="right">1.8489469</td>
+    <td align="right">0.16159369</td>
+    <td align="right">-0.504854726</td>
+    <td align="right">1.904854726</td>
+    <td align="right">-0.5048547</td>
+    <td align="right">1.90485473</td>
+  </tr>
+</table>
+<p>と係数の推定値，さらには標準誤差が見積もられています．</p>
+<p>とりあえず，\(\Large \displaystyle   \hat{u_i} \)，を計算してみましょう．</p>
+<table width="441" border="1">
+  <tbody>
+    <tr>
+      <td width="40" style="text-align: center">i</td>
+      <td width="28">\( X_i     \)</td>
+      <td width="32"><p>\( Y_i     \)</p></td>
+      <td width="100" style="text-align: center">\( X_i     - \bar{X} \)</td>
+      <td width="100" style="text-align: center">\( \hat{a_0} + \hat{a_1} X_i     \)</td>
+      <td width="101" style="text-align: center">\( \hat{u_i} \)</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: right">5</td>
+      <td style="text-align: right">4</td>
+      <td style="text-align: right">2</td>
+      <td style="text-align: right">4</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">-2</td>
+      <td style="text-align: right">1.2</td>
+      <td style="text-align: right">-0.2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: right">3</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">2.6</td>
+      <td style="text-align: right">-1.6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: right">2</td>
+      <td style="text-align: right">3</td>
+      <td style="text-align: right">-1</td>
+      <td style="text-align: right">1.9</td>
+      <td style="text-align: right">1.</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: right">4</td>
+      <td style="text-align: right">4</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">3.3</td>
+      <td style="text-align: right">0.7</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">平均</td>
+      <td style="text-align: right">3</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">二乗和</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">10</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">4.3</td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<p class="Large-Bold-Blue">・傾きの推定値，\(\Large \displaystyle    \hat{a_1} \)， の分散</p>
+<p>傾きの推定値，<span class="Large-Red">\(\Large \displaystyle    \hat{a_1} \)， </span>の分散は，</p>
+<p>\(\Large  \displaystyle   V \left[\hat{a_1} \right] = \sigma^2 \sum_{i=1}^{n}  \omega_i^2 <br />
+= \frac{\sigma^2     }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}\)</p>
+<p>なので，もし，<span class="Large-Bold-Blue">σを\(\Large \displaystyle   \hat{u_i} \)，から求めてみる</span>と，</p>
+<p>\(\Large  \displaystyle   V \left[\hat{a_1} \right] 
+= \frac{4.3     }{10} = 0.43 \)</p>
+<p>標準偏差は，</p>
+<p>\(\Large  \displaystyle   SD  \left[\hat{a_1} \right] = \sqrt{  V \left[\hat{a_1} \right]} 
+= \sqrt{ 0.43} = 0.6557\)</p>
+<p>エクセルでの推定は，”標準誤差”，ですので，データ数，\(\Large  \displaystyle    \sqrt{ n-1} \)，で割る必要がありますが，ここでは，参考文献，によると，</p>
+<p><span class="Large-Bold-Red">u<sub>i</sub>の分散，σ<sup>2</sup>の不変推定量</span>を，</p>
+<p>　\(\Large  \displaystyle    \color{red}{\frac{\sum_{i=1}^n u_i^2}{自由度}}  \)，</p>
+<p class="Large-Bold-Red">　自由度　＝　標本数（n）　ー　推定すべき係数値の数（2）　＝　n-2</p>
+<p>ということのようです（切片と傾きだから2だと思いますが．．．．ちゃんと理解していないかもしれません．．．．）</p>
+<p>なので，標準偏差を，\(\Large  \displaystyle    \sqrt{ n-2} \)，で割ると，</p>
+<p>\(\Large  \displaystyle   SE  \left[\hat{a_1} \right] = \frac{SD  \left[\hat{a_1} \right]}{ \sqrt{n-2}}=  \frac{\sqrt{ 0.43}}{\sqrt{3}} = 0.3786\)</p>
+<p>と一致します．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Blue">・切片の推定値，\(\Large \displaystyle    \hat{a_0} \)， の分散</p>
+<p>同様に，切片の推定値，<span class="Large-Red">\(\Large \displaystyle    \hat{a_0} \)， </span>の分散は，</p>
+<p>\(\Large  \displaystyle V \left[ \hat{a_0} \right] =  \sigma^2  \frac{ \sum_{i=1}^{n}  X_i^2     }{n \sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2} \)</p>
+<p>なので，もし，<span class="Large-Bold-Blue">σを\(\Large \displaystyle   \hat{u_i} \)，から求めてみる</span>と，</p>
+<p>\(\Large  \displaystyle   V \left[\hat{a_0} \right] 
+= \frac{4.3 \times 55   }{5 \times 10} = 4.73 \)</p>
+<p>標準偏差は，</p>
+<p>\(\Large  \displaystyle   SD  \left[\hat{a_0} \right] = \sqrt{  V \left[\hat{a_0} \right]} 
+= \sqrt{ 4.73} = 2.1748\)</p>
+<p>標準偏差を，\(\Large  \displaystyle    \sqrt{ n-2} \)，で割ると，</p>
+<p>\(\Large  \displaystyle   SE  \left[\hat{a_0} \right] = \frac{SD  \left[\hat{a_0} \right]}{ \sqrt{n-2}}=  \frac{\sqrt{ 2.1748}}{\sqrt{3}} =1.25565 \)</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>ですので，</p>
+<p>\(\Large  \displaystyle    \sigma^2 = \frac{E \left[ \sum_{i=1}^n \hat{u_i}^2 \right]}{n-2} = s^2 \)</p>
+<p>となることになります，ここで，<span class="Large-Bold-Red">ｓ<sup>2</sup>は母分散 σ<sup>2</sup>の不偏推定量</span>と呼ぶ（らしい）です．</p>
+<p>&nbsp;</p>
+<p>次ページに本当にそうなるかを検討していきたいと思います．</p>
+<p>&nbsp;</p>
+<p><span class="style10"><a href="Regression Analysis - 07.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Regression Analysis - 09.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>F-test</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">F検定-01</p>
+<p>ｔ検定にするか，Welchの検定にするか．その違いは，</p>
+<p class="Blue-Bold">　二つのデータセットにおいて，それぞれの母分散が等しいかどうか</p>
+<p>でした．しかし，そもそも母分散はわからないので，判断の付きようがありません．</p>
+<p>そこで，登場したのが，<span class="Large-Bold-Red">F検定</span>です．</p>
+<p><span class="Red-Bold">F検定</span>は，</p>
+<p class="Red-Bold">二群のばらつき具合，分散が等しいかどうかの検定</p>
+<p>　であり，</p>
+<p class="Red-Bold"> 等しい場合には，ｔ検定，等しくない場合には，Welchの検定が使うことができる． </p>
+<p>ことになります．</p>
+<p>今回は，<a href="https://lab.sdm.keio.ac.jp/ogi/shibaura/ed6-1108.pdf" target="_blank">こちら</a>，のサイトを参考にさせていただきました．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・分散の比</p>
+<p>どうやって抽出したデータから母分散が等しいかどうかは，二群の分散がそれぞれ，</p>
+<p>\( \Large \displaystyle      \sigma_1^2, \ \sigma_2^2 \)</p>
+<p>であるとき，その比を考えればいいことになります，つまり</p>
+<p>\( \Large \displaystyle      \frac{\sigma_1^2}{ \sigma_2^2} \)</p>
+<p>が<span class="Large-Bold-Red">1</span>ならば，等しいことになります，しかし，<span class="Blue-Bold">1.1</span>なら？<span class="Blue-Bold">1.5</span>なら？<span class="Blue-Bold">0.8</span>なら？ という問題が付きまといます．ですので，それぞれのデータ数が重要となるわけです．</p>
+<p>また，我々は母分散がわからないので，不偏分散を使うしかありません．</p>
+<p>\( \Large \displaystyle      \frac{s_1^2}{s_2^2} \)</p>
+<p>この値からどう推定するか．</p>
+<p>そこで，カギとなるのが，<a href="Interval Estimation-04.html">ここ</a>，でお示ししたように，</p>
+<p>\(\Large  \displaystyle U = \frac{(n-1) s^2}{ \sigma^2} =   \frac{ \displaystyle \sum_{i=1}^n (x_i - \bar{x})^2}{ \sigma^2} = \chi_{n-1}^2\)</p>
+<p>です．不偏分散と母分散との間には，</p>
+<p>\(\Large  \displaystyle \frac{(n-1) s^2}{ \sigma^2}  = \chi_{n-1}^2\)</p>
+<p>の関係があります，そこで，二群のデータ，それぞれに，</p>
+<p>\(\Large  \displaystyle \frac{(n_1-1) s_1^2}{ \sigma_1^2}  = \chi_{1, n_1-1}^2\)</p>
+<p>\(\Large  \displaystyle \frac{(n_2-1) s_2^2}{ \sigma_2^2}  = \chi_{2, n_2-1}^2\)</p>
+<p>を考えます．前述の比を不偏分散から求めると，</p>
+<p>\(\Large  \displaystyle s_1^2 = \chi_{1, n_1-1}^2 \frac{ \sigma_1^2}{n_1-1} \)</p>
+<p>\(\Large  \displaystyle s_2^2 = \chi_{2, n_2-1}^2 \frac{ \sigma_2^2}{n_2-1} \)</p>
+<p>となりますので，その比は，</p>
+<p>\(\Large  \displaystyle \frac{s_1^2}{s_2^2} = \frac{\chi_{1, n_1-1}^2}{ \chi_{2, n_2-1}^2} \frac{ \sigma_1^2}{ \sigma_2^2} \frac{n_2-1}{n_1-1} \)</p>
+<p>\(\Large  \displaystyle = \frac{\frac{\chi_{1, n_1-1}^2}{n_1-1}}{ \frac{\chi_{2, n_2-1}^2} {n_1-1}}\frac{ \sigma_1^2}{ \sigma_2^2}  \)</p>
+<p>となります．ここで，もし，</p>
+<p>\( \Large \displaystyle      \sigma_1^2 =  \ \sigma_2^2 \)</p>
+<p>だとすると（これが，<span class="Blue-Bold">帰無仮説</span>，ですね，つまり，<span class="Blue-Bold">二群の母分散は等しい</span>），</p>
+<p>\(\Large  \displaystyle \frac{s_1^2}{s_2^2}=   \displaystyle \frac{\frac{\chi_{1, n_1-1}^2}{n_1-1}}{ \frac{\chi_{2, n_2-1}^2} {n_1-1}}  \)</p>
+<p>の分布となり，左辺が右辺の分布の<span class="Blue-Bold">信頼空間内ならば，帰無仮説が立証され，母分散に差がない</span>ことになるのです．</p>
+<p>この右辺の分布は，F分布，式で表すと，</p>
+<p>\(\Large  \displaystyle f_X (x) = \frac{\Gamma \left( \frac{n_1 + n_2 }{2} \right)}{ \Gamma \left( \frac{n_1  }{2} \right) \Gamma \left( \frac{ n_2 }{2} \right)} <br>
+  \left( \frac{n_1}{n_2} \right) ^{ \frac{n_1}{2}}
+    <br>
+    \left( \frac{1}{ \frac{n_1}{n_2} x + 1} \right)^{ \frac{n_1 + n_2}{2}}<br>
+    x^{ \frac{n_1}{2} -1}
+  \)</p>
+<p>もしくは，</p>
+<p>\(\Large  \displaystyle f_X (x) = \frac{\Gamma \left( \frac{n_1 + n_2 }{2} \right)}{ \Gamma \left( \frac{n_1  }{2} \right) \Gamma \left( \frac{ n_2 }{2} \right)} <br>
+ n_1^{ \frac{n_1}{2}} n_2^{ \frac{n_2}{2}} <br>
+\left( \frac{1}{ n_1 x + n_2} \right)^{ \frac{n_1 + n_2}{2}}<br>
+x^{ \frac{n_1}{2} -1}
+\)</p>
+<p>もしくは，</p>
+<p>\(\Large  \displaystyle f_X (x) = \frac{1}{ B \left( \frac{n_1  }{2},  \frac{n_2  }{2}\right)} <br>
+\left( \frac{n_1}{n_2} \right) ^{ \frac{n_1}{2}} <br>
+\left( \frac{1}{ \frac{n_1}{n_2} x + 1} \right)^{ \frac{n_1 + n_2}{2}}<br>
+x^{ \frac{n_1}{2} -1}
+\)</p>
+<p>ここで，<span class="Blue-Bold">ベータ関数</span>，</p>
+<p>\(\Large  \displaystyle B \left( \frac{n_1  }{2},  \frac{n_2  }{2}\right) <br>
+  = 
+\frac{ \Gamma \left( \frac{n_1  }{2} \right) \Gamma \left( \frac{ n_2 }{2} \right)}{\Gamma \left( \frac{n_1 + n_2 }{2} \right)} \)</p>
+<p>を使いました．</p>
+<p>この分布の導出方法は，<a href="F-test-01-02.html">こちら</a>，に</p>
+<p>つぎに，実際に分布の形状とシミュレーションを比較していきましょう．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="F-test-02.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

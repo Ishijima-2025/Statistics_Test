@@ -1,0 +1,89 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-03_03</span></h1>
+<h1 class="Large-Bold-Red">直接変数変換を行う計算</h1>
+<p>最初の式，</p>
+<p>\(\Large \displaystyle   \int_{\mu - a}^{\mu + a} \frac{1}{\sqrt{ 2 \pi \frac{\sigma^2}{n}}} exp \left[ - \frac{(\bar{x} - \mu)^2}{2 \frac{\sigma^2}{n}} \right] \ dx = 0.95 \)</p>
+<p>から，a，を求める計算を行っていきます．</p>
+<p>変数変換を，</p>
+<p>\(\Large  \frac{(\bar{x} - \mu)^2}{ \color{red}{2} \frac{\sigma^2}{n}} \equiv t^2   \)</p>
+<p>とします（分母に２が入っていることが異なります．</p>
+<p>\(\Large  \frac{\bar{x} - \mu}{ \sqrt{\color{red}{2} \frac{\sigma^2}{n}}} = t   \)</p>
+<p>\(\Large  \bar{x} = \sqrt{\color{red}{2} \frac{\sigma^2}{n}}  t + \mu \)</p>
+<p>\(\Large  d \bar{x} = \sqrt{\color{red}{2} \frac{\sigma^2}{n}}  \ dt  \)</p>
+<p>となるので，\(\Large   \bar{x}   \)の範囲からｔの範囲を計算すると，</p>
+<p>\(\Large  \mu -a \hspace{12 pt} \rightarrow  \hspace{12 pt} \bar{x} \hspace{12 pt} \rightarrow  \hspace{12 pt} \mu +a\)</p>
+<p>\(\Large  \frac{-a}{ \sqrt{\color{red}{2} \frac{\sigma^2}{n}}} \hspace{17 pt} \rightarrow  \hspace{13 pt} t \hspace{14 pt} \rightarrow  \hspace{12 pt} \frac{a}{ \sqrt{\color{red}{2} \frac{\sigma^2}{n}}} \)</p>
+<p>したがって，</p>
+<p>\(\Large \displaystyle   \frac{1}{\sqrt{ 2 \pi \frac{\sigma^2}{n}}} \int_{\mu - a}^{\mu + a}  exp \left[ - \frac{(\bar{x} - \mu)^2}{2 \frac{\sigma^2}{n}} \right] \ dx = 0.95 \)</p>
+<p>\(\Large \displaystyle   = \frac{1}{\sqrt{  2 \pi \frac{\sigma^2}{n}}} \sqrt{\color{red}{2} \frac{\sigma^2}{n}} \displaystyle \int_{\frac{-a}{ \sqrt{\color{red}{2} \frac{\sigma^2}{n}}}}^{\frac{a}{ \sqrt{\color{red}{2} \frac{\sigma^2}{n}}}}  exp \left[ - t^2 \right] \ dx = 0.95 \)</p>
+<p>\(\Large \displaystyle   = \frac{1}{\sqrt{  \pi }}  \displaystyle \int_{\frac{-a}{ \sqrt{\color{red}{2} \frac{\sigma^2}{n}}}}^{\frac{a}{ \sqrt{\color{red}{2} \frac{\sigma^2}{n}}}}  exp \left[ - t^2 \right] \ dx = 0.95 \)</p>
+<p>となります．この分布は，左右対称なので，</p>
+<p>\(\Large \displaystyle   = \frac{1}{\sqrt{  \pi }}  \displaystyle \int_{0}^{\frac{a}{ \sqrt{\color{red}{2} \frac{\sigma^2}{n}}}}  exp \left[ - t^2 \right] \ dx = \frac{0.95}{2} \)</p>
+<p>となるｔを求めればいいことになります． ここで，誤差関数，</p>
+<p>\(\Large \displaystyle   erf(x) = \frac{2}{\sqrt{  \pi }}  \displaystyle \int_{0}^{x}  exp \left[ - w^2 \right] \ dw  \)</p>
+<p>を利用すると，</p>
+<p>\(\Large \displaystyle     \displaystyle \int_{0}^{x}  exp \left[ - w^2 \right] \ dw  =  \frac{\sqrt{  \pi }}{2} erf(x)\)</p>
+<p>となります．したがって，</p>
+<p>\(\Large \displaystyle    \frac{1}{\sqrt{  \pi }}  \displaystyle \int_{0}^{\frac{a}{ \sqrt{\color{red}{2} \frac{\sigma^2}{n}}}}  exp \left[ - t^2 \right] \ dx <br />
+  =  \frac{1}{\sqrt{  \pi }} \frac{\sqrt{  \pi }}{2} erf \left( \frac{a}{ \sqrt{2 \frac{\sigma^2}{n}}} \right) <br />
+= \frac{0.95 }{2} \)</p>
+<p>\(\Large \displaystyle     erf \left( \frac{a}{ \sqrt{2 \frac{\sigma^2}{n}}} \right) 
+= 2 \frac{0.95 }{2} = 0.95 \)</p>
+<p>を計算すればいいことになります．．逆関数を考えると，</p>
+<p>\(\Large \displaystyle     erf^{-1} (0.95) = \frac{a}{ \sqrt{2 \frac{\sigma^2}{n}}}  
+\)</p>
+<p>\(\Large \displaystyle     a = \sqrt{2 \frac{\sigma^2}{n}} erf^{-1} (0.95)   
+\)</p>
+<p>\(\Large \displaystyle      erf^{-1} (0.95)   
+\)</p>
+<p>は，<a href="Excel-Gauss-03.html">ここ</a>，で述べたように，</p>
+<p>\(\Large \displaystyle   \begin{eqnarray}  ERFINV(x) &amp;=&amp; \frac{1}{\sqrt{2}} NORMSINV \left\{ \frac{1+x}{2} \right\}  \\<br />
+&amp;=&amp; NORMINV 
+\left\{ \frac{1+x}{2}, 0, \frac{1}{\sqrt{2}} \right\}  \\<br />
+\end{eqnarray}  \)</p>
+<p>ですので，エクセルで計算すると，</p>
+<p>\(\Large \displaystyle      erf^{-1} (0.95)   
+=1.3859 \)</p>
+<p>となります．したがって，</p>
+
+<p>\(\Large \displaystyle     a = \sqrt{2 \frac{\sigma^2}{n}} erf^{-1} (0.95)   
+=  \sqrt{\frac{\sigma^2}{n}} \sqrt{2} \cdot 1.3859 = \sqrt{\frac{\sigma^2}{n}} \times 1.96\)</p>
+<p>と<span class="Large-Bold-Red">1.96</span>が出てきました．</p>
+<p>行った作業は，同じ変数変換ですが，一回で済みます．ただ，標準正規分布を基本に考えていくとそちらの方が今後よろしいかと</p>
+
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-03_2.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Interval Estimation-03_4.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

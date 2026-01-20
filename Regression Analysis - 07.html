@@ -1,0 +1,99 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Regression-Analysis</title>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+.style10 {color: #000000; }
+.style1 {color: #0000FF}
+</style>
+</head>
+
+<body>
+<h1 class="style1">回帰分析　-　07</h1>
+<p class="Large-Bold-Blue">切片，\(\Large \displaystyle   \hat{a_0} \)，の分散</p>
+<p>\(\Large \displaystyle   \hat{a_0} \)，の分散の推定は，\(\Large \displaystyle   \hat{a_1} \)，の分散の推定値を利用します．</p>
+<p><a href="Regression Analysis - 05.html">ここ</a>から，</p>
+<p>\(\Large  \displaystyle   
+\hat{a_0} = a_0 - \left(  \hat{a_1}   - a_1 \right) \bar{X} + \bar{u} \)</p>
+<p>となりますので，分散は，</p>
+<p>\(\Large  \displaystyle   
+V \left[ \hat{a_0} \right] = E \left[ \hat{a_0} - a_0 \right]^2 = E \left[ - \left(  \hat{a_1}   - a_1 \right) \bar{X} + \bar{u} \right]^2 \)</p>
+<p>\(\Large  \displaystyle   
+= \bar{X}^2 E  \left[  \hat{a_1}   - a_1 \right]^2 -2 \bar{X} E \left[  \left(  \hat{a_1}   - a_1 \right) \bar{u} \right] + E \left[ \bar{u}^2 \right] \)</p>
+<p>となります．各項について考えていきましょう．</p>
+<p class="Blue-Bold">・第一項</p>
+<p>\(\Large  \displaystyle   
+\bar{X}^2 E  \left[  \hat{a_1}   - a_1 \right]^2 \)，について考えていきます．</p>
+<p>\(\Large  \displaystyle V  \left[  \hat{a_1} \right] = E \left[ \left( \hat{a_1} -\bar{  \hat{ a_1}} \right)^2 \right] =E \left[ \left( \hat{a_1} - a_1 \right)^2 \right] \)</p>
+<p>ですので（<a href="Regression Analysis - 05.html">前々頁</a>の\(\Large \displaystyle   \hat{a_1} \)の期待値から），</p>
+<p>\(\Large  \displaystyle   
+\bar{X}^2 E  \left[  \hat{a_1}   - a_1 \right]^2 = \bar{X}^2 V \left[ \hat{a_1} \right] = \bar{X}^2 \frac{ \sigma^2     }{  \displaystyle   
+\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2} \)</p>
+<p>&nbsp;</p>
+<p class="Blue-Bold">・第二項</p>
+<p>\(\Large \displaystyle   \hat{a_1} = a_1   
++  \sum_{i=1}^{n} \omega_i u_i = a_1   
++  \frac{  \displaystyle   
+\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)   }{  \displaystyle   
+\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}    u_i \)</p>
+<p>より，</p>
+<p>\(\Large    \begin{eqnarray} \displaystyle   
+E \left[  \left(  \hat{a_1}   - a_1 \right) \bar{u} \right] &amp;=&amp; E \left[ \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)u_i   }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}    \frac{1}{n} \sum_{i=1}^n u_i \right] \\<br />
+&amp;=&amp; \frac{1   }{n \sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}E \left[ \sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)u_i \sum_{i=1}^n u_i \right] \\<br />
+&amp;=&amp; \frac{1   }{n \sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2} \sum_{i=1}^{n}  \sum_{j=1}^{n}  \left(X_i - \bar{X}  \right) E \left[ u_i u_j \right] \\<br />
+&amp;=&amp; \frac{\sigma^2   }{n \sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2} \sum_{i=1}^{n}    \left(X_i - \bar{X}  \right) \\<br />
+\end{eqnarray}  \)</p>
+<p>ここで，</p>
+<p>\(\Large  \displaystyle   
+\sum_{i=1}^{n} \left( X_i -  \bar{X} \right) = \sum_{i=1}^{n} X_i - \sum_{i=1}^{n}   \bar{X}  = n \bar{X} - n \bar{X} = 0 \)</p>
+<p>なので，結局，</p>
+<p>\(\Large    \displaystyle   
+E \left[  \left(  \hat{a_1}   - a_1 \right) \bar{u} \right] = 0 \)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p><span class="Blue-Bold">・第三項</span></p>
+<p>\(\Large  \displaystyle   
+E \left[ \bar{u}^2 \right] =    
+E \left[ \sum_{i=1}^n u_i \right]^2 = \frac{1}{n^2} E \left[  \sum_{i=1}^n \sum_{j=1}^n u_i u_j \right] <br />
+= \frac{1}{n^2} E \left[ \frac{1}{n} \sum_{i=1}^n u_i^2  \right] \)</p>
+<p>\(\Large  \displaystyle   
+
+= \frac{1}{n^2}  \sum_{i=1}^n E \left[  u_i^2  \right] = \frac{1}{n^2}  \sum_{i=1}^n \sigma^2 = \frac{1}{n} \sigma^2
+\)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p>したがって，</p>
+<p>\(\Large  \begin{eqnarray} \displaystyle   
+V \left[ \hat{a_0} \right] &amp;=&amp;  \bar{X}^2 \frac{\sigma^2     }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2} + \frac{\sigma^2}{n}  \\<br />
+&amp;=&amp;  \sigma^2  \frac{n \bar{X}^2 + \sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2   }{n \sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}  \\<br />
+&amp;=&amp;  \sigma^2  \frac{n \bar{X}^2 + \sum_{i=1}^{n} \left( X_i^2 - 2 \bar{X} X_i + \bar{X}^2 \right)   }{n \sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}  \\<br />
+&amp;=&amp;  \sigma^2  \frac{ \sum_{i=1}^{n}  X_i^2 - 2 \bar{X} \sum_{i=1}^{n} X_i + 2 n\bar{X}^2    }{n \sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}  \\<br />
+&amp;=&amp;  \sigma^2  \frac{ \sum_{i=1}^{n}  X_i^2 - 2 \bar{X} n \bar{X}+ 2 n\bar{X}^2    }{n \sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}  \\<br />
+&amp;=&amp;  \sigma^2  \frac{ \sum_{i=1}^{n}  X_i^2     }{n \sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}  \\<br />
+\end{eqnarray}  \)</p>
+<p>となります．</p>
+<p>まとめると，</p>
+<p>\(\Large  \displaystyle   \color{red}{V \left[\hat{a_1} \right] 
+= \frac{\sigma^2     }{  \displaystyle   
+\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}}\)</p>
+<p>\(\Large   \displaystyle   
+\color{red}{V \left[ \hat{a_0} \right] =  \sigma^2  \frac{   \displaystyle   
+\sum_{i=1}^{n}  X_i^2     }{n   \displaystyle   
+\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}}    \)</p>
+<p>となります．</p>
+<p>これで一件落着かと思ったのですが，</p>
+<p>\(\Large   \displaystyle   
+\color{red}{  \sigma^2}    \)</p>
+<p>をどう考えればいいのでしょう？？？？</p>
+<p>次ページに検討していきたいと思います．</p>
+<p>&nbsp;</p>
+<p><span class="style10"><a href="Regression Analysis - 06.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Regression Analysis - 08.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+</body>
+</html>

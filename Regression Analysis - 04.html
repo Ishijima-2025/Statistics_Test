@@ -1,0 +1,140 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Regression-Analysis</title>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+.style10 {color: #000000; }
+.style1 {color: #0000FF}
+</style>
+</head>
+
+<body>
+<h1 class="style1">回帰分析　-　04</h1>
+<p class="Large-Bold-Blue">実際の数字を入れてみて．</p>
+<p class="Large-Bold-Blue">&nbsp;</p>
+<p>実際に数字を入れてみて確認しましょう．</p>
+<p>今回も，<a href="http://www2.econ.osaka-u.ac.jp/~tanizaki/class/2018/basic_econome/index.htm" target="_blank">参考にさせていただいたサイト</a>の値を用います．</p>
+<p>　</p>
+<table width="478" border="1">
+  <tbody>
+    <tr>
+      <td width="125" style="text-align: center">i</td>
+      <td width="36">\( X_i     \)</td>
+      <td width="52"><p>\( Y_i     \)</p></td>
+      <td width="61">\( X_i - \bar{X}   \)
+        <bar></bar></td>
+      <td width="66">\( Y_i - \bar{Y}   \)
+        <bar></bar></td>
+      <td width="98">\( (X_i - \bar{X})(Y_i - \bar{Y})   \)
+        <bar></bar></td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: right">5</td>
+      <td style="text-align: right">4</td>
+      <td style="text-align: right">2</td>
+      <td style="text-align: right">1.4</td>
+      <td style="text-align: right">2.8</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">-2</td>
+      <td style="text-align: right">-1.6</td>
+      <td style="text-align: right">3.2</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: right">3</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">-1.6</td>
+      <td style="text-align: right">0</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: right">2</td>
+      <td style="text-align: right">3</td>
+      <td style="text-align: right">-1</td>
+      <td style="text-align: right">0.4</td>
+      <td style="text-align: right">-0.4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: right">4</td>
+      <td style="text-align: right">4</td>
+      <td style="text-align: right">1</td>
+      <td style="text-align: right">1.4</td>
+      <td style="text-align: right">1.4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">合計</td>
+      <td style="text-align: right">15</td>
+      <td style="text-align: right">13</td>
+      <td style="text-align: right">0</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">7</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">二乗の合計</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">10</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">平均</td>
+      <td style="text-align: right">3</td>
+      <td style="text-align: right">2.6</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+      <td style="text-align: right">&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+<p>	エクセルで	近似すると，</p>
+<p><img src="Regression-Analysis---02.png" width="517" height="324" alt=""/></p>
+<p>となり，<br />
+  <span class="Blue-Bold">　傾き　：　0.70<br />
+  　切片　：　0.50</span><br />
+となります．</p>
+<p class="Large-Bold-Blue">・\(\Large \displaystyle   \hat{a_1}    
+\)，の計算</p>
+<p>\(\Large \displaystyle   S_{XY} \equiv \frac{1}{n} \sum_{i=1}^{n}  \left(X_i - \bar{X}  \right) \left(Y_i - \bar{Y}  \right) = \frac{7}{5} = 1.4 
+\)</p>
+<p>\(\Large \displaystyle   S_{XX}^2 \equiv \frac{1}{n} \sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)^2    
+  = \frac{10}{5} = 2 \)</p>
+<p>\(\Large \displaystyle   \hat{a_1} = \frac{S_{XY} }{S_{XX}^2}   
+=   \frac{1.4}{2} = 0.7 \)</p>
+<p>と一致します．</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Blue">・\(\Large \displaystyle   \hat{a_0}    
+\)，の計算</span></p>
+<p>\(\Large  \displaystyle  \hat{a_0} 
+  = 
+\bar{Y} - \hat{a_1}   \bar{X} = 2.6 - 0.7 \times 3 = 0.5 \)</p>
+<p>と一致します．</p>
+<p>それでは，次ページに推定した，<span class="Large-Bold-Blue">\(\Large \displaystyle   \hat{a_1}, \hat{a_0}    
+\)</span>，の精度，分散値を計算してみましょう．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style10"><a href="Regression Analysis - 03.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Regression Analysis - 05.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>regression analysis</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">回帰分析の信頼区間-02</p>
+<p class="Large-Bold-Red">&nbsp;</p>
+<p class="Large-Bold-Red">実際のグラフ</p>
+<p>&nbsp;</p>
+<p>まずは，きちんと計算ができているかを確認するために，<a href="https://www.ipc.shimane-u.ac.jp/food/kobayasi/regression_excel2.htm" target="_blank">こちら</a>，のサイトと同じデータを使ってLabviewで再現してみました．</p>
+<p>その結果が，</p>
+<p><img src="Regression-Analysis--12.png" width="538" height="464" alt=""/></p>
+<p>となり，上記のサイトのグラフと一致（たぶん）していることがわかります．</p>
+<p>ここで，</p>
+<p>\( \Large  \displaystyle    y = ax+b \)</p>
+<p>での回帰直線において，</p>
+<p>\( \Large  \displaystyle    n = 29, \ \bar{x} = 3.88 \)</p>
+<p>\( \Large  \displaystyle    \hat{ a} = 0.2476, \ \hat{b} = 22.4236 \)</p>
+<p>\( \Large  \displaystyle    S_{xx} = 3368.48, \ S_{yy} = 670.006, \ S_{xy} = 817.193 \)</p>
+<p>となりました．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・データ数を変化させた場合．</p>
+<p>次に，データ数を変化させた場合，どのように信頼区間が変化するかを見ていきましょう．</p>
+<p>ここで，</p>
+<p>\( \Large  \displaystyle    y = ax+b \)</p>
+<p>での直線において，</p>
+<p>\( \Large  \displaystyle    a = 1, \ b = 1\)</p>
+<p>\( \Large  \displaystyle    x_{min}  = 1, \ x_{max} = 10 \)</p>
+<p>の範囲でｘをランダムに配置し，ｙの値に，-2～2の範囲でランダム関数を加えました．</p>
+<p class="Blue-Bold">n=10</p>
+<p><img src="Regression-Analysis--13-10_01.png" width="407" height="358" alt=""/><img src="Regression-Analysis--13-10_02.png" width="421" height="359" alt=""/></p>
+<p><img src="Regression-Analysis--13-10_03.png" width="411" height="359" alt=""/><img src="Regression-Analysis--13-10_04.png" width="412" height="359" alt=""/></p>
+<p>といった形で描くことができました．</p>
+<p><span class="Blue-Bold">n=２0</span></p>
+<p><img src="Regression-Analysis--13-20_01.png" width="414" height="362" alt=""/><img src="Regression-Analysis--13-20_02.png" width="415" height="362" alt=""/></p>
+<p><img src="Regression-Analysis--13-20_03.png" width="415" height="362" alt=""/><img src="Regression-Analysis--13-20_04.png" width="416" height="361" alt=""/></p>
+<p>とデータ数が増えると，信頼区間が狭まることがわかります．当然，分散値に，ｎ，の項があるので当たり前といえば当たり前ですが．．</p>
+<p>やはり，実験はたくさん行わなければなりませんね．．．</p>
+<p>&nbsp;</p>
+<p>エクセルでも作ってみました．一番上の図のデータと同じです．</p>
+<p><img src="Regression-Analysis--14.png" width="755" height="526" alt=""/></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Regression Analysis - 21.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

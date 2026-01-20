@@ -1,0 +1,101 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-05</span></h1>
+<h1 class="Large-Bold-Red">カイ二乗分布</h1>
+<p>カイ二乗分布は，<a href="https://stats.biopapyrus.jp/probability/chi-squared-distribution.html" target="_blank">ここ</a>，を参考にしました．</p>
+<p>定義は，</p>
+<p class="Large-Bold-Red">　標準正規分布，N(0,1)から，ｎ個の標本，X1, X2, ... Xnを独立に抽出したとする． <br />
+　この時，ｎ個の標本の二乗和Ｚが従う分布を自由度ｎのカイ二乗分布という </p>
+<p>というものです．</p>
+<p>つまり，標準正規分布，</p>
+<p>\(\Large \displaystyle    X = \frac{1}{\sqrt{ 2 \pi }}  \displaystyle   exp \left[ - \frac{t^2}{2 } \right] \)</p>
+<p>とした場合に，二乗和Zが，</p>
+<p>\(\Large \displaystyle Z = X_1^2 + X_2^2 + ..... + X_n^2 = \sum_{i=1}^n X_i^2  \sim \chi (n) \)</p>
+<p>ということです．実際の自由度ｎのカイ二乗分布の確率密度は，</p>
+<p>\(\Large \displaystyle f_n (x)= \frac{1}{2^{n/2} \Gamma \left( \frac{n}{2} \right)} x^{\frac{n}{2}-1} exp \left( - \frac{x}{2} \right) \)</p>
+<p>となるようです．．．．すいません，式を追うことはできたのですが，しっかり身についていません．．．</p>
+<p><span class="Blue-Bold">自由度ｎのカイ二乗分布の確率密度</span>と<span class="Blue-Bold">ガンマ分布</span>との関係は，<a href="Interval Estimation-05_1.html">ここ</a>，に．</p>
+<p>実際にシミュレートしてみると（1万回試行，n=1～4）</p>
+<p><img src="Interval Estimation-01.png" width="642" height="371" alt=""/></p>
+<p>のように，n=1, 2, の場合は単調減少，n=3以上の場合はピークを持つ分布となります．</p>
+<p>前頁の，</p>
+<p>\(\Large  \displaystyle U = \frac{(n-1) s^2}{ \sigma^2} =   \frac{ \displaystyle \sum_{i=1}^n (x_i - \bar{x})^2}{ \sigma^2} = \chi_{n-1}^2\)</p>
+<p>が自由度１のカイ二乗分布となることを検証しましょう．</p>
+<p>\(\Large  \displaystyle Y =   \frac{ 1}{ \sigma^2} \displaystyle \sum_{i=1}^n (x_i - \bar{x})^2 \)</p>
+<p>\(\Large  \displaystyle \hspace{18 pt} =   \frac{ 1}{ \sigma^2} \displaystyle \sum_{i=1}^n (x_i - \mu -\bar{x} + \mu)^2  \)</p>
+<p>\(\Large  \displaystyle \hspace{18 pt} =   \frac{ 1}{ \sigma^2} \displaystyle \sum_{i=1}^n \{ (x_i - \mu) - (\bar{x} - \mu) \}^2  \)</p>
+<p>\(\Large  \displaystyle \hspace{18 pt} <br />
+=   \frac{ 1}{ \sigma^2} \displaystyle \sum_{i=1}^n  (x_i - \mu)^2 <br />
+-\frac{ 2}{ \sigma^2} \displaystyle \sum_{i=1}^n   \{(x_i - \mu) \cdot (\bar{x} - \mu) \} <br />
++\frac{ 1}{ \sigma^2} \displaystyle \sum_{i=1}^n    (\bar{x} - \mu)^2 \)</p>
+<p>第二，三項に注目すると，</p>
+<p>\(\Large  \displaystyle 
+ \hspace{18 pt} -\frac{ 2}{ \sigma^2} \displaystyle \sum_{i=1}^n   \{(x_i - \mu) \cdot (\bar{x} - \mu) \} <br />
++\frac{ 1}{ \sigma^2} \displaystyle \sum_{i=1}^n    (\bar{x} - \mu)^2 \)</p>
+<p>\(\Large  \displaystyle 
+= -\frac{ 2}{ \sigma^2}  (\bar{x} - \mu)\displaystyle \sum_{i=1}^n   (x_i - \mu)  <br />
++\frac{ n}{ \sigma^2}     (\bar{x} - \mu)^2 \)</p>
+<p>\(\Large  \displaystyle 
+= \frac{ 1}{ \sigma^2}  (\bar{x} - \mu)\displaystyle \left[ n (\bar{x} - \mu) - 2 \sum_{i=1}^n   (x_i - \mu) \right] \)</p>
+<p>\(\Large  \displaystyle 
+= \frac{ 1}{ \sigma^2}  (\bar{x} - \mu)\displaystyle \left[ n (\bar{x} - \mu) - 2 n \bar{x} +2 n \mu \right] \)</p>
+<p>\(\Large  \displaystyle 
+= \frac{ 1}{ \sigma^2}  (\bar{x} - \mu)\displaystyle \left[ n (\bar{x} - \mu) - 2 n (\bar{x} - \mu) \right] \)</p>
+<p>\(\Large  \displaystyle 
+= \frac{ 1}{ \sigma^2}  (\bar{x} - \mu)\displaystyle \left[  -  n (\bar{x} - \mu) \right] \)</p>
+<p>\(\Large  \displaystyle 
+= -\frac{ n}{ \sigma^2}  (\bar{x} - \mu)^2 \)</p>
+<p>したがって，</p>
+<p>\(\Large  \displaystyle Y =   \frac{ 1}{ \sigma^2} \displaystyle \sum_{i=1}^n (x_i - \bar{x})^2 <br />
+= \frac{ 1}{ \sigma^2} \displaystyle \sum_{i=1}^n  (x_i - \mu)^2 -\frac{ n}{ \sigma^2}  (\bar{x} - \mu)^2 \)</p>
+<p>\(\Large  \displaystyle \hspace{18 pt} 
+=\sum_{i=1}^n \frac{ \displaystyle   (x_i - \mu)^2}{ \sigma^2}  -\left( \frac{ \bar{x} - \mu}{ \sqrt{ \frac{\sigma^2}{n}}}  \right)^2 \)</p>
+<p>第一項は，N(0,1)の標準正規分布となるので，</p>
+<p>\(\Large  \displaystyle \sum_{i=1}^n \frac{ \displaystyle   (x_i - \mu)^2}{ \sigma^2}  = \chi(n) \)</p>
+<p>となります．第二項は中心極限定理によって，標本平均Xの分布は正規分布，N(μ，σ<sup>2</sup>/n)に従うので，</p>
+<p>\(\Large  \displaystyle  \left( \frac{ \bar{x} - \mu}{ \sqrt{ \frac{\sigma^2}{n}}}  \right)^2 = N(0,1) = \chi(1) \)</p>
+<p>ということで， 　<br />
+　第一項：ｎ個の二乗和 　<br />
+　第二項：1個の二乗和 <br />
+なので，引くと，n-1個の二乗和，となり，Ｙは自由度n-1のカイ二乗分布に従うことになります． </p>
+<p>\(\Large  \displaystyle   \chi(n) - \chi(1) = \chi(n-1) \)</p>
+<p>&nbsp;</p>
+<p>つぎは，<span class="Large-Bold-Red">母平均の差の信頼空間定</span>，です．</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-04.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Interval Estimation-06.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Regression-Analysis</title>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+.style10 {color: #000000; }
+.style1 {color: #0000FF}
+</style>
+</head>
+
+<body>
+<h1 class="style1">回帰分析　-　03</h1>
+<p class="Large-Bold-Blue">切片，\(\Large \displaystyle   \hat{a_0} \)，の推定</p>
+<p>次に，\(\Large \displaystyle   \hat{a_0} \)，の推定です．まずは<a href="Regression Analysis - 02.html">前頁</a>から，</p>
+<p>\(\Large \displaystyle \sum_{i=1}^{n} \hat{a_0} 
+  + 
+  \sum_{i=1}^{n} \hat{a_1}X_i  =   \sum_{i=1}^{n}  Y_i   
+\)</p>
+<p>\(\Large \displaystyle    \sum_{i=1}^{n} \hat{a_0}  X_i
+  + \sum_{i=1}^{n} \hat{a_1}X_i^2  =\sum_{i=1}^{n}  X_i Y_i   
+\)</p>
+<p>から，</p>
+<p>\(\Large \displaystyle n \hat{a_0} 
+  + 
+  \hat{a_1} \sum_{i=1}^{n} X_i  =   \sum_{i=1}^{n}  Y_i   
+\)</p>
+<p>\(\Large \displaystyle    \hat{a_0} \sum_{i=1}^{n}   X_i
+  + \hat{a_1} \sum_{i=1}^{n} X_i^2  =\sum_{i=1}^{n}  X_i Y_i   
+\)</p>
+<p>として，\(\Large \displaystyle   \hat{a_1} \)，を消去しましょう．</p>
+<p>\(\Large \displaystyle n \hat{a_0} 
+  \sum_{i=1}^{n} X_i^2+ 
+  \hat{a_1} \sum_{i=1}^{n} X_i  \sum_{i=1}^{n} X_i^2=   \sum_{i=1}^{n} X_i^2 \sum_{i=1}^{n}  Y_i   
+\)</p>
+<p>\(\Large \displaystyle    \hat{a_0} \sum_{i=1}^{n} X_i  \sum_{i=1}^{n}   X_i
+  + \hat{a_1} \sum_{i=1}^{n} X_i  \sum_{i=1}^{n} X_i^2  =\sum_{i=1}^{n} X_i  \sum_{i=1}^{n}  X_i Y_i   
+\)</p>
+<p>両辺を引けば，</p>
+<p>\(\Large \displaystyle  \hat{a_0} 
+  \left\{ \left(\sum_{i=1}^{n} X_i \right)^2 - n \sum_{i=1}^{n} X_i^2 \right\} =   \sum_{i=1}^{n} X_i  \sum_{i=1}^{n}  X_i Y_i - \sum_{i=1}^{n} X_i^2 \sum_{i=1}^{n}  Y_i   
+\)</p>
+<p>\(\Large \displaystyle  \hat{a_0} 
+  = \frac{\sum_{i=1}^{n} X_i^2 \sum_{i=1}^{n}  Y_i - \sum_{i=1}^{n} X_i  \sum_{i=1}^{n}  X_i Y_i  }{  n \sum_{i=1}^{n} X_i^2 - \left(\sum_{i=1}^{n} X_i \right)^2   }      
+\)</p>
+<p>と表すことができます．ただ，ちょっとややこしいので少し整理してみましょう．</p>
+<p>\(\Large \displaystyle  \hat{a_0} 
+  = \frac{ \bar{Y} \sum_{i=1}^{n} X_i^2 - \bar{X}  \sum_{i=1}^{n}  X_i Y_i  }{   \sum_{i=1}^{n} X_i^2 - n \bar{X}^2}      
+\)</p>
+<p>ここで分子にちょっと呼ぶなものを加えて（トータル０になるので問題なし）</p>
+<p>\(\Large \begin{eqnarray} \displaystyle  \hat{a_0} 
+  &amp;=&amp; \frac{ \bar{Y} \sum_{i=1}^{n} X_i^2 - \bar{X}  \sum_{i=1}^{n}  X_i Y_i  + n \bar{X}^2 \bar{Y} - n \bar{X}^2 \bar{Y}}{   \sum_{i=1}^{n} X_i^2 - n \bar{X}^2} \\<br />
+  &amp;=&amp; 
+\frac{ \bar{Y} \sum_{i=1}^{n} X_i^2 - n \bar{X}^2 \bar{Y} - \left( \bar{X}  \sum_{i=1}^{n}  X_i Y_i  - n \bar{X}^2 \bar{Y} \right) }{   \sum_{i=1}^{n} X_i^2 - n \bar{X}^2} \\<br />
+&amp;=&amp; 
+\frac{ \bar{Y} \left( \sum_{i=1}^{n} X_i^2 - n \bar{X}^2 \right) - \bar{X} \left(   \sum_{i=1}^{n}  X_i Y_i  - n \bar{X} \bar{Y} \right) }{   \sum_{i=1}^{n} X_i^2 - n \bar{X}^2} \\<br />
+\end{eqnarray}  \)</p>
+<p>分子第一項の括弧は分母と同じなので，</p>
+<p>\(\Large  \color{red}{\displaystyle  \hat{a_0} 
+  = 
+\bar{Y} - \frac{  \left(     \displaystyle   
+\sum_{i=1}^{n}  X_i Y_i  - n \bar{X} \bar{Y} \right) }{     \displaystyle   
+\sum_{i=1}^{n} X_i^2 - n \bar{X}^2}   \bar{X}} \)</p>
+<p>となります．ここで，，\(\Large \hat{a_1} 
+\)は，</p>
+<p>\(\Large \displaystyle   \hat{a_1} = \frac{\sum_{i=1}^{n}  X_i Y_i - n  \bar{X} \bar{Y}}{\sum_{i=1}^{n} X_i^2 - n \bar{X}^2}   
+\)</p>
+<p>となりますので，右辺第二項の分数と一致するので，</p>
+<p>\(\Large  \color{red}{\displaystyle  \hat{a_0} 
+  = 
+\bar{Y} - \hat{a_1}   \bar{X}} \)</p>
+<p>となります．これは，前ページにあるように，</p>
+<p>\(\Large \displaystyle   \sum_{i=1}^{n} \left( Y_i  - \hat{a_0} 
+- 
+   \hat{a_1}X_i \right) =0 
+\)</p>
+<p>と同じことを示します．</p>
+<p>&nbsp;</p>
+<p>次ページに，実際に数値を入れて確認してみましょう．</p>
+<p><span class="style10"><a href="Regression Analysis - 02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Regression Analysis - 04.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+</body>
+</html>

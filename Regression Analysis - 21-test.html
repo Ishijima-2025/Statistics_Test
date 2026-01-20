@@ -1,0 +1,124 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>regression analysis</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">F検定</p>
+<p>ｔ検定にするか，Welchの検定にするか．その違いは，</p>
+<p class="Blue-Bold">　二つのデータセットにおいて，それぞれの母分散が等しいかどうか</p>
+<p>でした．しかし，そもそも母分散はわからないので，判断の付きようがありません．</p>
+<p>そこで，登場したのが，<span class="Large-Bold-Red">F検定</span>です．</p>
+<p><span class="Red-Bold">F検定</span>は，</p>
+<p class="Red-Bold">二群のばらつき具合，分散が等しいかどうかの検定</p>
+<p>　であり，</p>
+<p class="Red-Bold"> 等しい場合には，ｔ検定，等しくない場合には，Welchの検定が使うことができる． </p>
+<p>ことになります．</p>
+<p>今回は，<a href="https://lab.sdm.keio.ac.jp/ogi/shibaura/ed6-1108.pdf" target="_blank">こちら</a>，のサイトを参考にさせていただきました．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・分散の比</p>
+<p>どうやって抽出したデータから母分散が等しいかどうかは，二群の分散がそれぞれ，</p>
+<p>\( \Large \displaystyle      \sigma_1^2, \ \sigma_2^2 \)</p>
+<p>であるとき，その比を考えればいいことになります，つまり</p>
+<p>\( \Large \displaystyle      \frac{\sigma_1^2}{ \sigma_2^2} \)</p>
+<p>が<span class="Large-Bold-Red">1</span>ならば，等しいことになります，しかし，<span class="Blue-Bold">1.1</span>なら？<span class="Blue-Bold">1.5</span>なら？<span class="Blue-Bold">0.8</span>なら？ という問題が付きまといます．ですので，それぞれのデータ数が重要となるわけです．</p>
+<p>また，我々は母分散がわからないので，不偏分散を使うしかありません．</p>
+<p>\( \Large \displaystyle      \frac{s_1^2}{s_2^2} \)</p>
+<p>この値からどう推定するか．</p>
+<p>そこで，カギとなるのが，<a href="Interval Estimation-04.html">ここ</a>，でお示ししたように，</p>
+<p>\(\Large  \displaystyle U = \frac{(n-1) s^2}{ \sigma^2} =   \frac{ \displaystyle \sum_{i=1}^n (x_i - \bar{x})^2}{ \sigma^2} = \chi_{n-1}^2\)</p>
+<p>です．不偏分散と母分散との間には，</p>
+<p>\(\Large  \displaystyle \frac{(n-1) s^2}{ \sigma^2}  = \chi_{n-1}^2\)</p>
+<p>の関係があります，そこで，二群のデータ，それぞれに，</p>
+<p>\(\Large  \displaystyle \frac{(n_1-1) s_1^2}{ \sigma_1^2}  = \chi_{1, n_1-1}^2\)</p>
+<p>\(\Large  \displaystyle \frac{(n_2-1) s_2^2}{ \sigma_2^2}  = \chi_{2, n_2-1}^2\)</p>
+<p>を考えます．前述の比を不偏分散から求めると，</p>
+<p>\(\Large  \displaystyle s_1^2 = \chi_{1, n_1-1}^2 \frac{ \sigma_1^2}{n_1-1} \)</p>
+<p>\(\Large  \displaystyle s_2^2 = \chi_{2, n_2-1}^2 \frac{ \sigma_2^2}{n_2-1} \)</p>
+<p>となりますので，その比は，</p>
+<p>\(\Large  \displaystyle \frac{s_1^2}{s_2^2} = \frac{\chi_{1, n_1-1}^2}{ \chi_{2, n_2-1}^2} \frac{ \sigma_1^2}{ \sigma_2^2} \frac{n_2-1}{n_1-1} \)</p>
+<p>\(\Large  \displaystyle = \frac{\frac{\chi_{1, n_1-1}^2}{n_1-1}}{ \frac{\chi_{2, n_2-1}^2} {n_1-1}}\frac{ \sigma_1^2}{ \sigma_2^2}  \)</p>
+<p>となります．ここで，もし，</p>
+<p>\( \Large \displaystyle      \sigma_1^2 =  \ \sigma_2^2 \)</p>
+<p>だとすると（これが，<span class="Blue-Bold">帰無仮説</span>，ですね，つまり，<span class="Blue-Bold">二群の母分散は等しい</span>），</p>
+<p>\(\Large  \displaystyle \frac{s_1^2}{s_2^2}=   \displaystyle \frac{\frac{\chi_{1, n_1-1}^2}{n_1-1}}{ \frac{\chi_{2, n_2-1}^2} {n_1-1}}  \)</p>
+<p>の分布となり，左辺が右辺の分布の<span class="Blue-Bold">信頼空間内ならば，帰無仮説が立証され，母分散に差がない</span>ことになるのです．</p>
+<p>この右辺の分布は，F分布，式で表すと，</p>
+<p>\(\Large  \displaystyle f_X (x) = \frac{\Gamma \left( \frac{n_1 + n_2 }{2} \right)}{ \Gamma \left( \frac{n_1  }{2} \right) \Gamma \left( \frac{ n_2 }{2} \right)} <br>
+  \left( \frac{n_1}{n_2} \right) ^{ \frac{n_1}{2}}
+    <br>
+    \left( \frac{1}{ \frac{n_1}{n_2} x + 1} \right)^{ \frac{n_1 + n_2}{2}}<br>
+    x^{ \frac{n_1}{2} -1}
+  \)</p>
+<p>もしくは，</p>
+<p>\(\Large  \displaystyle f_X (x) = \frac{\Gamma \left( \frac{n_1 + n_2 }{2} \right)}{ \Gamma \left( \frac{n_1  }{2} \right) \Gamma \left( \frac{ n_2 }{2} \right)} <br>
+ n_1^{ \frac{n_1}{2}} n_2^{ \frac{n_2}{2}} <br>
+\left( \frac{1}{ n_1 x + n_2} \right)^{ \frac{n_1 + n_2}{2}}<br>
+x^{ \frac{n_1}{2} -1}
+\)</p>
+<p>もしくは，</p>
+<p>\(\Large  \displaystyle f_X (x) = \frac{1}{ B \left( \frac{n_1  }{2},  \frac{n_2  }{2}\right)} <br>
+\left( \frac{n_1}{n_2} \right) ^{ \frac{n_1}{2}} <br>
+\left( \frac{1}{ \frac{n_1}{n_2} x + 1} \right)^{ \frac{n_1 + n_2}{2}}<br>
+x^{ \frac{n_1}{2} -1}
+\)</p>
+<p>ここで，<span class="Blue-Bold">ベータ関数</span>，</p>
+<p>\(\Large  \displaystyle B \left( \frac{n_1  }{2},  \frac{n_2  }{2}\right) <br>
+  = 
+\frac{ \Gamma \left( \frac{n_1  }{2} \right) \Gamma \left( \frac{ n_2 }{2} \right)}{\Gamma \left( \frac{n_1 + n_2 }{2} \right)} \)</p>
+<p>を使いました．</p>
+<p>&nbsp;</p>
+<p>x_1, \ldots, x_{n_1}とy_1, \ldots, y_{n_2}をそれぞれ確率密度関数f(x)とg(y)分布関数F(x)とG(y)をもつ母集団からの標本数n_1、n_2の標本とする。また、これらの標本x_1, \ldots, x_{n_1}とy_1, \ldots, y_{n_2}を小さい順に並べ、ぞれぞれの母集団に対応する順位をr_1, \ldots, r_{n_1}、s_1, \ldots, s_{n_2}とする。今、母集団分布の尺度母数は等しいと仮定する。すなわちF(x) = G(x + \Delta)。ここで、「2つの母集団分布の位置母数が等しい」という次の仮説を考える。</p>
+<p>\( \Large \displaystyle      \begin{align}&amp;H_0:\ \Delta = 0\\ &amp;H_1:\ \Delta \neq 0\end{align} \)</p>
+<p>この仮説の検定統計量として次を用いる。</p>
+<p>\( \Large \displaystyle       \begin{align}\label{eq1} Z = \cfrac{W - \mathrm{E}[W]}{\sqrt{\mathrm{Var}[W]}} \sim N(0,1),\tag{1}\end{align}\)</p>
+<p>ここに、Wは次で定義される順位和統計量である。 </p>
+<p>\( \Large \displaystyle       \begin{align}W = \sum_{i = 1}^{n_1}R_i.\end{align} \)</p>
+<p>また、Wの期待値と分散は次で与えられる。</p>
+<p>\( \Large \displaystyle       \begin{align}\mathrm{E}[W] &amp;= \cfrac{n_1(n_1 + n_2 + 1)}{2},\\ \mathrm{Var}[W] &amp;= \cfrac{n_1n_2(n_1 + n_2 + 1)}{12}.\end{align} \)</p>
+<p>有意水準\alphaの検定の棄却域は次のとおりである。</p>
+<p>\( \Large \displaystyle        \begin{align}(-\infty, Z(\alpha/2)) \cup (Z(\alpha/2) , \infty)\end{align} \)</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>\eqref{eq1}の検定統計量はZ検定統計量であり、順位和統計量の確率変数Wの期待値と分散を計算することにより、検定統計量を導出することができる。</p>
+<p>Wの期待値は</p>
+<p>\( \Large  \begin{align}\mathrm{E}[W] &amp;= \mathrm{E}\left[\sum_{i=1}^{n_1}R_{i}\right] \\&amp;= \sum_{i=1}^{n_1} \mathrm{E}[R_i] \\&amp;= n_1 \sum_{j=1}^{n_1 + n_2} j \mathrm{Pr}\{R_i = j\} \\&amp;= n_1 \sum_{j=1}^{n_1 + n_2} j \cfrac{1}{n_1 + n_2} \\&amp;= \cfrac{n_1}{n_1 + n_2}\cfrac{(n_1 + n_2)(n_1 + n_2+1)}{2}\\&amp;= \cfrac{n_1(n_1 + n_2 + 1)}{2}\end{align} \)</p>
+<p>上記の期待値の計算途中で、順位r_i,\ i = 1,\ldots, n_1は重複を許しているため、 \mathrm{Pr}\{R_i = j\} = 1/(n_1 + n_2)である。また、Wの分散は</p>
+<p>\( \Large  \begin{align}\mathrm{Var}[W] = \mathrm{E}[W^2] - (\mathrm{E}[W])^2\end{align} \)</p>
+<p>ここで、Wの2次モーメントは次のように計算できる。</p>
+<p>\( \Large   \begin{align} \mathrm{E}[W^2] &amp;= \mathrm{E}\left[\left(\sum_{i=1}^{n_1}R_i\right)^2 \right] \\ &amp;= \mathrm{E}\left[\sum_{i=1}^{n_1}R_i^2\right] + \mathrm{E}\left[\sum_{i \neq j}R_iR_j\right]\\&amp;= n_1 \sum_{j=1}^{n_1 +n_2}j^2\mathrm{Pr}\{R_i = j\} + n_1(n_1-1)\sum_{k\neq l}kl\mathrm{Pr}\{R_i = k\}\mathrm{Pr}\{R_j = l\} \\&amp;= n_1\sum_{j=1}^{n_1 + n_2} \cfrac{j^2}{n_1 +n_2} + n_1(n_1-1) \sum_{k\neq l} \cfrac{kl}{(n_1 + n_2)(n_1 + n_2 - 1)} \\ &amp;= \cfrac{n_1 }{n_1+n_2}\cfrac{(n_1+n_2)(n_1+n_2 + 1)\bigl\{2(n_1+n_2) + 1\bigr\}}{6} \\&amp;\quad + \cfrac{ n_1(n_1-1)}{(n_1 + n_2)(n_1 + n_2 - 1)} \left[\left(\sum_{k = 1}^{n_1 + n_2}k\right)^2 - \sum_{k=1}^{n_1+n_2}k^2 \right]\\ &amp;=\cfrac{n_1(n_1+n_2 + 1)\bigl\{2(n_1+n_2) + 1\bigr\}}{6} \\&amp;\quad+ \cfrac{ n_1(n_1-1)}{(n_1 + n_2)(n_1 + n_2 - 1)} \left[\left(\cfrac{(n_1+n_2)(n_1+n_2 + 1)}{2}\right)^2  - \cfrac{(n_1+n_2)(n_1+n_2+1)\bigl\{2(n_1+n_2) + 1\bigr\}}{6}\right] \\ &amp;= \cfrac{n_1(n_1 +n_2 +1)\bigl\{2(n_1 +n_2 )+1\bigr\}}{6}\\&amp;\quad+  \cfrac{ n_1(n_1-1)(n_1 +n_2 )(n_1 +n_2 +1)^2}{4(n_1 +n_2 - 1)} - \cfrac{ n_1(n_1-1)(n_1 +n_2 +1)\bigl\{2(n_1 +n_2 ) + 1\bigr\}}{6(n_1 +n_2 - 1)}\\&amp;= \cfrac{n_1n_2(n_1+n_2+1)\bigl\{2(n_1+n_2) + 1\bigr\}}{6(n_1+n_2-1)} + \cfrac{ n_1(n_1-1)(n_1 +n_2 )(n_1 +n_2 +1)^2}{4(n_1 +n_2 - 1)} .\end{align}\)</p>
+<p>&nbsp;</p>
+<p>よってWの分散は次となる。</p>
+<p>\( \Large   \begin{align}\mathrm{Var}[W] &amp;=\cfrac{n_1n_2(n_1+n_2+1)\bigl\{2(n_1+n_2) + 1\bigr\}}{6(n_1+n_2-1)} + \cfrac{ n_1(n_1-1)(n_1 +n_2 )(n_1 +n_2 +1)^2}{4(n_1 +n_2 - 1)} - \left(\cfrac{n_1(n_1 +n_2 + 1)}{2}\right)^2\\&amp;= \cfrac{n_1n_2(n_1+n_2+1)\bigl\{2(n_1+n_2) + 1\bigr\}}{6(n_1+n_2-1)} - \cfrac{n_1n_2(n_1 +n_2 +1)^2}{4(n_1 +n_2 - 1)}\\&amp;= \cfrac{n_1n_2(n_1+n_2+1)}{12}. \end{align}\)</p>
+<p>したがって、標本数n_1とn_2が十分に大きいとき次の統計量は標準正規分布に従う。</p>
+<p>\( \Large   \begin{align}\cfrac{W - \mathrm{E}[W]}{\sqrt{\mathrm{Var}[W]}}\end{align} \)</p>
+<p><span class="style7"><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

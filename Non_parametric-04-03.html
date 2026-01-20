@@ -1,0 +1,390 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Non_parametric</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED"><span class="Red-Bold">ウィルコクソンの符号順位統計量</span>，別の計算方法</p>
+<p>&nbsp;</p>
+<p><a href="https://radi-toko.com/wilcoxon-signed-rank-test/" target="_blank">こちらのサイト</a>をでは，今まで計算した方法とは異なる方法で検定しています．</p>
+<p>&nbsp;</p>
+<table width="600" border="1">
+  <col width="70" span="3">
+  <tr>
+    <td width="76" style="text-align: center"></td>
+    <td width="88" style="text-align: center">before</td>
+    <td width="88" style="text-align: center">after</td>
+    <td width="86" style="text-align: center">差</td>
+    <td width="94" style="text-align: center">差の絶対値</td>
+    <td width="128" style="text-align: center">絶対値の順位</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td width="88" align="right" style="text-align: center">12</td>
+    <td width="88" align="right" style="text-align: center">8</td>
+    <td width="86" align="center" style="color: #FF0004">4</td>
+    <td width="94" align="center" style="color: #FF0004">4</td>
+    <td width="128" align="center" style="color: #FF0004">4</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">B</td>
+    <td align="right" style="text-align: center">7</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-13</td>
+    <td align="center" style="color: #FF0004">13</td>
+    <td align="center" style="color: #FF0004">10</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">C</td>
+    <td align="right" style="text-align: center">19</td>
+    <td align="right" style="text-align: center">28</td>
+    <td align="center" style="color: #FF0004">-9</td>
+    <td align="center" style="color: #FF0004">9</td>
+    <td align="center" style="color: #FF0004">9</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">D</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-1</td>
+    <td align="center" style="color: #FF0004">1</td>
+    <td align="center" style="color: #FF0004">1</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">E</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="center" style="color: #FF0004">-7</td>
+    <td align="center" style="color: #FF0004">7</td>
+    <td align="center" style="color: #FF0004">7</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">F</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-5</td>
+    <td align="center" style="color: #FF0004">5</td>
+    <td align="center" style="color: #FF0004">5</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">G</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-8</td>
+    <td align="center" style="color: #FF0004">8</td>
+    <td align="center" style="color: #FF0004">8</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">H</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">17</td>
+    <td align="center" style="color: #FF0004">-6</td>
+    <td align="center" style="color: #FF0004">6</td>
+    <td align="center" style="color: #FF0004">6</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">I</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">13</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">J</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">8</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+  </tr>
+</table>
+<p>ここまでは一緒です．</p>
+<p>次に順位の絶対値に元の差の符号を加えます．</p>
+<table width="734" border="1">
+  <col width="70" span="3">
+  <tr>
+    <td width="76" style="text-align: center"></td>
+    <td width="88" style="text-align: center">before</td>
+    <td width="88" style="text-align: center">after</td>
+    <td width="86" style="text-align: center">差</td>
+    <td width="94" style="text-align: center">差の絶対値</td>
+    <td width="128" style="text-align: center">絶対値の順位</td>
+    <td width="128" style="text-align: center"><p>絶対値のの順位<br>
+    （符号付き）</p></td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td width="88" align="right" style="text-align: center">12</td>
+    <td width="88" align="right" style="text-align: center">8</td>
+    <td width="86" align="center" style="color: #FF0004">4</td>
+    <td width="94" align="center" style="color: #FF0004">4</td>
+    <td width="128" align="center" style="color: #FF0004">4</td>
+    <td width="128" align="center" style="color: #FF0004">4</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">B</td>
+    <td align="right" style="text-align: center">7</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-13</td>
+    <td align="center" style="color: #FF0004">13</td>
+    <td align="center" style="color: #FF0004">10</td>
+    <td align="center" style="color: #FF0004">-10</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">C</td>
+    <td align="right" style="text-align: center">19</td>
+    <td align="right" style="text-align: center">28</td>
+    <td align="center" style="color: #FF0004">-9</td>
+    <td align="center" style="color: #FF0004">9</td>
+    <td align="center" style="color: #FF0004">9</td>
+    <td align="center" style="color: #FF0004">-9</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">D</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-1</td>
+    <td align="center" style="color: #FF0004">1</td>
+    <td align="center" style="color: #FF0004">1</td>
+    <td align="center" style="color: #FF0004">-1</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">E</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="center" style="color: #FF0004">-7</td>
+    <td align="center" style="color: #FF0004">7</td>
+    <td align="center" style="color: #FF0004">7</td>
+    <td align="center" style="color: #FF0004">-7</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">F</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-5</td>
+    <td align="center" style="color: #FF0004">5</td>
+    <td align="center" style="color: #FF0004">5</td>
+    <td align="center" style="color: #FF0004">-5</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">G</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-8</td>
+    <td align="center" style="color: #FF0004">8</td>
+    <td align="center" style="color: #FF0004">8</td>
+    <td align="center" style="color: #FF0004">-8</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">H</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">17</td>
+    <td align="center" style="color: #FF0004">-6</td>
+    <td align="center" style="color: #FF0004">6</td>
+    <td align="center" style="color: #FF0004">6</td>
+    <td align="center" style="color: #FF0004">-6</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">I</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">13</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">J</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">8</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+  </tr>
+</table>
+<p>この符号付きの合計，二乗の値，および合計を求めます．</p>
+<table width="868" border="1">
+  <col width="70" span="3">
+  <tr>
+    <td width="76" style="text-align: center"></td>
+    <td width="88" style="text-align: center">before</td>
+    <td width="88" style="text-align: center">after</td>
+    <td width="86" style="text-align: center">差</td>
+    <td width="94" style="text-align: center">差の絶対値</td>
+    <td width="128" style="text-align: center">絶対値の順位</td>
+    <td width="128" style="text-align: center"><p>絶対値のの順位<br>
+      （符号付き）</p></td>
+    <td width="128" style="text-align: center"><p>絶対値のの順位<br>
+      （符号付き）<br>
+      の２乗</p></td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td width="88" align="right" style="text-align: center">12</td>
+    <td width="88" align="right" style="text-align: center">8</td>
+    <td width="86" align="center" style="color: #FF0004">4</td>
+    <td width="94" align="center" style="color: #FF0004">4</td>
+    <td width="128" align="center" style="color: #FF0004">4</td>
+    <td width="128" align="center" style="color: #FF0004">4</td>
+    <td width="128" align="center" style="color: #FF0004">16</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">B</td>
+    <td align="right" style="text-align: center">7</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-13</td>
+    <td align="center" style="color: #FF0004">13</td>
+    <td align="center" style="color: #FF0004">10</td>
+    <td align="center" style="color: #FF0004">-10</td>
+    <td align="center" style="color: #FF0004">100</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">C</td>
+    <td align="right" style="text-align: center">19</td>
+    <td align="right" style="text-align: center">28</td>
+    <td align="center" style="color: #FF0004">-9</td>
+    <td align="center" style="color: #FF0004">9</td>
+    <td align="center" style="color: #FF0004">9</td>
+    <td align="center" style="color: #FF0004">-9</td>
+    <td align="center" style="color: #FF0004">81</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">D</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-1</td>
+    <td align="center" style="color: #FF0004">1</td>
+    <td align="center" style="color: #FF0004">1</td>
+    <td align="center" style="color: #FF0004">-1</td>
+    <td align="center" style="color: #FF0004">1</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">E</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="center" style="color: #FF0004">-7</td>
+    <td align="center" style="color: #FF0004">7</td>
+    <td align="center" style="color: #FF0004">7</td>
+    <td align="center" style="color: #FF0004">-7</td>
+    <td align="center" style="color: #FF0004">49</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">F</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-5</td>
+    <td align="center" style="color: #FF0004">5</td>
+    <td align="center" style="color: #FF0004">5</td>
+    <td align="center" style="color: #FF0004">-5</td>
+    <td align="center" style="color: #FF0004">25</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">G</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-8</td>
+    <td align="center" style="color: #FF0004">8</td>
+    <td align="center" style="color: #FF0004">8</td>
+    <td align="center" style="color: #FF0004">-8</td>
+    <td align="center" style="color: #FF0004">64</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">H</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">17</td>
+    <td align="center" style="color: #FF0004">-6</td>
+    <td align="center" style="color: #FF0004">6</td>
+    <td align="center" style="color: #FF0004">6</td>
+    <td align="center" style="color: #FF0004">-6</td>
+    <td align="center" style="color: #FF0004">36</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">I</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">13</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">4</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">J</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">8</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">9</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">合計</td>
+    <td align="right" style="text-align: center">&nbsp;</td>
+    <td align="right" style="text-align: center">&nbsp;</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004">-37</td>
+    <td align="center" style="color: #FF0004">385</td>
+  </tr>
+</table>
+<p>この，&quot;-37&quot;，はマイナスですが，プラスの場合もマイナスの符号を加えます．</p>
+<p>この符号の値，を符号の二乗の平方根で割ると，</p>
+<p>\(\Large  \displaystyle  \frac{-37}{\sqrt{385}} = -1.886 \)</p>
+<p>となり，先の結果と一致します．</p>
+<p>この一致を検討していきましょう．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">先の計算のｚ値</span>は，</p>
+<p>\(\Large  \displaystyle z_+ = \frac{T_+-E(T_+)}{\sqrt{V(T_+)}} =  \frac{T_+-\frac{n(n+1)}{4}}{\sqrt{V(T_+)}}　\)</p>
+<p>\(\Large  \displaystyle z_- = \frac{T_--E(T_-)}{\sqrt{V(T_-)}}  =  \frac{T_--\frac{n(n+1)}{4}}{\sqrt{V(T_-)}}　　\)</p>
+<p>+側，-側の合計は，</p>
+<p>\(\Large  \displaystyle T_+ + T_- = S = \frac{n(n+1)}{2}　\)</p>
+<p>また，</p>
+<p>\(\Large  \displaystyle 1^2 + 2^2 +......+N^2 = \frac{n(n+1)(2n+1)}{6}　\)</p>
+<p>から，差分は，</p>
+<p>\(\Large  \displaystyle T_+ - T_- = T_+ - \left\{ \frac{n(n+1)}{2} - T_+ \right\} =2 T_+ -　\frac{n(n+1)}{2} = 2 \left\{ T_+ - \frac{n(n+1)}{4} \right\} \)</p>
+<p>したがって，上記の計算は，</p>
+<p>\(\Large  \displaystyle \frac{T_+ - T_- }{\sqrt{1^2 + 2^2 +......+N^2}}  = \frac{2 \left\{ T_+ - \frac{n(n+1)}{4} \right\} }{\sqrt{\frac{n(n+1)(2n+1)}{6}}}<br>
+  = 
+ \frac{2 \left\{ T_+ - \frac{n(n+1)}{4} \right\} }{2 \sqrt{\frac{n(n+1)(2n+1)}{24}}}\)</p>
+<p>\(\Large  \displaystyle = \frac{  T_+ - \frac{n(n+1)}{4}  }{ \sqrt{\frac{n(n+1)(2n+1)}{24}}}<br>
+  = \frac{T_+ - E}{\sqrt{V}}
+\)</p>
+<p>となり，一致します．</p>
+<p>いろいろな計算方法があるものです．</p>
+<p>&nbsp;</p>
+<p>次は，<span class="Blue-Bold">私の素朴な疑問</span>，についてです．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Non_parametric-04-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Non_parametric-04-04.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Interval Estimation</title>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">区間推定を理解する</p>
+<p>&nbsp;</p>
+<p>さて．．．<span class="Large-Bold-Red">区間推定</span>，<span class="Large-Bold-Red">ｔ検定</span>，などなど，苦手です．．．</p>
+<p>一向に全体像がつかめない．．．<span class="Large-Bold-Red">自由度</span>ってなに？？？？</p>
+<p>ということで，勉強してみました，おもに，<a href="https://bellcurve.jp/statistics/course/" target="_blank">統計Web</a>，<a href="https://www.jstage.jst.go.jp/article/kagakutoseibutsu/51/5/51_318/_pdf" target="_blank">統計検定を理解せずに使っている人のために（1，2，3）</a>，などです．</p>
+<p>今回はあまり自信がありません．．．なので，このサイトでは間違った考え方，勘違いがあることを十分承知してください，私の覚え書き，ていどの内容です．．．</p>
+<p class="Red-Bold">・検定，推定の流れ</p>
+<p>私の理解では，検定，推定の流れは．．．．</p>
+<p>　1．対象（母集団）の平均（母平均），分散（母分散）を求めたい<br />
+　　　　（テレビの視聴率，支持率など，ここでは母集団は日本国民か？）</p>
+<p>　2．しかし，全部調べることは難しいので，そのなかからピックアップ（標本）を集める<br />
+　　　その平均（標本平均），分散（標本分散，不偏分散）から，<br />
+　　　母集団の平均（母平均），分散（母分散）を推定する</p>
+<p><img src="Estimation-01.jpg" width="439" height="228" alt=""/></p>
+<p>　3．標本平均は必ずしも母平均と一致しない<br />
+　　　しかし，標本の数，試行回数が多いほど母平均の推定精度は上がる（<span class="Large-Red">大数の法則</span>）</p>
+<p><img src="Estimation-02.jpg" width="344" height="228" alt=""/></p>
+<p>　4．標本を繰り返し行い，その平均値の分布を見ると，中央が高く裾野をもった分布になる（<span class="Large-Red">中心極限定理</span>）<br />
+　　　その分布は正規分布（っぽく）なる<br />
+　　　測定回数が多くなると，その分布がシャープになってくる</p>
+<p><img src="Estimation-03.jpg" width="373" height="228" alt=""/></p>
+<p>　5．その分布から母平均の推定範囲をある程度決めることができる<br />
+　　　しかし，厳密に範囲指定できないので，95％（など）可能性の高い範囲を決める（信頼空間）<br />
+　　　この領域内ならもっともらしい．．と</p>
+<p><img src="Estimation-04.jpg" width="344" height="228" alt=""/></p>
+<p>&nbsp;</p>
+<p>　6．この分布は，2つの異なる母集団の違いについても議論できる，つまり，<br />
+　　　2つの異なる母集団からの標本平均の差も，正規分布（っぽく）なるので，同じロジックを使える</p>
+<p>というものです．</p>
+<p>まずは，<span class="Large-Bold-Red">中心極限定理</span>，から．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Interval Estimation-02.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

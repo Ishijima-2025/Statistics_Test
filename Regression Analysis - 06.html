@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Regression-Analysis</title>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+.style10 {color: #000000; }
+.style1 {color: #0000FF}
+</style>
+</head>
+
+<body>
+<h1 class="style1">回帰分析　-　06</h1>
+<p class="Large-Bold-Blue">傾き，\(\Large \displaystyle   \hat{a_1} \)，の分散</p>
+<p>次はいよいよ，\(\Large \displaystyle   \hat{a_1} \)，の分散の推定です．もういちどおさらいするとは<a href="Regression Analysis - 01.html">最初の頁</a>から誤差を含めて，</p>
+<p>\(\Large \displaystyle  Y_i  = a_0 + a_1 X_i + u_i \)</p>
+<p>でした．ｎ個のデータのそれぞれの平均をとると，</p>
+<p>\(\Large \displaystyle  \sum_{i=1}^n Y_i  = \sum_{i=1}^n a_0 + \sum_{i=1}^n a_1 X_i + \sum_{i=1}^n u_i\)</p>
+<p>となります，ここで，</p>
+<p>\(\Large \displaystyle  \bar{Y} = \frac{1}{n} \sum_{i=1}^n Y_i  \)</p>
+<p>\(\Large \displaystyle  \bar{X} = \frac{1}{n} \sum_{i=1}^n X_i  \)</p>
+<p>\(\Large \displaystyle  \bar{u} = \frac{1}{n} \sum_{i=1}^n u_i  \)</p>
+<p>とすると，</p>
+<p>\(\Large \displaystyle  \bar{Y}  = a_0 + a_1 \bar{X} + \bar{u} \)</p>
+<p>となります．したがって，</p>
+<p>\(\Large \displaystyle  Y_i - \bar{Y}  =  a_1 \left( X_i - \bar{X} \right) + ( u_i - \bar{u}) \)</p>
+<p>と記すことができます．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Blue">\(\Large \displaystyle   \hat{a_1} \)，の書き換え</p>
+<p><a href="Regression Analysis - 03.html">前頁</a>から，\(\Large \displaystyle   \hat{a_1} \)は，</p>
+<p>\(\Large \displaystyle   \hat{a_1} = \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right) \left(Y_i - \bar{Y}  \right)}{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}   
+\)</p>
+<p>でしたので，上記の式を代入すると，</p>
+<p>\(\Large \displaystyle   \hat{a_1} = \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right) \left\{a_1 \left( X_i - \bar{X} \right) + ( u_i - \bar{u})  \right\}}{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}   
+\)</p>
+<p>となります．式を分けると，</p>
+<p>\(\Large \displaystyle   \hat{a_1} = \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right) \left\{a_1 \left( X_i - \bar{X} \right)   \right\}}{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}   
++  \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)  ( u_i - \bar{u})  }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}   
+<br />
+\)</p>
+<p>となりますが，第一項の分子分母がきれいになるので，</p>
+<p>\(\Large \displaystyle   \hat{a_1} = a_1   
++  \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)  ( u_i - \bar{u})  }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2} <br />
+\)</p>
+<p>さらに，第二項を分けると</p>
+<p>\(\Large \begin{eqnarray} \displaystyle   \hat{a_1} &amp;=&amp; a_1   
++  \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)  u_i   }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2} <br />
+- \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)   \bar{u}  }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2} \\<br />
+&amp;=&amp; a_1   
++  \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)  u_i   }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2} <br />
+- \frac{\bar{u} \sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)     }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2} \\<br />
+\end{eqnarray}  \)</p>
+<p>第三項の分子の総和部分は，</p>
+<p>\(\Large \displaystyle   =  \sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)
+\)</p>
+<p>\(\Large \displaystyle   =  \sum_{i=1}^{n}  X_i - n \bar{X}  
+\)</p>
+<p>\(\Large \displaystyle   =  n \bar{X} - n \bar{X} = 0
+\)</p>
+<p>となり，消えるので，</p>
+<p>\(\Large \begin{eqnarray} \displaystyle   \hat{a_1} &amp;=&amp; a_1   
++  \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)  u_i   }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2} 
+\\<br />
+&amp;=&amp; a_1   
++  \sum_{i=1}^{n} \omega_i u_i 
+\\<br />
+\end{eqnarray}  \)</p>
+<p>となります．ここで，</p>
+<p>\(\Large \displaystyle   \omega_i =  \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)     }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}
+\)</p>
+<p>とします．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Blue">\(\Large \displaystyle   \hat{a_1} \)，の分散</p>
+<p>傾きの推定値，\(\Large \displaystyle   \hat{a_1} \)，の分散は，</p>
+<p>\(\Large  \displaystyle   V \left[\hat{a_1} \right] =V \left[ a_1   
++  \sum_{i=1}^{n} \omega_i u_i 
+\right]  \)</p>
+<p>となりますが，<br />
+  <span class="Blue-Bold">　第一項，β，は定数なので分散は０<br />
+　第二項，のω<sub>i</sub>は，X<sub>i</sub>の項なので，定数（Xは誤差を持たないと仮定しているので）</span><br />
+に注意すると，</p>
+<p>\(\Large  \displaystyle   V \left[\hat{a_1} \right] =V \left[a_1   
++  \sum_{i=1}^{n} \omega_i u_i 
+\right]  = V \left[  \sum_{i=1}^{n} \omega_i u_i 
+\right]=    \sum_{i=1}^{n}  \omega_i^2 V[u_i 
+]= \sigma^2 \sum_{i=1}^{n}  \omega_i^2 \)</p>
+<p>となります，ここで，</p>
+<p>\(\Large  \displaystyle    V[u_i 
+] \equiv \sigma^2  \)</p>
+<p>です．次に，\(\Large  \displaystyle   \sum_{i=1}^{n}  \omega_i^2 \)，を整理しましょう．</p>
+<p>\(\Large  \displaystyle   \sum_{i=1}^{n}  \omega_i^2 = \frac{\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)^2     }{\left\{ \sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2 \right\}^2}<br />
+  = \frac{1     }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}
+
+\)</p>
+<p>と簡単になるので，</p>
+<p>\(\Large  \displaystyle    \color{red}{V \left[ \hat{a_1} \right] = \sigma^2 \sum_{i=1}^{n}  \omega_i^2 <br />
+= \frac{\sigma^2     }{\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}} \)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p>では，次に<span class="Large-Bold-Blue">切片，\(\Large \displaystyle   \hat{a_0} \)，の分散</span>を求めていきましょう．</p>
+<p>&nbsp;</p>
+<p><span class="style10"><a href="Regression Analysis - 05.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Regression Analysis - 07.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+</body>
+</html>

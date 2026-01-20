@@ -1,0 +1,219 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>t-test</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">検定-04</span></h1>
+<h1 class="Large-Bold-Red">&nbsp;</h1>
+<p><span class="Large-Bold-Red">対応のないデータの場合</span>で，<span class="Large-Bold-Red"><span class="Red-Bold">母分散が未知で等しいかどうか不明の場合</span></span>は，</p>
+<p>\(\Large    \displaystyle - t_{\alpha/2} (f)  \hspace{12 pt}\leq   \hspace{12 pt}    \frac{ \overline{x}_1 - \overline{x}_2} {\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}　\leq  \hspace{12 pt}   t_{\alpha/2} (f)\)</p>
+<p>Welchの方法の自由度は</p>
+<p>\(\Large    \displaystyle f = \frac{\left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2}<br />
+  {\frac{ \left( \frac{s_1^2}{n_1} \right)^2}{n_1 - 1} + <br />
+  \frac{\left( \frac{s_2^2}{n_2}\right)^2}{n_2 - 1}} \)</p>
+<p></p>
+<p>サンプルデータは，<a href="t-test-03.html">前ページ</a>と同じです．</p>
+<table width="309" border="1">
+  <tr>
+    <td width="48"></td>
+    <td width="108">Class-01</td>
+    <td width="131">Class_02</td>
+  </tr>
+  <tr>
+    <td align="right">n</td>
+    <td align="right">30</td>
+    <td align="right">32</td>
+  </tr>
+  <tr>
+    <td align="right">Average</td>
+    <td align="right">75</td>
+    <td align="right">70</td>
+  </tr>
+  <tr>
+    <td align="right">SD</td>
+    <td align="right">5</td>
+    <td align="right">8</td>
+  </tr>
+  <tr>
+    <td align="right">s<sup>2</sup></td>
+    <td align="right">25.86</td>
+    <td align="right">66.06</td>
+  </tr>
+</table>
+　
+<p>&nbsp;</p>
+<p>\(\Large    \displaystyle f = \frac{\left( \frac{25.86}{30} + \frac{66.06}{32} \right)^2}<br />
+{\frac{ \left( \frac{25.86}{30}  \right)^2}{30 - 1} + <br />
+\frac{\left( \frac{66.06}{32}\right)^2}{32 - 1}} = 52.51  \fallingdotseq 53 \)</p>
+<p>と切り上げました（エクセルに合わせるため）．</p>
+<p>t値は，</p>
+<p>\(\Large    \displaystyle t = \frac{75-70}{\sqrt { \left( \frac{25.86}{30} + \frac{66.06}{32} \right) }} = 2.922 \)</p>
+<p>ｔ境界値（両側）は，エクセル関数から，</p>
+<p>\(\Large    \displaystyle =T.INV(1-0.05/2,53) = 2.005746 \)</p>
+<p>となり，ｔ値は，推定した区間の外なので，仮説，</p>
+<p><span class="Red-Bold"> 　二つの母集団の母平均には差がない</span></p>
+<p>が認められないため，</p>
+<p>　<span class="Large-Bold-Red">二つの母平均に差がある</span></p>
+<p>ことになります．</p>
+<p class="Red-Bold">エクセル</p>
+<p>の，データ分析，でも，</p>
+<p class="Blue-Bold"> t-検定: 分散が等しくないと仮定した２標本による検定</p>
+<table width="358" border="1">
+  <col width="70" span="3" />
+  <tr>
+    <td width="154">　</td>
+    <td width="80">変数 1</td>
+    <td width="102">変数 2</td>
+  </tr>
+  <tr>
+    <td>平均</td>
+    <td align="right">75</td>
+    <td align="right">70</td>
+  </tr>
+  <tr>
+    <td>分散</td>
+    <td align="right">25.86207</td>
+    <td align="right">66.06452</td>
+  </tr>
+  <tr>
+    <td>観測数</td>
+    <td align="right">30</td>
+    <td align="right">32</td>
+  </tr>
+  <tr>
+    <td>仮説平均との差異</td>
+    <td align="right">0</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#F9FF00">自由度</td>
+    <td align="right" bgcolor="#F9FF00">53</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#F9FF00">t </td>
+    <td align="right" bgcolor="#F9FF00">2.922735</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>P(T&lt;=t) 片側</td>
+    <td align="right">0.002546</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>t 境界値 片側</td>
+    <td align="right">1.674116</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>P(T&lt;=t) 両側</td>
+    <td align="right">0.005092</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#F9FF00">t 境界値 両側</td>
+    <td align="right" bgcolor="#F9FF00">2.005746</td>
+    <td>　</td>
+  </tr>
+</table>
+<p>と一致しています．</p>
+<p>&nbsp;</p>
+<p>この結果は，<a href="t-test-03.html">前ページ</a>の</p>
+<p class="Blue-Bold">t-検定: 等分散を仮定した２標本による検定</p>
+<table width="309" border="1">
+  <col width="144" />
+  <col width="70" span="2" />
+  <tr>
+    <td width="144">　</td>
+    <td width="70">変数 1</td>
+    <td width="70">変数 2</td>
+  </tr>
+  <tr>
+    <td>平均</td>
+    <td align="right">75</td>
+    <td align="right">70</td>
+  </tr>
+  <tr>
+    <td>分散</td>
+    <td align="right">25.86207</td>
+    <td align="right">66.06452</td>
+  </tr>
+  <tr>
+    <td>観測数</td>
+    <td align="right">30</td>
+    <td align="right">32</td>
+  </tr>
+  <tr>
+    <td bgcolor="#F9FF00">プールされた分散</td>
+    <td align="right" bgcolor="#F9FF00">46.63333</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>仮説平均との差異</td>
+    <td align="right">0</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>自由度</td>
+    <td align="right">60</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#F9FF00">t </td>
+    <td align="right" bgcolor="#F9FF00">2.881121</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>P(T&lt;=t) 片側</td>
+    <td align="right">0.002744</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>t 境界値 片側</td>
+    <td align="right">1.670649</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>P(T&lt;=t) 両側</td>
+    <td align="right">0.005489</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#F9FF00">t 境界値 両側</td>
+    <td align="right" bgcolor="#F9FF00">2.000298</td>
+    <td>　</td>
+  </tr>
+</table>
+<p>と比較すると，Welchの検定の方が厳しめに評価されているように思われます．</p>
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="t-test-03.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

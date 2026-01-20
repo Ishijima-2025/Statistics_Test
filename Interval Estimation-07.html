@@ -1,0 +1,151 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>t-test</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-07</span></h1>
+<h1 class="Large-Bold-Red">母平均の差の信頼空間定</h1>
+<p>次からは，ややこしくなります．</p>
+<p class="Large-Bold-Red">　<span class="Red-Bold">対応のないデータの場合：サンプル数が異なる場合</span><br />
+　<span class="Red-Bold">母分散が未知で等しい場合：　ｔ分布</span></p>
+<p>を考えていきましょう．</p>
+<p>先に述べたように，２つの母集団，</p>
+<p>\(\Large    \displaystyle   N( \mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)\ \)</p>
+<p>差の分布は，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/Normal%20distribution-03.html">ここ</a>，にあるように，</p>
+<p>\(\Large    \displaystyle   N( \mu_1 - \mu_2, \sigma_1^2 + \sigma_2^2) \)</p>
+<p>\(\Large    \displaystyle   \mu_d \equiv \mu_1 - \mu_2 \)</p>
+<p>としました（添字を変えました）</p>
+<p>ここでは，<br />
+  <span class="Blue-Bold">　母分散が未知で等しい<br />
+　それぞれの結果平均値の確からしさを見るのだから中心極限定理を利用する</span><br />
+ことから， </p>
+<p>\(\Large    \displaystyle    \sigma_1^2 ，\ \sigma_2^2　\rightarrow \ \frac{\sigma^2}{n_1}, \frac{\sigma^2}{n_2} \)</p>
+<p>に変換すればいいことになります．したがって，その差分の分布は，</p>
+<p>\(\Large    \displaystyle    P_{1-2} = \frac{1}{\sqrt{2 \pi \sigma^2 \left(\frac{1}{n_1}  + \frac{1}{n_2} \right)}}<br />
+  exp \left[ - \frac{ \left\{ z - ( \mu_1 - \mu_2)\right\}^2}{2  \sigma^2 \left(\frac{1}{n_1}  + \frac{1}{n_2} \right)} \right]
+  <br />
+  \)</p>
+<p>と表すことができます（ちゃんとした計算は，<a href="Interval Estimation-07_01.html">ここ</a>，）</p>
+<p>さて，ここからが大変です．どうやってσという未知の値を消去してｔ分布に持っていくか<a href="https://qiita.com/iBotamon/items/e7b9709a55d682201d72" target="_blank">．このサイト</a>を全面的に採用させていただきました，ありがとうございます．</p>
+<p>上記のように，２つの正規母集団，A，Bの分散はいずれも未知の値のσ<sup>2</sup>として，期待値をμ<sub>1</sub>，μ<sub>2</sub>とします．</p>
+<p>\(\Large    \displaystyle    A \sim N( \mu_1, \ \sigma^2) ，\ B \sim N( \mu_2, \ \sigma^2) \)</p>
+<p>それぞれ，ｎ<sub>1</sub>，ｎ<sub>2</sub>個のデータがあります．</p>
+<p>Aからサイズn<sub>1</sub>の互いに独立な標本</p>
+<p>\(\Large    \displaystyle    X_1 \{x_{1,1}, ..., x_{1,n1} \}\)</p>
+<p>Bからサイズn<sub>2</sub>の互いに独立な標本</p>
+<p>\(\Large    \displaystyle    X_2 \{x_{2,1}, ..., x_{2,n2 }\} \)</p>
+<p>を得たとします．それぞれの期待値と分散は，</p>
+<p>\(\Large    \displaystyle    E \left[\bar{X}_1\right] = E \left[ \frac{1}{n_1} \sum_{i=1}^{n_1} x_{1,i}\right]<br />
+= \sum_{i=1}^{n_1}  \frac{E \left[x_{1,j}  \right]}{n_1}<br />
+= \frac{n_1 \mu_1}{n_1} = \mu_1
+<br />
+\)</p>
+<p>\(\Large    \displaystyle    E \left[\bar{X}_2\right] = E \left[ \frac{1}{n_2} \sum_{i=1}^{n_2} x_{2,i}\right]<br />
+= \sum_{i=1}^{n_2}  \frac{E \left[x_{1,j}  \right]}{n_1}<br />
+= \frac{n_2 \mu_2}{n_2} = \mu_2 <br />
+\)</p>
+<p>\(\Large    \displaystyle    V \left[\bar{X}_1\right] = V \left[ \frac{1}{n_1} \sum_{i=1}^{n_1} x_{1,i}\right]<br />
+= \frac{V \displaystyle    \sum_{i=1}^{n_1}  \left[x_{1,j}  \right]}{n_1^2}<br />
+= \frac{n_1 \sigma^2}{n_1^2} = \frac{ \sigma^2}{n_1}<br />
+\)</p>
+<p>\(\Large    \displaystyle    V \left[\bar{X}_2\right] = V \left[ \frac{1}{n_2} \sum_{i=1}^{n_2} x_{2,i}\right]<br />
+= \frac{V \displaystyle    \sum_{i=1}^{n_2}  \left[x_{2,j}  \right]}{n_2^2}<br />
+= \frac{n_2 \sigma^2}{n_2^2} = \frac{ \sigma^2}{n_2}<br />
+\)</p>
+<p><span style="text-decoration:overline;">X</span> <sub>1</sub>，<span style="text-decoration:overline;">X</span> <sub>2</sub>，はいずれも正規母集団からの標本の線形結合だから正規分布に従うことになります．</p>
+<p>先に述べたように，その差分は，</p>
+<p>\(\Large    \displaystyle \bar{X}_1 - \bar{X}_2 \sim N \left( \mu_1 - \mu_2, \frac{\sigma^2}{n_1} + \frac{\sigma^2}{n_2} \right)<br />
+\)s</p>
+<p>これを正規化した変数Zは標準正規分布に従うことになるので，</p>
+<p>\(\Large    \displaystyle Z = \frac{(\bar{X}_1 - \bar{X}_2) -( \mu_1 - \mu_2)}{\sqrt{ \frac{\sigma^2}{n_1} + \frac{\sigma^2}{n_2} }}<br />
+\sim N(0,1) \)</p>
+<p>母分散を消去するためにカイ二乗分布を導入します．</p>
+<p>\(\Large    \displaystyle \chi_1^2 =  \frac{1}{ \sigma^2} \displaystyle    \sum_{i=1}^{n_1}\left( x_{1,j} - \bar{X}_1\right)^2<br />
+\)</p>
+<p>\(\Large    \displaystyle \chi_2^2 =  \frac{1}{ \sigma^2} \displaystyle    \sum_{i=1}^{n_1}\left( x_{2,j} - \bar{X}_2\right)^2<br />
+\)</p>
+<p>とおくと，いずれも自由度n<sub>1</sub>-1, n<sub>2</sub>-1のカイ二乗分布に従います． カイ二乗の再現性により，</p>
+<p>\(\Large    \displaystyle \chi_1^2+ \chi_2^2 =  \frac{1}{ \sigma^2} <br />
+  \left\{ \displaystyle    \sum_{i=1}^{n_1}\left( x_{1,j} - \bar{X}_1\right)^2<br />
+  + \displaystyle    \sum_{i=1}^{n_2}\left( x_{2,j} - \bar{X}_2\right)^2
+   \right\}<br />
+\)</p>
+<p>は自由度，n1+n2-2のカイ二乗分布に従います．</p>
+<p>標本分散は，</p>
+<p>\(\Large    \displaystyle s_1^2 =  \frac{1}{ n_1 -1} \displaystyle    \sum_{i=1}^{n_1}\left( x_{1,j} - \bar{X}_1\right)^2<br />
+\)</p>
+<p>\(\Large    \displaystyle s_2^2 =  \frac{1}{ n_2 -1} \displaystyle    \sum_{i=1}^{n_2}\left( x_{2,j} - \bar{X}_2\right)^2<br />
+\)</p>
+<p>ですので，</p>
+<p>\(\Large    \displaystyle s_1^2 =  \frac{ \sigma^2}{ n_1 -1} \chi_1^2
+\)</p>
+<p>\(\Large    \displaystyle s_2^2 =  \frac{ \sigma^2}{ n_2 -1} \chi_2^2
+\)</p>
+<p>が成り立つことになります，したがって，</p>
+<p>\(\Large    \displaystyle　\chi^2 =   \frac{ (n_1 -1) s_1^2 + (n_2 - 1) s_2^2}{ \sigma^2}
+\)</p>
+<p>となり，自由度，n<sub>1</sub>+n<sub>2</sub>-2のカイ二乗分布に従うことになります． 入れ替えると，</p>
+<p>\(\Large    \displaystyle　\sigma^2 =   \frac{ (n_1 -1) s_1^2 + (n_2 - 1) s_2^2}{ \chi^2}
+\)</p>
+<p>&nbsp;</p>
+<p>Zは標準正規分布に従い，</p>
+<p>\(\Large    \displaystyle Z = \frac{(\bar{X}_1 - \bar{X}_2) -( \mu_1 - \mu_2)}{\sqrt{ \frac{\sigma^2}{n_1} + \frac{\sigma^2}{n_2} }}<br />
+  \sim N(0,1) \)</p>
+<p>カイ二乗は自由度，n<sub>1</sub>+n<sub>2</sub>-2のカイ二乗分布に従うことになります．</p>
+
+<p>\(\Large    \displaystyle　\chi^2 =   \frac{ (n_1 -1) s_1^2 + (n_2 - 1) s_2^2}{ \sigma^2}
+\)</p>
+<p>ｔ分布の定義により，</p>
+<p>\(\Large    \displaystyle　t =    \frac{Z}{ \sqrt{ \frac{\chi^2}{n_1 + n_2 -2}}} <br />
+  \sim t(n_1 + n_2 =2)
+\)</p>
+<p>したがって，</p>
+<p>\(\Large    \displaystyle t = \frac{(\bar{X}_1 - \bar{X}_2) -( \mu_1 - \mu_2)}{\sqrt{ \frac{\sigma^2}{n_1} + \frac{\sigma^2}{n_2} }}<br />
+\sqrt{\frac{ \sigma^2(n_1 + n_2 -2)}{ (n_1 -1) s_1^2 + (n_2 - 1) s_2^2}} \)</p>
+<p>\(\Large    \displaystyle  = \frac{(\bar{X}_1 - \bar{X}_2) -( \mu_1 - \mu_2)}<br />
+  {\sqrt{ \left(\frac{1}{n_1} + \frac{1}{n_2} \right)<br />
+\frac{(n_1 -1) s_1^2 + (n_2 - 1) s_2^2}{n_1 + n_2 -2}}} \)</p>
+<p>となります．ここで，</p>
+<p>\(\Large    \displaystyle  s_p^2 \equiv
+\frac{(n_1 -1) s_1^2 + (n_2 - 1) s_2^2}{n_1 + n_2 -2} \)</p>
+<p>とおけば，ｔ分布は，</p>
+<p>\(\Large    \displaystyle  t = \frac{(\bar{X}_1 - \bar{X}_2) -( \mu_1 - \mu_2)}<br />
+{\sqrt{ \left(\frac{1}{n_1} + \frac{1}{n_2} \right)<br />
+s_p^2 }} \)</p>
+<p>となります．このs<sub>p</sub>をプールされた分散と呼びます．</p>
+<p>次に，</p>
+<p><span class="Large-Bold-Red"><span class="Red-Bold">　対応のないデータの場合：サンプル数が異なる場合</span><br />
+　<span class="Red-Bold">母分散が未知で等しいかどうか不明の場合：　ｔ分布でWelch検定</span></span></p>
+<p>について検討していきましょう．</p>
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-06.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Interval Estimation-08.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

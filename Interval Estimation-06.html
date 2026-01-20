@@ -1,0 +1,86 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-06</span></h1>
+<h1 class="Large-Bold-Red">母平均の差の信頼空間定</h1>
+<p>今までは一つの母平均に対する信頼空間を検討してきましたが，次は２つの母集団の平均の差の信頼空間を調べてみましょう．</p>
+<p>たとえば，<br />
+  　一学期と二学期との理科のテストの平均値の差<br />
+  　〇〇県と△△県のコーヒー使用量の差<br />
+などなど．</p>
+<p>ここでも母集団の性質，事前にわかっていることで場合分けできます．それは，</p>
+<p>　<span class="Red-Bold">対応のあるデータの場合：サンプル数が同じ場合</span><br />
+　　（一学期と二学期との理科のテストの平均値の差，生徒の数が変わらない場合）</p>
+<p>　<span class="Red-Bold">対応のないデータの場合：サンプル数が異なる場合</span><br />
+　　（１組と２組の成績の差など）</p>
+<p>です．さらに，</p>
+<p class="Red-Bold">　母分散が既知で等しい場合　：　正規分布<br />
+　母分散が既知で異なる場合：　正規分布<br />
+　母分散が未知で等しい場合：　ｔ分布<br />
+　母分散が未知で等しいかどうかわからない場合：　ｔ分布でWelch検定</p>
+<p>と分けることができます．ややこしいです．</p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">・対応のあるデータの場合：サンプル数が同じ場合<br />
+</span></p>
+<p>さて，２つの母集団，</p>
+<p>\(\Large    \displaystyle   N( \mu_X, \sigma_X^2), N(\mu_Y, \sigma_Y^2)\ \)</p>
+<p>差の分布は，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/Normal%20distribution-03.html">ここ</a>，にあるように，</p>
+<p>\(\Large    \displaystyle   N( \mu_X - \mu_Y, \sigma_X^2 + \sigma_Y^2) \)</p>
+<p>となります．これは<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/gosa-02.html">誤差伝搬法則</a>からも同様の結果となります．したがって，</p>
+<p>\(\Large    \displaystyle   \mu_d \equiv \mu_X - \mu_Y \)</p>
+<p>では信頼空間に用いる不偏分散はどのように推定するかというと，<br />
+  <span class="Blue-Bold">　それぞれの差分の値</span><br />
+を用いればいいことになります．２つの母集団の数，対応が一致しているのでわかりやすいですね．</p>
+<p>したがって，</p>
+<p><span class="Blue-Bold">n個のそれぞれの集団，x<sub>1i</sub>,x<sub>2i</sub></span>を考えると<span class="Blue-Bold">，差分の平均を	<span style="text-decoration:overline;">x</span>
+<sub>d</sub></span>，<span class="Blue-Bold">差分の不偏分散をs<sub>d</sub><sup>2</sup></span>とすると，</p>
+
+<p>\(\Large    \displaystyle   \bar{x}_d = \frac{1}{n}\sum_{i=1}^n (x_{1i} - x_{2i} ) \)</p>
+<p>\(\Large    \displaystyle   s_d^2 = \frac{ \displaystyle   \sum_{i=1}^n \left(x_i - y_i -\bar{x}_d \right)^2 }{n-1} \)</p>
+<p>となります，式はちょっとややこしくなりましたが，要は，<br />
+  <span class="Blue-Bold">　それぞれの差分を取る<br />
+  　その差分の不偏分散を求める</span><br />
+だけです．</p>
+<p>あとは，一つの母集団の信頼空間と同様に，</p>
+<p><span class="Blue-Bold">母分散がわかっている場合</span>は，</p>
+<p>\(\Large     \displaystyle     - 1.96  \hspace{52 pt}\leq   \hspace{12 pt}   \frac{\mu_d - \bar{x}_d}{ \sqrt{\frac{\color{red}{\sigma}^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   1.96   \)</p>
+<p><span class="Blue-Bold">母分散がわからない場合</span>には，</p>
+<p>\(\Large     \displaystyle     - t_{\alpha/2} (n-1)  \hspace{12 pt}\leq   \hspace{12 pt}   \frac{\mu_d - \bar{x}_d}{ \sqrt{\frac{\color{red}{s_d}^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1) \)</p>
+<p>となるのです．</p>
+<p>これは比較的簡単で，差分といえども，その差分をあたかも一つの母集団として考えれば良いことになります</p>
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-05.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Interval Estimation-07.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

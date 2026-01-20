@@ -1,0 +1,190 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Non_parametric</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">ウィルコクソンの順位和検定</p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">ウィルコクソンの順位和検定</span>，から</p>
+<p>まずは具体的な計算方法を，<a href="https://bellcurve.jp/statistics/course/26101.html" target="_blank">こちらのサイト</a>のデータをすこし改変させて利用させていただきました．</p>
+<p>ウィルコクソンの順位和検定の利点は，順位で検定するので，<span class="Red">素点が変化しても順位が変化しない限り結果は同じ</span>になります．</p>
+<table width="200" border="1">
+  <tbody>
+    <tr>
+      <td style="text-align: center">No.</td>
+      <td style="text-align: center">A</td>
+      <td style="text-align: center">B</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">27</td>
+      <td style="text-align: center">30</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">34</td>
+      <td style="text-align: center">35</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">24</td>
+      <td style="text-align: center">37</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">19</td>
+      <td style="text-align: center">28</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">29</td>
+      <td style="text-align: center">32</td>
+    </tr>
+  </tbody>
+</table>
+<p>この結果を全体に対して順位を付与します．</p>
+<table width="368" border="1">
+  <tbody>
+    <tr>
+      <td width="62" style="text-align: center">No.</td>
+      <td width="46" style="text-align: center">A</td>
+      <td width="55" style="text-align: center">&nbsp;</td>
+      <td width="46" style="text-align: center">B</td>
+      <td width="55" style="text-align: center">&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">順位</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td style="text-align: center">順位</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">1</td>
+      <td style="text-align: center">27</td>
+      <td class="Red" style="text-align: center">3</td>
+      <td style="text-align: center">30</td>
+      <td class="Red" style="text-align: center">6</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">2</td>
+      <td style="text-align: center">34</td>
+      <td class="Red" style="text-align: center">8</td>
+      <td style="text-align: center">35</td>
+      <td class="Red" style="text-align: center">9</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">3</td>
+      <td style="text-align: center">24</td>
+      <td class="Red" style="text-align: center">2</td>
+      <td style="text-align: center">37</td>
+      <td class="Red" style="text-align: center">10</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">4</td>
+      <td style="text-align: center">19</td>
+      <td class="Red" style="text-align: center">1</td>
+      <td style="text-align: center">28</td>
+      <td class="Red" style="text-align: center">4</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">5</td>
+      <td style="text-align: center">29</td>
+      <td class="Red" style="text-align: center">5</td>
+      <td style="text-align: center">32</td>
+      <td class="Red" style="text-align: center">7</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">合計</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">19</td>
+      <td style="text-align: center">&nbsp;</td>
+      <td class="Red" style="text-align: center">36</td>
+    </tr>
+  </tbody>
+</table>
+<p>全部で10つのデータがあり，その中でAチームは5つ．この5つが均等に混ざり合う場合の合計の<span class="Red-Bold">期待値</span>と<span class="Red-Bold">分散</span>を計算します．</p>
+<p>この例では，<span class="Blue">同点はない</span>，場合を想定しています．</p>
+<p>合計をWとすると，小さい方の値を採用します．</p>
+<p>\(\Large  \displaystyle W_A &lt; W_B　\)</p>
+<p>となるので，小さい方の値，19，採用します．</p>
+<p>期待値，分散値は以下の計算式で導くことができます．</p>
+<p>\(\Large  \displaystyle E(W_A)= \frac{n_A ( n_A + n_B +1)}{2} = \frac{5 (5+5+1)}{2} = 27.5　\)</p>
+<p>\(\Large  \displaystyle V(W_A)= \frac{n_A \ n_B ( n_A + n_B +1)}{12} = \frac{5 \cdot 5 (5+5+1)}{12} = \frac{275}{12} = 22.92　\)</p>
+<p>この結果からｚ値を求めます．</p>
+<p>\(\Large  \displaystyle z = \frac{W_A-E(W_A)}{\sqrt{V(W_A)}} =  \frac{19-27.5}{\sqrt{22.92}} = -1.775　\)</p>
+<p>標準正規分布における両側５％の範囲は，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/Interval%20Estimation-03.html">こちら</a>に，記載しましたように，±1.96，となるので，</p>
+<p>\(\Large  \displaystyle -1.96 &lt; \frac{W_A-E(W_A)}{\sqrt{V(W)}} &lt; 1.96　\)</p>
+<p>なので，範囲内，つまり有意差があるとは限らないことになります．</p>
+<p>&nbsp;</p>
+<p>なぜ，小さい方？ですが，よくわかりません．</p>
+<p>なので，<span class="Blue-Bold">Chat-GPT</span>，に聞いてみました．</p>
+<p class="Blue">ウィルコクソンの順位和検定（Wilcoxon Rank-Sum Test, またはMann-Whitney U検定）において小さい方の順位和を採用する理由は、検定統計量としての安定性と計算の簡便性のためです。具体的には、次のような理由があります。 </p>
+<p class="Blue">1. 対称性: <br>
+ウィルコクソンの順位和検定では、2つの独立したサンプルを比較します。この検定では、サンプルの一方を固定して他方のサンプルと比較するため、サンプルの入れ替えによって結果が変わらない対称性が重要です。小さい方の順位和を採用することで、どちらのサンプルが「小さい」かを一意に決定できます。 </p>
+<p class="Blue">2. 計算の簡便性: <br>
+順位和の計算において、より小さい順位和を採用することで、統計量の計算が簡便になります。例えば、サンプルサイズが小さい方の順位和を選ぶと、ランキングを正規化しやすくなります。 </p>
+<p class="Blue">3. 検定統計量の特性: <br>
+ウィルコクソンの検定統計量は、通常、比較される2つのサンプルの順位和の差に基づいています。この差は、どちらのサンプルが有意に大きいかを示すための指標として用いられます。小さい方の順位和を用いることで、差が統計的に有意かどうかを判断しやすくなります。</p>
+<p>ということですが，正直よくわかりませんでした．．．．．なので，大きい方を使って計算してみました．</p>
+<p>\(\Large  \displaystyle E(W_B)= \frac{n_B ( n_A + n_B +1)}{2} = \frac{5 (5+5+1)}{2} = 27.5　\)</p>
+<p>\(\Large  \displaystyle V(W_B)= \frac{n_A \ n_B ( n_A + n_B +1)}{12} = \frac{5 \cdot 5 (5+5+1)}{12} = \frac{275}{12} = 2.92　\)</p>
+<p>\(\Large  \displaystyle z = \frac{W_B-E(W_B)}{\sqrt{V(W_B)}} =  \frac{36-27.5}{\sqrt{22.92}} = 1.775　\)</p>
+<p>と期待値，分散値が一致し，ｚ値は符号が逆転し，絶対値が同じ値となりました．</p>
+<p>なぜ，このような結果になるかは，<a href="Non_parametric-02_01.html">こちら</a>，に計算してみましたので，ご確認ください．</p>
+<p>なので，私の結論は，<span class="Red-Bold">大小どちらを使ってもいい</span>，でした（間違っていたらご指摘ください．）</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Red">期待値，分散値</span>をまとめると，</p>
+<p>\(\Large  \displaystyle E(W_A)= \frac{n_A ( n_A + n_B +1)}{2} \)</p>
+<p>\(\Large  \displaystyle V(W_A)= \frac{n_A \ n_B ( n_A + n_B +1)}{12} \)</p>
+<p>となります．</p>
+<p>標準正規分布における両側５％の範囲は，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/Interval%20Estimation-03.html">こちら</a>に，記載しましたように，±1.96，となるので，</p>
+<p>\(\Large  \displaystyle -1.96 &lt; \frac{W_A-E(W_A)}{\sqrt{V(W)}} &lt; 1.96　\)</p>
+<p>を評価すればよいことがわかります．</p>
+<p>導出方法などは，細かい計算ですが，</p>
+<p>　<a href="Non_parametric-02_01.html">大小で結果は変わるか？</a></p>
+<p>　<a href="Non_parametric-02_02.html">期待値，分散値の導出方法</a></p>
+<p>をそれぞれ別ページにまとめました．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Blue">・タイデータがある場合</p>
+<p>この場合には，</p>
+<p>　期待値：変わらない</p>
+<p>　分散値：\(\Large  \displaystyle V(W)= \frac{n_A \ n_B ( n_A + n_B +1)}{12} - \frac{ n_A n_B   \displaystyle \sum_{i=1}^T t_i (t_i^2-1)}{12N(N-1)} \)</p>
+<p>とのことでしたが，導出できませんでした．．．．いずれ解明します．</p>
+<p>&nbsp;</p>
+<p>次は，</p>
+<p><span class="Red-Bold">マン・ホイットニーのU検定</span></p>
+<p>です．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Non_parametric-01.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Non_parametric-03.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

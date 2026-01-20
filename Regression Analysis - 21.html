@@ -1,0 +1,204 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>regression analysis</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">回帰分析の信頼区間-01</p>
+<p class="Large-Bold-Red">&nbsp;</p>
+<p class="Large-Bold-Red">回帰分析の信頼空間，について，まとめてみました．</p>
+<p><a href="https://www.datawim.com/post/plotting-confidence-intervals-in-r/" target="_blank">こちら</a>などのサイトにあるように，</p>
+<p>　<span class="Blue-Bold">直線回帰において，近似曲線だけでなく両側に放物線のような点線（もしくは色付け）</span></p>
+<p>がよく論文などに見られます．</p>
+<p>　たぶん，近似曲線のもっともらしい範囲を示しているのだな？</p>
+<p>と思っていましたが，なかなか理解できませんでした．</p>
+<p>今回，区間推定，検定などを勉強して，なんとか理解できそうになったのでまとめてみました．</p>
+<p>主に，<a href="http://www.radio3.ee.uec.ac.jp/ronbun/YK-019_Kukan_Suitei.pdf" target="_blank">こちら</a>，のサイトを参考にさせていただきました（a，bをうちのHPに合わせて逆にしています）．</p>
+<p><a href="https://starpentagon.net/analytics/simple_linear_regression_ci/" target="_blank">こちら</a>，のサイトも参考にさせていただきました（Covで挫折しましたが．．</p>
+<p>いくつかのトピックをHPにアップしましたが，簡単にまとめます．</p>
+<p><img src="Regression-Analysis--11.png" width="696" height="556" alt=""/></p>
+<p>&nbsp;</p>
+<p>まずは，データを直線近似します．その式は，</p>
+<p>\( \Large  \displaystyle    y = ax+b \)</p>
+<p>となります．</p>
+<p>ここで，<br>
+　X軸のデータは誤差を含まない<br>
+　Y軸のデータに誤差を含む<br>
+が前提となります．つまり，</p>
+<p>\( \Large \displaystyle    y_i = ax_i+b + e_i \)</p>
+<p>となります．この，a，bは真の値なので実際にはわかりません，推定するしかないのです．</p>
+<p>これらからの推定値と実際の値の残差を，</p>
+<p>\( \Large \displaystyle      \varepsilon_i = y_i - \hat{y}_i \)</p>
+<p>とすると，その二乗和は，</p>
+<p>\( \Large   \displaystyle    S_{ \varepsilon \varepsilon} = \sum_{i=1}^n \varepsilon_i^2 <br>
+  =
+\sum_{i=1}^n ( y_i - \hat{y}_i)^2 <br>
+=
+\sum_{i=1}^n ( y_i - \hat{a}x_i+\hat{b})^2 \)</p>
+<p>この残差の二乗和が最小になる推定される二つのパラメータ，\( \Large \hat{a}, \hat{b} \)から，</p>
+<p>\( \Large  \displaystyle    \hat{y}(x) = \hat{a}x+\hat{b} \)</p>
+<p>を得ることができます．</p>
+<p>また，<a href="kinji-004.html">ここ</a>，から，</p>
+<p>\( \Large      \displaystyle \overline{  y} -  b  -  a \displaystyle \overline{x} = 0 \)</p>
+<p>\( \Large      \displaystyle \overline{  y} =  a \displaystyle \overline{x} +b \)</p>
+<p>です．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">推定値</p>
+<p>これらのパラメータの導き出し方は，<a href="kinji-001.html">ここ</a>，<a href="Regression Analysis - 01.html">ここ</a>，にまとめてあります．</p>
+<p>\( \Large \hat{a} =  \displaystyle \frac{ S_{xy} }{ S_{xx}} \)</p>
+<p>\( \Large \hat{b} =  \displaystyle \bar{y} -\frac{ S_{xy} }{ S_{xx}} \bar{x} \)</p>
+<p>さらに，</p>
+<p>\( \Large   \displaystyle \bar{y} = \hat{a} \bar{x} + \hat{b} \)</p>
+<p>の関係を導き出すことができます．ここで，</p>
+<p>\( \Large         \displaystyle S_{xx} = \displaystyle \sum_{i=1}^n (x_i - \bar{x})^2 = n \left\{ \overline{x^2} - \left( \bar{x} \right)^2 \right\} \)</p>
+<p>です．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">分散</p>
+<p>\( \Large    \displaystyle \hat{a}, \ \hat{b}
+\)の分散は，<a href="gosa-11.html">ここ</a>，から，</p>
+<p>\( \Large    \displaystyle V \left[ \hat{a} \right] = \sigma_a^2  = \displaystyle   
+  \frac{ \sigma_y^2}{S_{xx}} 
+\)</p>
+<p>\( \Large    \displaystyle  V \left[ \hat{b} \right] =\sigma_b^2 = 
+\sigma_y^2  
+\frac{  \overline{ x^2}}{  S_{xx}} =\sigma_y^2  
+\left\{ \frac{1}{n}+ \frac{\left( \bar{x} \right)^2 }{S_{xx}} \right\} \)</p>
+<p>ここで，</p>
+<p>\( \Large    \displaystyle \sigma_y^2  = 
+  \sum_{i=1}^N ( y_i - \hat{y})^2
+  \)</p>
+<p>です．</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Red">\( \Large    \displaystyle  \hat{y}
+\)の分散</span></p>
+<p>推定したパラメータで求めたｙの値がどの程度分散を持つかというと，</p>
+<p>\( \Large  \displaystyle    \hat{y} = \hat{a}x+\hat{b} \)</p>
+<p>\( \Large      \displaystyle \overline{  y} =  a \displaystyle \overline{x} +b \)</p>
+<p>から，</p>
+<p>\( \Large  \displaystyle    \hat{y} = \overline{  y} +\hat{b} ( x - \bar{x} )\)</p>
+<p>となります，したがって，分散は，</p>
+<p>\( \Large  \displaystyle    V\left[\hat{y}\right] = V\left[\overline{  y}\right] +V\left[\hat{a} ( x - \bar{x} )\right]\)</p>
+<p>となります．</p>
+<p><span class="Red">第一項</span>は，<a href="Interval Estimation-02.html">中心極限定理</a>から，</p>
+<p>\( \Large  \displaystyle     V\left[\overline{  y}\right] = \frac{ \sigma_y^2}{n} \)</p>
+<p>となります．</p>
+<p><span class="Red">第二項</span>は，</p>
+<p>\( \Large  \displaystyle    V\left[\hat{a} ( x - \bar{x} )\right] = ( x - \bar{x} )^2 V\left[\hat{a} \right] =  \displaystyle   
+   ( x - \bar{x} )^2 \frac{ \sigma_y^2}{S_{xx}} 
+\)</p>
+<p>となるので，</p>
+<p>\( \Large  \displaystyle    V\left[\hat{y}\right] = \frac{ \sigma_y^2}{n} ＋ \displaystyle   
+( x - \bar{x} )^2 \frac{ \sigma_y^2}{S_{xx}}<br>
+= \left[ 
+\frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] \sigma_y^2 \)</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Red">yの分散</span></p>
+<p>\( \Large \displaystyle      \varepsilon_i = y_i - \hat{y}_i \)</p>
+<p>から，</p>
+<p>\( \Large \displaystyle      y_i = \hat{y}_i + \varepsilon_i  \)</p>
+<p>となります，この分散値は，</p>
+<p>\( \Large  \displaystyle    V\left[ y \right] = V\left[\hat{  y}\right] +V\left[ \varepsilon \right]\)</p>
+<p><span class="Red">第一項</span>は，上の計算から，</p>
+<p>\( \Large  \displaystyle    V\left[\hat{y}\right] =  \left[ 
+\frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] \sigma_y^2 \)</p>
+<p><span class="Red">第二項</span>は，yの残差の分散なので，</p>
+<p>\( \Large  \displaystyle    V\left[ \varepsilon \right] =\sigma_y^2 \)</p>
+<p>となりますので，</p>
+<p>\( \Large  \displaystyle    V\left[ y \right] = \left[ 
+\frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] \sigma_y^2 + \sigma_y^2<br>
+= 
+ \left[1+ 
+\frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] \sigma_y^2\)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p>それぞれ，</p>
+<p><span class="Large-Bold-Red">\( \Large    \displaystyle  \hat{y}
+  \)の分散</span></p>
+<p><span class="Large-Bold-Red">yの分散</span></p>
+<p>を求めることができました．しかし，実際には，\( \Large  \displaystyle    \sigma_y^2 \)は求めることができないので不偏分散を使います．</p>
+<p>その計算は，<a href="Regression Analysis - 09.html">ここ</a>（長いですが），にあり，</p>
+<p>\(\Large \displaystyle      \sigma^2 \rightarrow   \displaystyle      \frac{ E \left[  \displaystyle      \sum_{i=1}^n       \varepsilon_i^2 \right]}{n-2} = s^2 = Ve \)</p>
+<p>となるので，</p>
+<p><span class="Large-Bold-Red">\( \Large    \displaystyle  \hat{y}
+\)の分散</span></p>
+<p> \( \Large  \displaystyle    V\left[\hat{y}\right] 
+  = \left[ 
+  \frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] \sigma_y^2 = \left[ 
+  \frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] Ve \)</p>
+<p><span class="Large-Bold-Red">yの分散</span></p>
+<p>\( \Large  \displaystyle    V\left[ y \right] =  
+ \left[1+ 
+\frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] \sigma_y^2 =  
+ \left[1+ 
+\frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] Ve\)</p>
+<p>を計算すればいいことになります．</p>
+<p>&nbsp;</p>
+<p>つまり，<span class="Large-Bold-Red">\( \Large    \displaystyle  \hat{y}
+\)の推定値</span>は，</p>
+<p class="Red-Bold">平均：\( \Large  \displaystyle    \hat{a}x+\hat{b} \)</p>
+<p class="Red-Bold">分散：\( \Large  \displaystyle     \left[ 
+\frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] Ve \)</p>
+<p>の正規分布に従うことになります．</p>
+<p>&nbsp;</p>
+<p>また，<span class="Large-Bold-Red">yの推定値</span>は，</p>
+<p class="Red-Bold">平均：\( \Large  \displaystyle     \hat{a}x+\hat{b} \)</p>
+<p class="Red-Bold">分散：\( \Large  \displaystyle     \left[ 
+  1+\frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] Ve \)</p>
+<p>の正規分布に従うことになります．</p>
+<p>&nbsp;</p>
+<p>こうなると，勉強してきた<span class="Large-Bold-Blue">ｔ検定</span>が利用できます．</p>
+<p>注意すべきは，</p>
+<p>　<span class="Blue-Bold">ｘによって分散値が変化する</span></p>
+<p>ことと，</p>
+<p>　<span class="Blue-Bold">ｔ検定における自由度は</span><span class="Large-Bold-Blue">ｎ-2</span><span class="Blue-Bold">となる</span></p>
+<p>ことです．なぜ<span class="Large-Bold-Blue">ｎ-2</span>になるかは，ここでは，</p>
+<p>　<span class="Blue-Bold">二つのパラメータを求めるので自由度は2つ減る</span></p>
+<p>と考えましょう（安易かもしれませんが．．．）</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">信頼区間</p>
+<p>信頼区間は，<a href="Interval Estimation-04.html">ここ</a>，にあるように，</p>
+<p>\(\Large     \displaystyle     - t_{\alpha/2} (n-1)  \hspace{12 pt}\leq   \hspace{12 pt}   \frac{\mu - \bar{x}}{ \sqrt{\frac{\color{red}{s}^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1) \)</p>
+<p>でしたので，<span class="Large-Bold-Red">\( \Large    \displaystyle  \hat{y}
+\)</span>の場合は，</p>
+<p>\(\Large     \displaystyle     - t_{\alpha/2} (n-1)  \hspace{12 pt}\leq   \hspace{12 pt}   \frac{\hat{a}x+\hat{b}}{ \sqrt{\left[ \frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] Ve}} \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1) \)</p>
+<p>書き換えると，</p>
+<p>\(\Large     \displaystyle      \hat{a}x+\hat{b} \hspace{12 pt} \pm \hspace{12 pt} t_{\alpha/2} (n-1) \cdot \sqrt{\left[ \frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] Ve} \)</p>
+<p><span class="Large-Bold-Red">y</span>の場合は，</p>
+<p>\(\Large     \displaystyle     - t_{\alpha/2} (n-1)  \hspace{12 pt}\leq   \hspace{12 pt}   \frac{\hat{a}x+\hat{b}}{ \sqrt{\left[ 1 + \frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] Ve}} \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1) \)</p>
+<p>書き換えると，</p>
+<p>\(\Large     \displaystyle      \hat{a}x+\hat{b} \hspace{12 pt} \pm \hspace{12 pt} t_{\alpha/2} (n-1) \cdot \sqrt{\left[ 1 + \frac{ 1}{n} + \frac{ ( x - \bar{x} )^2}{S_{xx}} \right] Ve} \)</p>
+<p>の線を引けばいいことになります．</p>
+<p>&nbsp;</p>
+<p>では，実際にデータから回帰直線の信頼区間を計算していきましょう．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Regression Analysis - 22.html"><img src="R-arrow.png" alt="r" width="57" height="34" border="0" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Regression-Analysis</title>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+.style10 {color: #000000; }
+.style1 {color: #0000FF}
+</style>
+</head>
+
+<body>
+<h1 class="style1">回帰分析　-　02</h1>
+<p class="Large-Bold-Blue">傾き，\(\Large \displaystyle   \hat{a_1} \)，の推定</p>
+<p>では微分してみましょう．</p>
+<p>まずは，\(\Large \displaystyle   \hat{a_0} \)，から</p>
+<p>\(\Large \displaystyle  S \left( \hat{a_0}, \hat{a_1} \right) = \sum_{i=1}^{n} \hat{u_i}^2 = \sum_{i=1}^{n} \left( Y_i  - \hat{a_0} - \hat{a_1} X_i \right)^2 \)</p>
+<p>ですので，</p>
+<p>\(\Large \begin{eqnarray} \displaystyle  \frac{ \partial S \left( \hat{a_0}, \hat{a_1} \right) }{ \partial \hat{a_0} } &amp;=&amp; \frac{ \partial   }{ \partial \hat{a_0}}   \sum_{i=1}^{n} \left( Y_i  - \hat{a_0} - \hat{a_1} X_i \right)^2\\<br />
+  &amp;=&amp; 
+  \frac{ \partial   }{ \partial \hat{a_0}}   \sum_{i=1}^{n} Y_i^2 + \frac{ \partial   }{ \partial \hat{a_0}}   \sum_{i=1}^{n} \hat{a_0}^2 + \frac{ \partial   }{ \partial \hat{a_0}}\sum_{i=1}^{n}  \hat{a_1}^2 X_i^2 \\<br />
+  &amp;&amp; - 2 \frac{ \partial   }{ \partial \hat{a_0}} \sum_{i=1}^{n}
+  \hat{a_0} Y_i - 2 \frac{ \partial   }{ \partial \hat{a_0}} \sum_{i=1}^{n}
+  \hat{a_1}X_i Y_i + 2 \frac{ \partial   }{ \partial \hat{a_0}} \sum_{i=1}^{n}
+  \hat{a_0} \hat{a_1}X_i \\<br />
+\end{eqnarray}  \)</p>
+<p>\(\Large \displaystyle   \hat{a_0} \)による微分なので，\(\Large \displaystyle   \hat{a_0} \)が含まれていない項は０となります．</p>
+<p>したがって，</p>
+<p>\(\Large \displaystyle  \frac{ \partial S \left( \hat{a_0}, \hat{a_1} \right) }{ \partial \hat{a_0} }<br />
+  =   2 \sum_{i=1}^{n} \hat{a_0} 
+- 2  \sum_{i=1}^{n}
+   Y_i  + 2 \sum_{i=1}^{n}
+   \hat{a_1}X_i =0 
+\)</p>
+<p>\(\Large \displaystyle   \sum_{i=1}^{n}  Y_i  - \sum_{i=1}^{n} \hat{a_0} 
+- 
+   \sum_{i=1}^{n} \hat{a_1}X_i  =0 
+\)</p>
+<p>まとめると，</p>
+<p>\(\Large \displaystyle   \sum_{i=1}^{n} \left( Y_i  - \hat{a_0} 
+- 
+   \hat{a_1}X_i \right) =0 
+\)</p>
+<p>となります．</p>
+<p>次は，\(\Large \displaystyle   \hat{a_1} \)，を計算してみます．</p>
+<p>\(\Large \begin{eqnarray} \displaystyle  \frac{ \partial S \left( \hat{a_0}, \hat{a_1} \right) }{ \partial \hat{a_1} } &amp;=&amp; \frac{ \partial   }{ \partial \hat{a_1}}   \sum_{i=1}^{n} \left( Y_i  - \hat{a_0} - \hat{a_1} X_i \right)^2\\<br />
+&amp;=&amp; 
+  \frac{ \partial   }{ \partial \hat{a_1}}   \sum_{i=1}^{n} Y_i^2 + \frac{ \partial   }{ \partial \hat{a_1}}   \sum_{i=1}^{n} \hat{a_0}^2 + \frac{ \partial   }{ \partial \hat{a_1}}\sum_{i=1}^{n}  \hat{a_1}^2 X_i^2 \\<br />
+&amp;&amp; - 2 \frac{ \partial   }{ \partial \hat{a_1}} \sum_{i=1}^{n}
+  \hat{a_0} Y_i - 2 \frac{ \partial   }{ \partial \hat{a_1}} \sum_{i=1}^{n}
+  \hat{a_1}X_i Y_i + 2 \frac{ \partial   }{ \partial \hat{a_1}} \sum_{i=1}^{n}
+  \hat{a_0} \hat{a_1}X_i \\<br />
+\end{eqnarray}  \)</p>
+<p>\(\Large \displaystyle   \hat{a_1} \)による微分なので，\(\Large \displaystyle   \hat{a_1} \)が含まれていない項は０となります．</p>
+<p>したがって，</p>
+<p>\(\Large \displaystyle  \frac{ \partial S \left( \hat{a_0}, \hat{a_1} \right) }{ \partial \hat{a_1} }<br />
+  =   2 \sum_{i=1}^{n} \hat{a_1} X_i^2
+  - 2  \sum_{i=1}^{n}
+  X_i Y_i  + 2 \sum_{i=1}^{n}
+  \hat{a_0}X_i =0 
+\)</p>
+<p>\(\Large \displaystyle   \sum_{i=1}^{n}  X_i Y_i  - \sum_{i=1}^{n} \hat{a_0}  X_i
+  - 
+  \sum_{i=1}^{n} \hat{a_1}X_i^2  =0 
+\)</p>
+<p>まとめると，</p>
+<p>\(\Large \displaystyle   \sum_{i=1}^{n} \left( X_i Y_i  - \hat{a_0}  X_i
+  - 
+  \hat{a_1}X_i^2 \right) =0 
+\)</p>
+<p>\(\Large \displaystyle   \sum_{i=1}^{n} X_i \left( Y_i  - \hat{a_0}  
+  - 
+  \hat{a_1}X_i \right) =0 
+\)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p>ここで，整理すると，</p>
+<p>\(\Large \displaystyle   \sum_{i=1}^{n}  Y_i  = n \hat{a_0} 
++ 
+   \sum_{i=1}^{n} \hat{a_1}X_i   
+\)</p>
+<p>\(\Large \displaystyle   \frac{1}{n} \sum_{i=1}^{n}  Y_i  =  \hat{a_0} 
++ 
+   \frac{1}{n} \sum_{i=1}^{n} \hat{a_1}X_i   
+\)</p>
+<p>左辺はYの平均，右辺第二項はXの平均なので，</p>
+<p>\(\Large    \bar{Y}   =  \hat{a_0} 
++ 
+   \hat{a_1} \bar{X}   
+\)</p>
+<p>となります．また，</p>
+<p>\(\Large \begin{eqnarray} \displaystyle   \sum_{i=1}^{n}  X_i Y_i  &amp;=&amp; \hat{a_0} \sum_{i=1}^{n}   X_i
+  + 
+  \hat{a_1} \sum_{i=1}^{n} X_i^2 \\<br />
+  &amp;=&amp; 
+\hat{a_0} n \bar{X}+\hat{a_1} \sum_{i=1}^{n} X_i^2 \\<br />
+&amp;=&amp; 
+\left( \bar{Y} - \hat{a_1} \bar{X}   \right) n \bar{X}+\hat{a_1} \sum_{i=1}^{n} X_i^2 \\<br />
+&amp;=&amp; 
+n  \bar{X} \bar{Y}   + \hat{a_1} \left( \sum_{i=1}^{n} X_i^2 - n \bar{X}^2 \right) \\<br />
+\end{eqnarray}  \)</p>
+<p>となりますので，\(\Large \hat{a_1} 
+\)は，</p>
+<p>\(\Large \displaystyle   \hat{a_1} = \frac{\sum_{i=1}^{n}  X_i Y_i - n  \bar{X} \bar{Y}}{\sum_{i=1}^{n} X_i^2 - n \bar{X}^2}   
+\)</p>
+<p>となります．ここで，分子は，</p>
+<p>\(\Large \displaystyle   \sum_{i=1}^{n}  X_i Y_i - n  \bar{X} \bar{Y} =  
+\sum_{i=1}^{n}  \left(X_i Y_i -   \bar{X} \bar{Y} \right) \)</p>
+<p>ですが，</p>
+<p>\(\Large \begin{eqnarray} \displaystyle     
+\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right) \left(Y_i - \bar{Y}  \right) &amp;=&amp;      
+\sum_{i=1}^{n}  \left(X_i Y_i - X_i \bar{Y}  - Y_i \bar{X} +\bar{X} \bar{Y}  \right) \\<br />
+&amp;=&amp; 
+\sum_{i=1}^{n}  X_i Y_i - n\bar{X} \bar{Y}-n\bar{X} \bar{Y}+n\bar{X} \bar{Y} \\<br />
+&amp;=&amp; 
+\sum_{i=1}^{n}  X_i Y_i - n\bar{X} \bar{Y} \\<br />
+\end{eqnarray}  \)</p>
+<p>となります．</p>
+<p>分母も，</p>
+<p>\(\Large \displaystyle   \sum_{i=1}^{n} X_i^2 - n \bar{X}^2 =  
+\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2\)</p>
+<p>となるので，</p>
+<p>\(\Large \color{red}{\displaystyle   \hat{a_1} = \frac{  \displaystyle   
+\sum_{i=1}^{n}  \left(X_i - \bar{X}  \right) \left(Y_i - \bar{Y}  \right)}{  \displaystyle   
+\sum_{i=1}^{n} \left( X_i -  \bar{X} \right)^2}}   
+\)</p>
+<p>となります，ここで，</p>
+<p>\(\Large \displaystyle   S_{XY} \equiv \frac{1}{n} \sum_{i=1}^{n}  \left(X_i - \bar{X}  \right) \left(Y_i - \bar{Y}  \right)   
+\)</p>
+<p>\(\Large \displaystyle   S_{XX} \equiv \frac{1}{n} \sum_{i=1}^{n}  \left(X_i - \bar{X}  \right)^2    
+\)</p>
+<p>とすると，</p>
+<p>\(\Large \color{red}{\displaystyle   \hat{a_1} = \frac{S_{XY} }{S_{XX}}}   
+\)</p>
+<p>と簡単に記すことができます．</p>
+<p>&nbsp;</p>
+<p>では，次に切片，\(\Large \displaystyle   \hat{a_0} \)，を求めていきましょう．</p>
+<p>&nbsp;</p>
+<p><span class="style10"><a href="Regression Analysis - 01.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Regression Analysis - 03.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Welch</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">Welchの自由度の求め方-02</p>
+<p><br />
+ｖという統計量は，</p>
+<p>\(\Large    \displaystyle    v = \frac{\bar{X} - \bar{Y}}{ \sqrt{\frac{s_X^2}{m}  + \frac{s_Y^2}{n}} }<br />
+\)</p>
+<p>\(\Large    \displaystyle 
+  = \frac{Z }<br>
+{ \sqrt{     a \chi_X^2 \  + b \chi_Y^2 } }\)</p>
+<p>ここで，</p>
+<p>\(\Large    \displaystyle      \chi_X^2=     \frac{(m - 1) s_X^2}{ \sigma_X^2}<br />
+\)</p>
+<p>\(\Large    \displaystyle      \chi_Y^2=     \frac{(n - 1) s_Y^2}{ \sigma_Y^2}<br />
+\)</p>
+<p>\(\Large    \displaystyle 
+a = \frac{\frac{  \sigma_X^2}{m(m-1)}  }{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} \)</p>
+<p>\(\Large    \displaystyle 
+b = \frac{\frac{   \sigma_Y^2}{n(n-1)}}{\frac{\sigma_X^2}{m}  + \frac{\sigma_Y^2}{n}} \)</p>
+<p>でした．ここで，さらに，</p>
+<p>\(\Large    \displaystyle 
+w =      a \chi_X^2 \  + b \chi_Y^2 \)</p>
+<p>とおきます．これは，<span class="Blue">二つのカイ二乗分布の定数倍の和なので，たぶん，一つのカイ二乗分布に従うのではないか？</span> と考えます．</p>
+<p>そこで， 
+<span class="Blue">自由度ｎのカイ二乗分布の確率密度関数</span>は， </p>
+<p>\(\Large    \displaystyle 
+f_n (x) =      \frac{1}{2^{ \frac{n}{2}} \ \Gamma \left( \frac{n}{2} \right)} \ x^{ \frac{n}{2}-1} \ exp \left( - \frac{x}{2} \right) \)</p>
+<p><span class="Blue">ガンマ分布</span>は，</p>
+<p>\(\Large    \displaystyle G ( \alpha, \beta) =      \frac{1}{\beta^{ \alpha } \ \Gamma ( \alpha )} \ x^{ \alpha -1} \ exp \left( - \frac{x}{ \beta} \right) \)</p>
+<p>α：形状母数，β：尺度母数</p>
+<p>となりますので，<span class="Red-Bold">α=f/2，β=2g</span>とおくと，</p>
+<p>\(\Large    \displaystyle G \left( \frac{f}{2},2 g \right) =      \frac{1}{(2g)^{ \frac{f}{2} } \ \Gamma ( \frac{f}{2} )} \ x^{ \frac{f}{2} -1} \ exp \left( - \frac{x}{ 2g} \right) \)</p>
+<p>となります．α=f/2，はわかるのですが，β=2g，が難題です．ここが一番苦労しました．</p>
+<p>&nbsp;</p>
+<p><span class="Blue-Bold">期待値</span>は，</p>
+<p>\(\Large    \displaystyle 
+E[w] =      E[ a \chi_X^2 \  + b \chi_Y^2] =      E[ a \chi_X^2]   + E[ b \chi_Y^2] =      a \ E[  \chi_X^2]   + b \ E[  \chi_Y^2]\)</p>
+<p>\(\Large    \displaystyle 
+\chi_X^2, \ \chi_Y^2 \)</p>
+<p>それぞれ，自由度n-1のカイ二乗分布に従うことは全ページに示しましたので，ガンマ分布に置き換えると，</p>
+<p>自由度n-1のカイ二乗分布：</p>
+<p>\(\Large    \displaystyle 
+= \frac{1}{ 2^{ \frac{n-1}{2}} \ \Gamma \left( \frac{n-1}{2} \right)} x^{ \frac{n-1}{2} -1} \ exp \left( - \frac{x}{2} \right) \)</p>
+<p>であり，ガンマ分布は，</p>
+<p>\(\Large    \displaystyle 
+G( \alpha, \beta) = \frac{1}{ \beta^{ \alpha} \ \Gamma ( \alpha)} x^{ \alpha -1} \ exp \left( - \frac{x}{ \beta} \right) \)</p>
+<p>ガンマ分布の期待値，分散は，<a href="gamma-11.html">ここ</a>，から，</p>
+<p>\(\Large    \displaystyle 
+E[ G( \alpha, \beta)] = \alpha \ \beta =\frac{n-1}{2} \cdot 2 = n-1\)</p>
+<p>となります，したがって，それぞれの自由度はｍ-1，ｎ-1なので，</p>
+<p>\(\Large    \displaystyle 
+E[w] =            a \ E[  \chi_X^2]   + b \ E[  \chi_Y^2] = a(m-1) + b(n-1) \)</p>
+<p>となります．</p>
+<p><span class="Blue-Bold">分散</span>は，</p>
+<p>\(\Large    \displaystyle 
+V[w] =      V[ a \chi_X^2 \  + b \chi_Y^2] =      V[ a \chi_X^2]   + V[ b \chi_Y^2] =      a^2 \ V[  \chi_X^2]   + b^2 \ V[  \chi_Y^2]\)</p>
+<p>\(\Large    \displaystyle 
+V[ G( \alpha, \beta)] = \alpha \ \beta^2 =\frac{n-1}{2} \cdot 2^2 = 2(n-1)\)</p>
+<p>したがって，</p>
+<p>\(\Large    \displaystyle 
+V[w] =      V[ a \chi_X^2 \  + b \chi_Y^2]  =      a^2 \ V[  \chi_X^2]   + b^2 \ V[  \chi_Y^2] = 2 \{ a^2 (m-1) + b^2 (n-1) \}\)</p>
+<p>&nbsp;</p>
+<p>ここで，</p>
+<p>\(\Large    \displaystyle G \left( \frac{f}{2},2 g \right)  \)</p>
+<p>の期待値，分散は，ガンマ分布の期待値・分散の式から，</p>
+<p class="Blue">　期待値：gf</p>
+<p class="Blue"> 　分散：2g<sup>2</sup>f</p>
+<p>となりますので，</p>
+<p>\(\Large    \displaystyle 
+gf =             a(m-1) + b(n-1) \)</p>
+<p>\(\Large    \displaystyle 
+2 g^2 f =       2 \{ a^2 (m-1) + b^2 (n-1) \}\)</p>
+<p>が成り立つことになります．したがって，g, fは，</p>
+<p>\(\Large    \displaystyle 
+ g =       \frac{  a^2 (m-1) + b^2 (n-1) }{a (m-1) + b (n-1)} \)</p>
+<p>\(\Large    \displaystyle 
+f =       \frac{\left\{ a (m-1) + b (n-1) \right\}^2}{  a^2 (m-1) + b^2 (n-1) } \)</p>
+<p>ここで，ｗが \(\Large    \displaystyle G \left( \frac{f}{2},2 g \right)  \)に近似的に従うとしたので，</p>
+<p><span class="Large-Bold-Red"> 　w/gという確率変数は自由度ｆのカイ二乗分布に従う</span>．</p>
+<p>とありますが，これがわからなかったです．．．．結構悩みました．．．</p>
+<p>1938年の論文にも，</p>
+<p class="Blue">With these values of f and g we see from (5) that<span class="Blue-Bold"> w/g</span> is distributed approximately
+as χ<sup>2</sup> withf degrees of freedom</p>
+<p>としか記述がありません．．．．</p>
+<p>次ページに私の理解での導出方法をお示しします．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style10"><a href="Welch-01.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Welch-03.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

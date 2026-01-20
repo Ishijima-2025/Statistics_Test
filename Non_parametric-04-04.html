@@ -1,0 +1,177 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Non_parametric</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED"><span class="Red-Bold">ウィルコクソンの符号順位統計量 - なぜ順位を決める？？？</span></p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">ウィルコクソンの符号順位統計量</span>，は<br>
+　<span class="Blue-Bold">対応のあるデータのデータの差がプラスかマイナスか</span><br>
+という検定となります．</p>
+<p>さらに，<br>
+　<span class="Blue-Bold">プラス（マイナス）の順位の和を検定する</span><br>
+手法をとっています．</p>
+<p>が．．ここで単純な疑問が．．．<br>
+  <span class="Blue-Bold">　順位をあえて計算する必要がある？ <br>
+　プラスかマイナスかの数を判定するだけじゃいけないの？</span><br>
+という疑問が．．．．．</p>
+<p>私の理解の先に，ウィルコクソンの符号順位統計の有意性があったり，もしかしたら，そのような判定方法がすでにあるのかもしれませんが．．．</p>
+<p>とりあえず，試してみます．</p>
+<p><a href="Non_parametric-04.html">以前のページ</a>と同じデータを使ってみます．</p>
+<p>before, after, の差を求めるのですが，プラスかマイナスだけの判定をします．</p>
+<table width="466" border="1">
+  <col width="70" span="3">
+  <tr>
+    <td width="76" style="text-align: center"></td>
+    <td width="88" style="text-align: center">before</td>
+    <td width="88" style="text-align: center">after</td>
+    <td width="86" style="text-align: center">差</td>
+    <td width="94" style="text-align: center">差の符号</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td width="88" align="right" style="text-align: center">12</td>
+    <td width="88" align="right" style="text-align: center">8</td>
+    <td width="86" align="center" style="color: #FF0004">4</td>
+    <td width="94" align="center" style="color: #FF0004">+</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">B</td>
+    <td align="right" style="text-align: center">7</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-13</td>
+    <td align="center" style="color: #FF0004">-</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">C</td>
+    <td align="right" style="text-align: center">19</td>
+    <td align="right" style="text-align: center">28</td>
+    <td align="center" style="color: #FF0004">-9</td>
+    <td align="center" style="color: #FF0004">-</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">D</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-1</td>
+    <td align="center" style="color: #FF0004">-</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">E</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="center" style="color: #FF0004">-7</td>
+    <td align="center" style="color: #FF0004">-</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">F</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-5</td>
+    <td align="center" style="color: #FF0004">-</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">G</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-8</td>
+    <td align="center" style="color: #FF0004">-</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">H</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">17</td>
+    <td align="center" style="color: #FF0004">-6</td>
+    <td align="center" style="color: #FF0004">-</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">I</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">13</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">+</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">J</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">8</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">+</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; color: #FF0004;">合計</td>
+    <td align="right" style="text-align: center">&nbsp;</td>
+    <td align="right" style="text-align: center">&nbsp;</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004"><strong>3</strong></td>
+  </tr>
+</table>
+<p>10データのうち，３データがプラス（７データがマイナス），微妙ですね．</p>
+<p>全部プラス（orマイナス）なら効果があったかはすぐわかるのですが．．．．</p>
+<p>もしくは半分プラスなら効果がないと言えるのですが．．．</p>
+<p>完全にランダムな場合には，ベルヌーイ分布に従うはずです．</p>
+<p>ですので，<span class="Red-Bold">期待値，分散値</span>は，</p>
+<p>\(\Large  \displaystyle E(T)= np = \frac{n}{2} = 5 \)</p>
+<p>\(\Large  \displaystyle V(T)= np(1-p) = \frac{n}{4} = 2.5 \)</p>
+<p>となりますので，ｚ値は，</p>
+<p>\(\Large  \displaystyle z_+ = \frac{T_+-E(T_+)}{\sqrt{V(T_+)}} =  \frac{3-5}{\sqrt{2.5}} = -1.265　\)</p>
+<p>\(\Large  \displaystyle z_- = \frac{T_--E(T_-)}{\sqrt{V(T_-)}} =  \frac{7-5}{\sqrt{2.5}} = 1.265　\)</p>
+<p>標準正規分布における両側５％の範囲は，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/Interval%20Estimation-03.html">こちら</a>に，記載しましたように，±1.96，となるので，</p>
+<p>\(\Large  \displaystyle -1.96 &lt; \frac{T-E(T)}{\sqrt{V(T)}} &lt; 1.96　\)</p>
+<p>となり，±1.96の範囲内なので，<span class="Blue-Bold">有意さがあるとは言えない</span>，ことになります．</p>
+<p>同じデータを，<span class="Red-Bold">ウィルコクソンの符号順位統計量</span>，で検定すると，</p>
+<p>±1.886</p>
+<p>となり（<a href="Non_parametric-04.html">参照</a>），値が異なります．．．．</p>
+<p>&nbsp;</p>
+<p>シミュレーションで確認してみました．<br>
+　データ数：10<br>
+　before and after：初期値10に対して，±10のランダムな値を付加<br>
+　試行回数：10,000回施行<br>
+としました．</p>
+<p>その結果，</p>
+<p><span class="Red-Bold">ウィルコクソンの符号順位統計量</span></p>
+<p><img src="Non_para-01.png" width="528" height="450" alt=""/></p>
+<p>\(\Large  \displaystyle E(T) =   \frac{n (n+1)}{4}  = 27.5 \)</p>
+<p>\(\Large  \displaystyle V(T) =   \frac{n (n+1)(2n+1)}{24}  = 96.25 \)</p>
+<p>&nbsp;</p>
+<p class="Red-Bold">差の符号のカウント</p>
+<p><img src="Non_para-02.png" width="531" height="470" alt=""/></p>
+<p>\(\Large  \displaystyle E(T)= np = \frac{n}{2} = 5 \)</p>
+<p>\(\Large  \displaystyle V(T)= np(1-p) = \frac{n}{4} = 2.5 \)</p>
+<p>とそれぞれ，想定した平均値，分散値の通りとなっており，（たぶん）正規分布になっていることがわかります．</p>
+<p>差の符号のカウントの方が単純なような気がするのですが．．．．．</p>
+<p>たぶん，長い歴史の中でいろいろな研究者が苦労されて生き残った方式なので，<span class="Red-Bold">ウィルコクソンの符号順位統計量</span>の方が優れているのでしょう．．．</p>
+<p>どなたかご存じの方は教えていただけるとありがたいです．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Non_parametric-04-03.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

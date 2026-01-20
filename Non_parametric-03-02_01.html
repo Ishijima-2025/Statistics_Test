@@ -1,0 +1,474 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Non_parametric</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED"><span class="Red-Bold">マン・ホイットニーのU検定</span> - 期待値を法則性から見出す</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・法則性から見出す方法</p>
+<p><span class="Blue-Bold">n=2, m=2</span>,の場合を考えていきましょう</p>
+<p>nの入る場所はn+mですが，最後に入ってもカウントされないので，n+m-1となります．</p>
+<p>ｎの入る場所を決めて，その際に，n, m, が入る確率を求めて行きましょう．</p>
+<table width="600" border="1">
+  <tr>
+    <td width="105" valign="top" style="text-align: center"><p><strong>&nbsp;</strong></p></td>
+    <td width="313" colspan="4" valign="top" style="text-align: center"><p><strong>m</strong><strong>の入る確率 </strong></p></td>
+    <td width="76" valign="top" style="text-align: center"><p><strong>カウント </strong></p></td>
+    <td width="72" valign="top" style="text-align: center"><p><strong>カウント </strong><br>
+      <strong>小計 </strong></p></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" style="text-align: center"><p>ｎの入る場所 </p></td>
+    <td width="86" valign="top" style="text-align: center"><p>1</p></td>
+    <td width="76" valign="top" style="text-align: center"><p>2</p></td>
+    <td width="76" valign="top" style="text-align: center"><p>3</p></td>
+    <td width="76" valign="top" style="text-align: center"><p>4</p></td>
+    <td width="76" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="72" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" style="text-align: center"><p>1</p></td>
+    <td width="86" valign="top" style="text-align: center; color: #FF0004;"><p>1/2 </p></td>
+    <td width="76" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="76" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="76" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="76" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>6/3</p></td>
+    <td width="72" valign="top" bgcolor="#53FF55" style="text-align: center"><p>6/3</p></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" style="text-align: center"><p>2</p></td>
+    <td width="86" valign="top" style="text-align: center"><p>n:1/3</p></td>
+    <td width="76" valign="top" style="text-align: center; color: #FF0004;"><p>1/2 </p></td>
+    <td width="76" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="76" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="76" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>2/3</p></td>
+    <td width="72" valign="top" bgcolor="#53FF55" style="text-align: center"><p>4/3</p></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="86" valign="top" style="text-align: center"><p>m:2/3</p></td>
+    <td width="76" valign="top" style="text-align: center; color: #FF0004;"><p>1/2 </p></td>
+    <td width="76" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="76" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="76" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>2/3</p></td>
+    <td width="72" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="105" valign="top" style="text-align: center"><p>3</p></td>
+    <td width="86" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="76" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="76" valign="top" style="text-align: center"><p style="color: #FF0004">1/2 </p></td>
+    <td width="76" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="76" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>2/3</p></td>
+    <td width="72" valign="top" bgcolor="#53FF55" style="text-align: center"><p>2/3</p></td>
+  </tr>
+</table>
+<p>とクリーム色の場所がｍの入る確率で，その総和が，優っている数の確率，となります．</p>
+<p>nが2の場合には，1の場所にはn,m，それぞれが入る可能性がありますので，それぞれの可能性を考えてみました．</p>
+<p>ｎが3の場合には，4の場所にｍが入るかどうかだけなので，１，２は関係なくなります．</p>
+<p>&nbsp;</p>
+<p><span class="Blue-Bold">n=3, m=2</span>，の場合は，</p>
+<table width="700" border="1">
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p><strong>&nbsp;</strong></p></td>
+    <td width="345" colspan="5" valign="top" style="text-align: center"><p><strong>m</strong><strong>の入る確率 </strong></p></td>
+    <td width="67" valign="top" style="text-align: center"><p><strong>カウント </strong></p></td>
+    <td width="65" valign="top" style="text-align: center"><p><strong>カウント </strong><br>
+    <strong>小計 </strong></p></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p>ｎの入る場所 </p></td>
+    <td width="79" valign="top" style="text-align: center"><p>1</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>2</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>3</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>4</p></td>
+    <td width="63" valign="top" style="text-align: center"><p>5</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="65" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p>1</p></td>
+    <td width="79" valign="top" style="text-align: center; color: #FF0004;"><p>3/5 </p></td>
+    <td width="67" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="67" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="67" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="63" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="67" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>4/2</p></td>
+    <td width="65" valign="top" bgcolor="#53FF55" style="text-align: center"><p>8/4</p></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p>2</p></td>
+    <td width="79" valign="top" style="text-align: center"><p>n:1/2</p></td>
+    <td width="67" valign="top" style="color: #FF0004"><p>3/5 </p></td>
+    <td width="67" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="67" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="63" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="67" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1</p></td>
+    <td width="65" valign="top" bgcolor="#53FF55" style="text-align: center"><p>6/4</p></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="79" valign="top" style="text-align: center"><p>m:1/2</p></td>
+    <td width="67" valign="top" style="color: #FF0004"><p>3/5 </p></td>
+    <td width="67" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/3 </p></td>
+    <td width="67" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/3 </p></td>
+    <td width="63" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/3 </p></td>
+    <td width="67" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/2</p></td>
+    <td width="65" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p>3</p></td>
+    <td width="79" valign="top" style="text-align: center"><p>n:1/2</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>n:1/3</p></td>
+    <td width="67" valign="top" style="color: #FF0000"><p>3/5 </p></td>
+    <td width="67" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="63" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="67" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/3</p></td>
+    <td width="65" valign="top" bgcolor="#53FF55" style="text-align: center"><p>4/4</p></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="79" valign="top" style="text-align: center"><p>n:1/2</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>m:2/3</p></td>
+    <td width="67" valign="top" style="color: #FF0000"><p>3/5</p></td>
+    <td width="67" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="63" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="67" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/3</p></td>
+    <td width="65" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="79" valign="top" style="text-align: center"><p>m:1/2</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>n:2/3</p></td>
+    <td width="67" valign="top" style="color: #FF0000"><p>3/5</p></td>
+    <td width="67" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="63" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="67" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/3</p></td>
+    <td width="65" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="79" valign="top" style="text-align: center"><p>m:1/2</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>m:1/3</p></td>
+    <td width="67" valign="top" style="color: #FF0000"><p>3/5</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>-</p></td>
+    <td width="63" valign="top" style="text-align: center"><p>-</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="65" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p>4</p></td>
+    <td width="79" valign="top" style="text-align: center"><p>n:1/2</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>n:1/3</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>1 </p></td>
+    <td width="67" valign="top" style="color: #FF0004"><p>3/5 </p></td>
+    <td width="63" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="67" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/6</p></td>
+    <td width="65" valign="top" bgcolor="#53FF55" style="text-align: center"><p>2/4</p></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="79" valign="top" style="text-align: center"><p>n:1/2</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>m:2/3</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>1/2 </p></td>
+    <td width="67" valign="top" style="color: #FF0004"><p>3/5 </p></td>
+    <td width="63" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="67" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/6</p></td>
+    <td width="65" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="79" valign="top" style="text-align: center"><p>m:1/2</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>n:2/3</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>1/2</p></td>
+    <td width="67" valign="top" style="color: #FF0004"><p>3/5</p></td>
+    <td width="63" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="67" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/6</p></td>
+    <td width="65" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="90" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="79" valign="top" style="text-align: center"><p>m:1/2</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>m:1/3</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>-</p></td>
+    <td width="67" valign="top" style="color: #FF0004"><p>3/5</p></td>
+    <td width="63" valign="top" style="text-align: center"><p>-</p></td>
+    <td width="67" valign="top" style="text-align: center"><p>-</p></td>
+    <td width="65" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><span class="Blue-Bold">n=3, m=3</span>，の場合には，</p>
+<table width="800" border="1">
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p><strong>&nbsp;</strong><span style="text-align: center"></span></p></td>
+    <td width="371" colspan="6" valign="top" style="text-align: center"><p><strong>m</strong><strong>の入る確率 </strong></p></td>
+    <td width="61" valign="top" style="text-align: center"><p><strong>カウント </strong></p></td>
+    <td width="58" valign="top" style="text-align: center"><p><strong>カウント </strong><br>
+      <strong>小計 </strong></p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>ｎの入る場所 </p></td>
+    <td width="73" valign="top" style="text-align: center"><p>1</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>2</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>3</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>4</p></td>
+    <td width="57" valign="top" style="text-align: center"><p>5</p></td>
+    <td width="56" valign="top" style="text-align: center"><p>6</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="58" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>1</p></td>
+    <td width="73" valign="top" style="text-align: center"><p style="color: #FF0004">1/2 </p></td>
+    <td width="64" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>3/5 </p></td>
+    <td width="61" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>3/5 </p></td>
+    <td width="61" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>3/5 </p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>3/5 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>3/5 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>15/5</p></td>
+    <td width="58" valign="top" bgcolor="#53FF55" style="text-align: center"><p>15/5</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>2</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>n:2/5</p></td>
+    <td width="64" valign="top" style="color: #FF0004"><p>1/2 </p></td>
+    <td width="61" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>3/4 </p></td>
+    <td width="61" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>3/4 </p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>3/4 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>3/4 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>6/5</p></td>
+    <td width="58" valign="top" bgcolor="#53FF55" style="text-align: center"><p>12/5</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>m:3/5</p></td>
+    <td width="64" valign="top" style="color: #FF0004"><p>1/2 </p></td>
+    <td width="61" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="61" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>6/5</p></td>
+    <td width="58" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>3</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>n:2/5</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>n:1/4</p></td>
+    <td width="61" valign="top" style="color: #FF0004"><p>1/2 </p></td>
+    <td width="61" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>3/10</p></td>
+    <td width="58" valign="top" bgcolor="#53FF55" style="text-align: center"><p>9/5</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>n:2/5</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>m:3/4</p></td>
+    <td width="61" valign="top" style="color: #FF0004"><p>1/2</p></td>
+    <td width="61" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>3/5</p></td>
+    <td width="58" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>m:3/5</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>n: 1/2</p></td>
+    <td width="61" valign="top" style="color: #FF0004"><p>1/2</p></td>
+    <td width="61" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>2/3 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>3/5</p></td>
+    <td width="58" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>m:3/5</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>m:1/2</p></td>
+    <td width="61" valign="top" style="color: #FF0004"><p>1/2</p></td>
+    <td width="61" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/3 </p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/3 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/3 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>3/10</p></td>
+    <td width="58" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>4</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>n:2/5</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>n:1/4</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>1 </p></td>
+    <td width="61" valign="top" style="color: #FF0004"><p>1/2 </p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/5</p></td>
+    <td width="58" valign="top" bgcolor="#53FF55" style="text-align: center"><p>6/5</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>n:2/5</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>m:3/4</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>n:1/3 </p></td>
+    <td width="61" valign="top" style="color: #FF0004"><p>1/2 </p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/5</p></td>
+    <td width="58" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>n:2/5</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>m:3/4</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>m:2/3</p></td>
+    <td width="61" valign="top" style="color: #FF0004"><p>1/2</p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/5</p></td>
+    <td width="58" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>m:3/5</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>n:1/2</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>n:1/3</p></td>
+    <td width="61" valign="top" style="color: #FF0004"><p>1/2</p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/5</p></td>
+    <td width="58" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>m:3/5</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>n:1/2</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>m:2/3</p></td>
+    <td width="61" valign="top" style="color: #FF0004"><p>1/2</p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/5</p></td>
+    <td width="58" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>m:3/5</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>m:1/2</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>n:2/3</p></td>
+    <td width="61" valign="top" style="color: #FF0004"><p>1/2</p></td>
+    <td width="57" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>1/2 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>1/5</p></td>
+    <td width="58" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>m:3/5</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>m:1/2</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>m:1/3</p></td>
+    <td width="61" valign="top" style="color: #FF0004"><p>1/2</p></td>
+    <td width="57" valign="top" style="text-align: center"><p>-</p></td>
+    <td width="56" valign="top" style="text-align: center"><p>-</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="58" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="76" valign="top" style="text-align: center"><p>5</p></td>
+    <td width="73" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="64" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="61" valign="top" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="57" valign="top" style="text-align: center"><p style="color: #FF0004">1/2 </p></td>
+    <td width="56" valign="top" bgcolor="#F3E6CF" style="text-align: center"><p>3/5 </p></td>
+    <td width="61" valign="top" bgcolor="#AEFFB5" style="text-align: center"><p>3/5</p></td>
+    <td width="58" valign="top" bgcolor="#53FF55" style="text-align: center"><p>3/5</p></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>と法則性が見えてきました．まとめると，</p>
+<table width="600" border="1">
+  <tr>
+    <td width="60" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>n</p></td>
+    <td width="61" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>m</p></td>
+    <td width="70" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>n/(n+m)</p></td>
+    <td width="71" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>分母=n+m-1</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>分子１ </p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>分子２ </p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>分子３ </p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>分子４ </p></td>
+    <td width="59" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>分子５ </p></td>
+  </tr>
+  <tr>
+    <td width="60" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>2</p></td>
+    <td width="61" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>2</p></td>
+    <td width="70" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>1/2</p></td>
+    <td width="71" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>3</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>6</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>4</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>&nbsp;</p></td>
+    <td width="59" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="60" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>3</p></td>
+    <td width="61" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>2</p></td>
+    <td width="70" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>3/5</p></td>
+    <td width="71" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>4</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>8</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>6</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>4</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>2</p></td>
+    <td width="59" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>&nbsp;</p></td>
+  </tr>
+  <tr>
+    <td width="60" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>3</p></td>
+    <td width="61" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>3</p></td>
+    <td width="70" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>1/2</p></td>
+    <td width="71" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>5</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>15</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>12</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>9</p></td>
+    <td width="62" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>6</p></td>
+    <td width="59" valign="top" bgcolor="#F9FF00" style="text-align: center"><p>3</p></td>
+  </tr>
+</table>
+<p>このように，分子はｍずつ減っていき，n+m-1回続くことになります．したがって， </p>
+<p>\(\Large  \displaystyle U= \frac{n}{n+m} \frac{1}{n+m-1} \cdot \sum_{i=1}^{n+m-1} \left\{ m(n+m)-m \cdot i \right\} 　\)</p>
+<p>\(\Large  \displaystyle U= \frac{n}{n+m} \frac{1}{n+m-1} \left[ m(n+m)(n+m-1) - m \sum_{i=1}^{n+m-1} i \right]　\)</p>
+<p>\(\Large  \displaystyle U= \frac{n}{n+m} \frac{1}{n+m-1} \left[ m(n+m)(n+m-1) - m \frac{(n+m-1)(n+m)}{2} \right]　\)</p>
+<p>\(\Large  \displaystyle U= \frac{n}{n+m} \frac{1}{n+m-1} \frac{ m(n+m)(n+m-1) }{2}　\)</p>
+<p>\(\Large  \displaystyle U= \frac{nm}{2} 　\)</p>
+<p>となりました．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Non_parametric-03-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

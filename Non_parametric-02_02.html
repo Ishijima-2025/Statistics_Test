@@ -1,0 +1,102 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Non_parametric</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">ウィルコクソンの順位和検定ー期待値・分散値</p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">ウィルコクソンの順位和検定</span>の期待値の導出方法は，<a href="https://starpentagon.net/analytics/wilcoxon_signed_rank_mean_var/" target="_blank">こちら</a>，<a href="https://qiita.com/stack-logic/items/0bf1aca5e70f478ed8d9" target="_blank">こちら</a>，などいろいろと解説がありますが，主に，<a href="https://minato.sip21c.org/statlib/stat.pdf" target="_blank">中澤港先生のサイト</a>を参考にさせていただきました，ありがとうございます．</p>
+<p>二つのグループ，X，Yを考え，<br>
+　Xのデータ，x<sub>1</sub>, x<sub>2</sub>, ......x<sub>m</sub> <br>
+　Yのデータ，y<sub>1</sub>, y<sub>2</sub>, ......y<sub>n</sub><br>
+とします．それぞれ，m, n，のデータ数があり，総数 N=m+n　となります．</p>
+<p>それぞれの順位の合計がいくつになるか？ですが，順位の総合計は，</p>
+<p>\(\Large  \displaystyle \sum_{i=1}^N i = \frac{N ( N+1)}{2} 　\)</p>
+<p>となるので，片方の合計がわかれば，もう片方の合計もわかります．</p>
+<p>順位をR<sub>i</sub>と書くとXの順位の合計は，</p>
+<p>\(\Large  \displaystyle R_X = \sum_{i=1}^m R_i \)</p>
+<p>となります．ここで，もしXとYに差がなければ（ランダムであれば）</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・期待値</p>
+<p>\(\Large  \displaystyle E(R_X) = \sum_{i=1}^m E(R_i) \)</p>
+<p>となります．ランダムであるので，R<sub>i</sub>の取る確率はどの順位でも等しいので，１～Nの平均値をｍ回足したものとなります．したがって，</p>
+<p>\(\Large  \displaystyle E(R_X) = \sum_{i=1}^m E(R_i) =m \frac{1+2+...+N}{N} = m \frac{N(N+1)}{2} \frac{1}{N} = m \frac{N+1}{2} \)</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・分散値</p>
+<p>これはちょっと複雑です，分散の公式から，</p>
+<p>\(\Large  \displaystyle Var(R) = E(R^2) - \{ E(R) \}^2 \)</p>
+<p>となり，第二項は期待から計算できますが，第一項は，</p>
+<p>\(\Large  \displaystyle  E(R^2) = E \left[ \left\{ \sum_{i=1}^m R_i \right\}^2 \right] = \sum_{i=1}^m E \left[ R^2 \right] + \sum_{i \neq j} E \left[ R_i R_j \right] \)</p>
+<p>となります．R<sub>i</sub>はそれぞれ独立ではないので．例えば，</p>
+<p>\(\Large  \displaystyle (a+b)^2 = a^2 +b^2 + 2ab \)</p>
+<p>\(\Large  \displaystyle (a+b+c)^2 = a^2 +b^2 +c^2 + 2ab + 2ac + 2bc \)</p>
+<p>となるように．</p>
+<p>まず，簡単な</p>
+<p>\(\Large  \displaystyle \sum_{i=1}^m E \left[ R^2 \right] = \frac{1^2+2^2+.... +N^2}{N} = m \frac{(N+1)(2N+1)}{6} \)</p>
+<p>となります（<a href="Sum-01.html">こちら</a>，の公式）．問題は，</p>
+<p>\(\Large  \displaystyle   \sum_{i \neq j} E \left[ R_i R_j \right] \)</p>
+<p>です．</p>
+<p>まずは，</p>
+<p>\(\Large  \displaystyle (1+2+...+N)^2 = \left( \frac{N(N+1)}{2} \right)^2 = \frac{N^2 (N+1)^2}{4}\)</p>
+<p>となることを確認しましょう．</p>
+<p>\(\Large  \displaystyle   \sum_{i \neq j} E \left[ R_i R_j \right] \)</p>
+<p>は，自分以外の組み合わせとなりますので，総数Nの場合，<span class="Blue-Bold">N(N-１）回</span>となります（二乗の場合には，2abというようにまとめていますが）．</p>
+<p>したがって，</p>
+<p>\(\Large  \displaystyle   (1+2+...+N)^2 = ( 1^2+2^2+.... +N^2) + \sum_{i \neq j}^{N(N-1)} E \left[ R_i R_j \right] \)</p>
+<p>の関係となることがわかります．したがって，</p>
+<p>\(\Large  \displaystyle   \frac{N(N+1)(2N+1)}{6} = \frac{N^2 (N+1)^2}{4} + \sum_{i \neq j}^{N(N-1)} E \left[ R_i R_j \right] \)</p>
+<p>となるので，</p>
+<p>\(\Large  \displaystyle    \sum_{i \neq j}^{N(N-1)} E \left[ R_i R_j \right] = \frac{N^2 (N+1)^2}{4} - \frac{N(N+1)(2N+1)}{6} \)</p>
+<p>\(\Large  \displaystyle     = \frac{3N^2 (N+1)^2 - 2N(N+1)(2N+1)}{12}  \)</p>
+<p>\(\Large  \displaystyle     = N(N+1) \frac{3N (N+1) - 2(2N+1)}{12}  \)</p>
+<p>\(\Large  \displaystyle     = N(N+1) \frac{3N^2 - N - 2}{12}  \)</p>
+<p>\(\Large  \displaystyle     = N(N+1) \frac{(3N + 2)(N-1)}{12}  \)</p>
+<p>期待値は，総数がN(N+1）個なので，</p>
+<p>\(\Large  \displaystyle    E \left[ \sum_{i \neq j} R_i R_j \right] = \frac{1}{N(N-1)} N(N+1) \frac{(3N + 2)(N-1)}{12} = \frac{(3N + 2)(N+1)}{12}\)</p>
+<p>その結果を，m(m-1)回加算するので，</p>
+<p>\(\Large  \displaystyle     \sum_{i \neq j}^m E \left[ R_i R_j \right] = m(m-1) \frac{(3N + 2)(N+1)}{12}\)</p>
+<p>となります，まとめると，</p>
+<p>\(\Large  \displaystyle Var(R) = E(R^2) - \{ E(R) \}^2 \)</p>
+<p>\(\Large  \displaystyle = \sum_{i=1}^m E \left[ R^2 \right] + \sum_{i \neq j} E \left[ R_i R_j \right] - \left( m \frac{N+1}{2} \right)^2 \)</p>
+<p>\(\Large  \displaystyle =  m \frac{(N+1)(2N+1)}{6} + m(m-1) \frac{(3N + 2)(N+1)}{12} - \left( m \frac{N+1}{2} \right)^2 \)</p>
+<p>計算が複雑になるので，ｍの項目で分類してみます．</p>
+<p>\(\Large  \displaystyle m^2 : \frac{(3N + 2)(N+1)}{12} - \left( m \frac{N+1}{2} \right)^2 = \frac{N+1}{12} \left\{ (3N+2)-3(N+1) \right\} =-\frac{N+1}{12}\)</p>
+<p>\(\Large  \displaystyle m :  \frac{(N+1)(2N+1)}{6} - \frac{(3N + 2)(N+1)}{12} = \frac{2(N+1)(2N+1) - (3N + 2)(N+1)}{12} \)</p>
+<p>\(\Large  \displaystyle  = \frac{4 N^2 + 6N +2 -  (3N^2 + 5N +2)}{12} = \frac{N^2 + N}{12} = \frac{N(N+1)}{12} \)</p>
+<p>まとめると，</p>
+<p>\(\Large  \displaystyle - m^2 \frac{N+1}{12} + m \frac{N(N+1)}{12} = \frac{m(N+1)(N-m)}{12} =\frac{mn(N+1)}{12} =\frac{mn(m+n+1)}{12}\)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Non_parametric-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

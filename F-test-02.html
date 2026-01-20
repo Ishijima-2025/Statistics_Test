@@ -1,0 +1,58 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>F-test</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">F検定-02</p>
+<p>F分布の式を見てみると，</p>
+<p>\(\Large  \displaystyle f_X (x) = \frac{\Gamma \left( \frac{n_1 + n_2 }{2} \right)}{ \Gamma \left( \frac{n_1  }{2} \right) \Gamma \left( \frac{ n_2 }{2} \right)} <br>
+ n_1^{ \frac{n_1}{2}} n_2^{ \frac{n_2}{2}} <br>
+\left( \frac{1}{ n_1 x + n_2} \right)^{ \frac{n_1 + n_2}{2}}<br>
+x^{ \frac{n_1}{2} -1}
+\)</p>
+<p>実は，各分散の値自体は関係なく，データ数のみの関数となっていることがわかります．</p>
+<p>実際に，<span class="Blue-Bold">n<sub>1</sub>=10, n<sub>2</sub>=8</span>とすると，</p>
+<p><img src="F-test-01.png" width="635" height="374" alt=""/></p>
+<p>となることがわかります．</p>
+<p>データ数を倍にして，<span class="Blue-Bold">n<sub>1</sub>=20, n<sub>2</sub>=16</span>とすると，</p>
+<p><img src="F-test-02.png" width="635" height="373" alt=""/></p>
+<p>となり，分布が狭まることがわかります．</p>
+<p>つぎに，シミュレーション．ある分散値を設定して，正規分布を発生させます．その分布から上記の数だけ取り出して不偏分散を算出し，これを2セット用意します．その比の分布のヒストグラムにして表すと，</p>
+<p><span class="Blue-Bold">n<sub>1</sub>=10, n<sub>2</sub>=8</span></p>
+<p><img src="F-test-01_2.png" width="644" height="381" alt=""/></p>
+<p><span class="Blue-Bold">n<sub>1</sub>=20, n<sub>2</sub>=16</span></p>
+<p><img src="F-test-02_2.png" width="645" height="383" alt=""/></p>
+<p>とよく合うことがわかります．</p>
+<p>つぎに，実際に具体的なデータを用意してF検定をしてみましょう．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="F-test-01.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="F-test-03.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

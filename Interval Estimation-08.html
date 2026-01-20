@@ -1,0 +1,81 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-08</span></h1>
+<h1 class="Large-Bold-Red">母平均の差の信頼空間定</h1>
+<p>次からは，もっとややこしくなります．</p>
+<p class="Large-Bold-Red">　<span class="Red-Bold">対応のないデータの場合：サンプル数が異なる場合</span><br />
+　<span class="Red-Bold">母分散が未知で等しいかどうか不明の場合：　ｔ分布でWelch検定</span></p>
+<p>を考えていきましょう．</p>
+<p>先に述べたように，２つの母集団，</p>
+<p>\(\Large    \displaystyle   N( \mu_1, \sigma_1^2), N(\mu_2, \sigma_2^2)\ \)</p>
+<p>差の分布は，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/Normal%20distribution-03.html">ここ</a>，にあるように，</p>
+<p>\(\Large    \displaystyle   N( \mu_1 - \mu_2, \sigma_1^2 + \sigma_2^2) \)</p>
+<p>\(\Large    \displaystyle   \mu_d \equiv \mu_1 - \mu_2 \)</p>
+<p>としました（添字を変えました）</p>
+<p>ここでは，<br />
+  　<span class="Blue-Bold">母分散が未知で等しいかどうか不明<br />
+　それぞれの結果平均値の確からしさを見るのだから中心極限定理を利用する</span><br />
+ことから， </p>
+<p>\(\Large    \displaystyle    \sigma_1^2 ，\ \sigma_2^2　\rightarrow \ \frac{\sigma_1^2}{n_1}, \frac{\sigma_2^2}{n_2} \)</p>
+<p>に変換すればいいことになります．したがって，その差分の分布は，</p>
+<p>\(     \displaystyle    P_{X-Y} (z) 
+=\frac{1}{ \sqrt{2 \pi(\frac{\sigma_1^2}{n_1} + \frac{\sigma_2^2}{n_2})}}  exp \left[- \frac{ \{ z-(\mu_1 \color{red}{-} \mu_2) \}^2}{2(\frac{\sigma_1^2}{n_1}  + \frac{\sigma_Y^2}{n_2})} \right] 
+\)</p>
+<p>と表すことができます（ちゃんとした計算は，<a href="Interval Estimation-08_02.html">ここ</a>，）．</p>
+<p>したがって，</p>
+<p>\(\Large    \displaystyle    Z = 
+  \frac{  ( \bar{X} - \bar{Y}) - ( \mu_1 - \mu_2)}{\sqrt{(\frac{\sigma_1^2}{n_1}  + \frac{\sigma_2^2}{n_2} }} <br />
+\sim N(0,1) \)</p>
+<p>が標準化して区間推定すればいいことになります．</p>
+<p>さて，ここからどうやってσという未知の値を消去してｔ分布に持っていくか....</p>
+<p>まだ残念ながら私はフォローできていません．．．．．．<a href="https://qiita.com/tabintone/items/1ab13e431d59402f6ee3" target="_blank">こちらのサイト</a>，で説明がありますのでいずれ理解していきます．</p>
+<p><span class="Large-Bold-Red">とりあえず，中途半端ですが，解けました</span>．．．．．<a href="Welch-01.html">こちら</a>に，</p>
+<p>結論から言うと，<a href="https://bellcurve.jp/statistics/glossary/1898.html" target="_blank">統計ウェッブ</a>，にあるように（検定ではないので，平均の差分を追加しています），</p>
+<p>\(\Large    \displaystyle t_0 = \frac{ (\overline{x}_1 - \overline{x}_2) -( \mu_1 - \mu_2)} {\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}　\)</p>
+<p>Welchの方法の自由度は</p>
+<p>\(\Large    \displaystyle f = \frac{\left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2}<br />
+  {\frac{ \left( \frac{s_1^2}{n_1} \right)^2}{n_1 - 1} + <br />
+\frac{\left( \frac{s_2^2}{n_2}\right)^2}{n_2 - 1}} \)</p>
+<p>となるようです．．．．．これは必ずしも整数になるわけではありません．</p>
+<p>この少数をどうするか，</p>
+<p>・四捨五入（<a href="https://hatsudy.com/jp/welch.html" target="_blank">ここ</a>，<a href="https://data-science.gr.jp/theory/tst_welch_t_test.html" target="_blank">ここ</a>，）</p>
+<p>・ｔ分布の値が厳しい方（<a href="https://qcplanets.com/method/test-estimation/welch-satterthwaite/" target="_blank">ここ</a>，）</p>
+<p>・切り捨て（<a href="https://mathwords.net/welch" target="_blank">ここ</a>，）</p>
+<p>実用上大したことがない（自由度10以上では），自由度10以下ではそもそもデータ数が足りないのだからもっとデータ取るべき（別の検定？）などといった意見があるようです．</p>
+<p>では，エクセルではどのような対応をしているのでしょうか？</p>
+<p>次に，<span class="Large-Bold-Blue">エクセルを用いたｔ分布</span>について検討していきます．</p>
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-07.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Interval Estimation-08_01.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

@@ -1,0 +1,149 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-08_01</span></h1>
+<h1 class="Large-Bold-Red">エクセルを用いたｔ分布表</h1>
+<p>エクセルを用いて確率0.95からｔ値を求めるには，一般的には（<a href="https://www.kagakusense.com/tdist-excel2/" target="_blank">ここ</a>，を参照），</p>
+<p class="Red-Bold">　両側：T.INV.2T（確率，自由度）もしくは，T.INV（1-確率/2，自由度）</p>
+<p class="Red-Bold">　片側：T.INV（1-確率，自由度）</p>
+<p>を用いるようです．</p>
+<p>これを小数点を含む自由度で計算すると，</p>
+<table cellspacing="0" cellpadding="0">
+  <col width="96" />
+  <col width="107" />
+  <tr>
+    <td width="96">自由度</td>
+    <td align="right" width="107">0.05</td>
+  </tr>
+  <tr>
+    <td align="right">2</td>
+    <td align="right">4.30265</td>
+  </tr>
+  <tr>
+    <td align="right">2.1</td>
+    <td align="right">4.30265</td>
+  </tr>
+  <tr>
+    <td align="right">2.2</td>
+    <td align="right">4.30265</td>
+  </tr>
+  <tr>
+    <td align="right">2.3</td>
+    <td align="right">4.30265</td>
+  </tr>
+  <tr>
+    <td align="right">2.4</td>
+    <td align="right">4.30265</td>
+  </tr>
+  <tr>
+    <td align="right">2.5</td>
+    <td align="right">4.30265</td>
+  </tr>
+  <tr>
+    <td align="right">2.6</td>
+    <td align="right">4.30265</td>
+  </tr>
+  <tr>
+    <td align="right">2.7</td>
+    <td align="right">4.30265</td>
+  </tr>
+  <tr>
+    <td align="right">2.8</td>
+    <td align="right">4.30265</td>
+  </tr>
+  <tr>
+    <td align="right">2.9</td>
+    <td align="right">4.30265</td>
+  </tr>
+  <tr>
+    <td align="right">3</td>
+    <td align="right">3.18245</td>
+  </tr>
+  <tr>
+    <td align="right">3.1</td>
+    <td align="right">3.18245</td>
+  </tr>
+  <tr>
+    <td align="right">3.2</td>
+    <td align="right">3.18245</td>
+  </tr>
+  <tr>
+    <td align="right">3.3</td>
+    <td align="right">3.18245</td>
+  </tr>
+  <tr>
+    <td align="right">3.4</td>
+    <td align="right">3.18245</td>
+  </tr>
+  <tr>
+    <td align="right">3.5</td>
+    <td align="right">3.18245</td>
+  </tr>
+  <tr>
+    <td align="right">3.6</td>
+    <td align="right">3.18245</td>
+  </tr>
+  <tr>
+    <td align="right">3.7</td>
+    <td align="right">3.18245</td>
+  </tr>
+  <tr>
+    <td align="right">3.8</td>
+    <td align="right">3.18245</td>
+  </tr>
+  <tr>
+    <td align="right">3.9</td>
+    <td align="right">3.18245</td>
+  </tr>
+  <tr>
+    <td align="right">4</td>
+    <td align="right">2.77645</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><img src="Interval Estimation-03.png" width="618" height="374" alt=""/></p>
+<p>となり，階段状に推移していることになります．詳しく見てみると，</p>
+<p>　<span class="Large-Bold-Blue">切り下げ</span></p>
+<p>していることがわかります．つまり，厳しめの値を採用していることになります．</p>
+<p>ｔ分布自体は，</p>
+<p>\(\Large     \displaystyle     f(t) = \frac{ \Gamma (\frac{n}{2}) }{ \sqrt{(n-1) \pi} \ \Gamma ( \frac{n-1}{2})} \left( 1 + \frac{t^2}{n-1} \right)^{- \frac{n}{2}}\)</p>
+<p>となりますが，両側0.95の自由度を計算してみると，</p>
+<p><img src="Interval Estimation-04.png" width="652" height="322" alt=""/></p>
+<p>と連続関数になるので，計算可能なことは可能ですね．</p>
+<p>&nbsp;</p>
+<p>つぎはいよいよ，<span class="X-Large-Bold-RED">検定</span>，です．</p>
+
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-08.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="t-test-01.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+
+</body>
+
+</html>
+

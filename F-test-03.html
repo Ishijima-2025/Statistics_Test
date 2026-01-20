@@ -1,0 +1,428 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>F-test</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">F検定-03</p>
+<p>実際に数値を入れてエクセルで計算してみましょう．</p>
+<p><a href="https://kuroco.team/blog-data-f-test-20230217/" target="_blank">こちら</a>，のサイトの値を使わさせていただきました（桁数を変え，名前は変えています）</p>
+<table 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 border="1"
+	   >
+  <col width="70">
+  <col width="75">
+  <col width="70" span="3">
+  <tr>
+    <td width="70">A</td>
+    <td width="75"></td>
+    <td width="70"></td>
+    <td width="70">B</td>
+    <td width="70"></td>
+  </tr>
+  <tr>
+    <td>A_01</td>
+    <td align="right" width="75">6,000</td>
+    <td></td>
+    <td>B_01</td>
+    <td align="right" width="70">3,800</td>
+  </tr>
+  <tr>
+    <td>A_02</td>
+    <td align="right">5,800</td>
+    <td></td>
+    <td>B_02</td>
+    <td align="right">6,500</td>
+  </tr>
+  <tr>
+    <td>A_03</td>
+    <td align="right">5,300</td>
+    <td></td>
+    <td>B_03</td>
+    <td align="right">4,000</td>
+  </tr>
+  <tr>
+    <td>A_04</td>
+    <td align="right">4,200</td>
+    <td></td>
+    <td>B_04</td>
+    <td align="right">2,500</td>
+  </tr>
+  <tr>
+    <td>A_05</td>
+    <td align="right">7,500</td>
+    <td></td>
+    <td>B_05</td>
+    <td align="right">3,400</td>
+  </tr>
+  <tr>
+    <td>A_06</td>
+    <td align="right">5,000</td>
+    <td></td>
+    <td>B_06</td>
+    <td align="right">3,600</td>
+  </tr>
+  <tr>
+    <td>A_07</td>
+    <td align="right">3,300</td>
+    <td></td>
+    <td>B_07</td>
+    <td align="right">5,300</td>
+  </tr>
+  <tr>
+    <td>A_08</td>
+    <td align="right">6,800</td>
+    <td></td>
+    <td>B_08</td>
+    <td align="right">4,200</td>
+  </tr>
+  <tr>
+    <td>A_09</td>
+    <td align="right">5,600</td>
+    <td></td>
+    <td>B_09</td>
+    <td align="right">6,000</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>B_10</td>
+    <td align="right">3,400</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>B_11</td>
+    <td align="right">3,700</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&nbsp;</td>
+    <td align="right">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>AVG</td>
+    <td>5,500</td>
+    <td></td>
+    <td>&nbsp;</td>
+    <td align="right">4,218</td>
+  </tr>
+  <tr>
+    <td>n</td>
+    <td>9</td>
+    <td></td>
+    <td>&nbsp;</td>
+    <td align="right">11</td>
+  </tr>
+  <tr>
+    <td>s<sup>2</sup></td>
+    <td bgcolor="#EDFF00">1,607,500</td>
+    <td></td>
+    <td>&nbsp;</td>
+    <td align="right" bgcolor="#EDFF00">1,471,636</td>
+  </tr>
+</table>
+<p>不偏分散の比は，</p>
+<p>\(\Large  \displaystyle F= \frac{1,607,500}{1,471,636} = 1.092
+\)</p>
+<p>となります．</p>
+<p>エクセルの”データ分析”を使うと，</p>
+<table 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 border="1">
+  <col width="246">
+  <col width="70" span="2">
+  <tr>
+    <td width="275">F-検定: 2 標本を使った分散の検定</td>
+    <td width="66"></td>
+    <td width="84"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>　</td>
+    <td>変数 1</td>
+    <td>変数 2</td>
+  </tr>
+  <tr>
+    <td>平均</td>
+    <td align="right">5,500</td>
+    <td align="right">4,218.182</td>
+  </tr>
+  <tr>
+    <td>分散</td>
+    <td align="right">1,607,500</td>
+    <td align="right">1,471,636</td>
+  </tr>
+  <tr>
+    <td>観測数</td>
+    <td align="right">9</td>
+    <td align="right">11</td>
+  </tr>
+  <tr>
+    <td>自由度</td>
+    <td align="right">8</td>
+    <td align="right">10</td>
+  </tr>
+  <tr>
+    <td>観測された分散比</td>
+    <td align="right">1.092321</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>P(F&lt;=f) 片側</td>
+    <td align="right">0.439038</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#EDFF00">F 境界値 片側</td>
+    <td align="right" bgcolor="#EDFF00">3.071658</td>
+    <td>　</td>
+  </tr>
+</table>
+<p>このF境界値は，<span class="Blue-Bold">右側</span>の値で，5%の時には，</p>
+<p class="Blue-Bold">F.INV(0.95, n<sub>1</sub>-1, n<sub>2</sub>-1)=3.072</p>
+<p>を示すようです．また，二つのデータセットの順番は，</p>
+<p>　<span class="Blue-Bold">不偏分散が大きい方 / 不偏分散が小さい方</span></p>
+<p>と一般的には定義しているようです．（ちゃんとした理由はわかりません）</p>
+<p>F値（1.092）がF境界値より小さいので，帰無仮説は成り立ち，両者の分散値に差はないことになります．</p>
+<p>左側は？も一応調べてみましょう．エクセルでは，</p>
+<p><span class="Blue-Bold">F.INV.RT(0.95, n<sub>1</sub>-1, n<sub>2</sub>-1)=0.299</span></p>
+<p>となりました．これまたF値は範囲内なので，両者の分散値に差はないことになります．</p>
+<p>しかし，<a href="https://dekiru.net/article/4606/" target="_blank">ここ</a>，を見ると，”右側確率”，とあります？右？？？左じゃないの？でもたしかにRT≒Right，かしら．．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・分散値を大きくした場合</p>
+<p>では，つぎに，データセットの値をいじって，ぎりぎりF値を境界値までもっていくようにしてみましょう．</p>
+<p>A群のデータを変化させました．</p>
+<p>データ数は変えていません</p>
+<table 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 border="1"
+	   >
+  <col width="70">
+  <col width="75">
+  <col width="70" span="3">
+  <tr>
+    <td width="70">A</td>
+    <td width="75"></td>
+    <td width="70"></td>
+    <td width="70">B</td>
+    <td width="70"></td>
+  </tr>
+  <tr>
+    <td>A_01</td>
+    <td align="right" width="75">7,000</td>
+    <td></td>
+    <td>B_01</td>
+    <td align="right" width="75">3,800</td>
+  </tr>
+  <tr>
+    <td>A_02</td>
+    <td align="right">6,000</td>
+    <td></td>
+    <td>B_02</td>
+    <td align="right">6,500</td>
+  </tr>
+  <tr>
+    <td>A_03</td>
+    <td align="right">2,800</td>
+    <td></td>
+    <td>B_03</td>
+    <td align="right">4,000</td>
+  </tr>
+  <tr>
+    <td>A_04</td>
+    <td align="right">5,000</td>
+    <td></td>
+    <td>B_04</td>
+    <td align="right">2,500</td>
+  </tr>
+  <tr>
+    <td>A_05</td>
+    <td align="right">900</td>
+    <td></td>
+    <td>B_05</td>
+    <td align="right">3,400</td>
+  </tr>
+  <tr>
+    <td>A_06</td>
+    <td align="right">1,500</td>
+    <td></td>
+    <td>B_06</td>
+    <td align="right">3,600</td>
+  </tr>
+  <tr>
+    <td>A_07</td>
+    <td align="right">3,300</td>
+    <td></td>
+    <td>B_07</td>
+    <td align="right">5,300</td>
+  </tr>
+  <tr>
+    <td>A_08</td>
+    <td align="right">6,000</td>
+    <td></td>
+    <td>B_08</td>
+    <td align="right">4,200</td>
+  </tr>
+  <tr>
+    <td>A_09</td>
+    <td align="right">4,800</td>
+    <td></td>
+    <td>B_09</td>
+    <td align="right">6,000</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>B_10</td>
+    <td align="right">3,400</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>B_11</td>
+    <td align="right">3,700</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>&nbsp;</td>
+    <td align="right">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>AVG</td>
+    <td>5,500</td>
+    <td></td>
+    <td>&nbsp;</td>
+    <td align="right">4,218</td>
+  </tr>
+  <tr>
+    <td>n</td>
+    <td>9</td>
+    <td></td>
+    <td>&nbsp;</td>
+    <td align="right">11</td>
+  </tr>
+  <tr>
+    <td>s<sup>2</sup></td>
+    <td bgcolor="#EDFF00">4,530,278</td>
+    <td></td>
+    <td>&nbsp;</td>
+    <td align="right" bgcolor="#EDFF00">1,471,636</td>
+  </tr>
+</table>
+<p>不偏分散の比は，</p>
+<p>\(\Large  \displaystyle F= \frac{4,530,278}{1,471,636} = 3.078
+  \)</p>
+<p>となります．</p>
+<p>エクセルの”データ分析”を使うと，</p>
+<table 　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　　 border="1">
+  <col width="246">
+  <col width="70" span="2">
+  <tr>
+    <td width="275">F-検定: 2 標本を使った分散の検定</td>
+    <td width="66"></td>
+    <td width="84"></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>　</td>
+    <td>変数 1</td>
+    <td>変数 2</td>
+  </tr>
+  <tr>
+    <td>平均</td>
+    <td align="right" width="70">4144.444</td>
+    <td align="right" width="70">4218.182</td>
+  </tr>
+  <tr>
+    <td>分散</td>
+    <td align="right">4,530,278</td>
+    <td align="right">1,471,636</td>
+  </tr>
+  <tr>
+    <td>観測数</td>
+    <td align="right">9</td>
+    <td align="right">11</td>
+  </tr>
+  <tr>
+    <td>自由度</td>
+    <td align="right">8</td>
+    <td align="right">10</td>
+  </tr>
+  <tr>
+    <td>観測された分散比</td>
+    <td align="right">3.078395</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>P(F&lt;=f) 片側</td>
+    <td align="right">0.049684</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#EDFF00">F 境界値 片側</td>
+    <td align="right" bgcolor="#EDFF00">3.071658</td>
+    <td>　</td>
+  </tr>
+</table>
+<p>このように分散値の比は，F境界値ギリギリになっています．</p>
+<p><span class="Blue-Bold">F.INV(0.95, n<sub>1</sub>-1, n<sub>2</sub>-1)=3.071</span></p>
+<p>左側（右？）は</p>
+<p><span class="Blue-Bold">F.INV.RT(0.95, n<sub>1</sub>-1, n<sub>2</sub>-1)=0.299</span></p>
+<p>となりました．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・分子と分母を入れ替えると？</p>
+<p>次に，F値を計算する際に，分子と分母を逆にしてみましょう．当然ながら従来のF値の逆数となります．</p>
+<p>\(\Large  \displaystyle F= \frac{1,471,636}{4,530,278} = 0.3248
+\)</p>
+<p><span class="Blue-Bold">F.INV(0.95, n<sub>2</sub>-1, n<sub>1</sub>-1)=3.3471</span></p>
+<p>左側（右？）は</p>
+<p><span class="Blue-Bold">F.INV.RT(0.95, n<sub>2</sub>-1, n<sub>1</sub>-1)=0.3256</span></p>
+<p>となり，F値の評価は左側の0.3256で議論することになります．</p>
+<p>&nbsp;</p>
+<p>この結果を見ても，F値を求める際には，分子と分母，どちらをとってもいいように思えます．</p>
+<p>ただ，F分布自体が右に大きく広がっているので，検定の精度が上がるのかもしれません（ちゃんとした理由は不明です）</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="F-test-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

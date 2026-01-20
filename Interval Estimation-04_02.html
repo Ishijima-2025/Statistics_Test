@@ -1,0 +1,86 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-04_02</span></h1>
+<h1 class="Large-Bold-Red">ヤコビアン</h1>
+<p>&nbsp;</p>
+<p>ヤコビアンとは，変数変換して，違う変数に式を変形するための手段です．まず，</p>
+<p>\(\Large     \displaystyle     x=x(z,w), \ y=y(z,w) \)</p>
+<p>を，</p>
+<p>\(\Large     \displaystyle     z=z(x,y), \ w=y(z,w) \)</p>
+<p>この作業は，<span class="Blue-Bold">ｘｙ空間の微小面積（2次元の場合）をｚｗ空間の微小面積に変換</span>するための作業となります．ですので，</p>
+<p>\(\Large     \displaystyle     dx \ dy \rightarrow dz \ dw \)</p>
+<p>をおこないます．</p>
+<p>ｘは，</p>
+<p>\(\Large     \displaystyle     x=x(z,w) \)</p>
+<p>ですので，</p>
+<p>\(\Large     \displaystyle     dx=\frac{ \partial x}{ \partial z} dz + \frac{ \partial x}{ \partial w} dw\)</p>
+<p>yは，</p>
+<p>\(\Large     \displaystyle     y=y(z,w) \)</p>
+<p>ですので，</p>
+<p>\(\Large     \displaystyle     dy=\frac{ \partial y}{ \partial z} dz + \frac{ \partial y}{ \partial w} dw\)</p>
+<p>となります，行列で表すと，</p>
+<p>\(\Large     \displaystyle     \begin{pmatrix} \frac{ \partial y}{ \partial z} &amp; \frac{ \partial y}{ \partial w}  <br />
+  \\ \frac{ \partial y}{ \partial z} &amp; \frac{ \partial y}{ \partial w} \end{pmatrix}<br />
+\begin{pmatrix} dz\\ dw \end{pmatrix}<br />
+=
+\begin{pmatrix} dx\\ dy \end{pmatrix}\)</p>
+<p>つまり，<span class="Blue-Bold">元の単位系でのdxdyの占める面積がdudvの面積と等しい</span>必要があります． <span class="Blue">面積は外積で表すことができる</span>ので，<br />
+</p>
+<p>\(\Large     \displaystyle     S = dx \ dy \)</p>
+<p>\(\Large     \displaystyle     = \left( \frac{ \partial x}{ \partial z} dz + \frac{ \partial x}{ \partial w} dw \right) <br />
+\left( \frac{ \partial y}{ \partial z} dz + \frac{ \partial y}{ \partial w} dw \right) \)</p>
+<p>を求めればいいことになります．．外積の定義は，</p>
+<p>\(\Large     \displaystyle     a \cdot b = \vert a \vert \vert b \vert sin \theta \)</p>
+<p>となす角に依存するので<span class="Blue">同じベクトルはθ=0となるので外積は０</span>となります．</p>
+<p>また<span class="Blue">順番を入れ替えると符号が逆転する</span>ので，したがって，</p>
+<p>\(\Large     \displaystyle     S = dx \ dy \)</p>
+<p>\(\Large     \displaystyle     = \left( \frac{ \partial x}{ \partial z} dz + \frac{ \partial x}{ \partial w} dw \right) <br />
+  \left( \frac{ \partial y}{ \partial z} dz + \frac{ \partial y}{ \partial w} dw \right) \)</p>
+<p>\(\Large     \displaystyle     =  \frac{ \partial x}{ \partial z} dz \ \frac{ \partial y}{ \partial w} dw <br />
+  + 
+\frac{ \partial x}{ \partial w} dw \ \frac{ \partial y}{ \partial z} dz \)</p>
+<p>\(\Large     \displaystyle     =  \frac{ \partial x}{ \partial z}  \ \frac{ \partial y}{ \partial w} dzdw <br />
+- 
+\frac{ \partial x}{ \partial w}  \ \frac{ \partial y}{ \partial z} dz dw \)</p>
+<p>\(\Large     \displaystyle     =  \left( \frac{ \partial x}{ \partial z}  \ \frac{ \partial y}{ \partial w}  <br />
+- 
+\frac{ \partial x}{ \partial w}  \ \frac{ \partial y}{ \partial z} \right) dz dw \)</p>
+<p>これは，<span class="Blue-Bold">行列式</span>となるので，</p>
+<p>\(\Large     \displaystyle     =  det \begin{vmatrix} \frac{ \partial x}{ \partial z} &amp; \frac{ \partial x}{ \partial w} \\ \frac{ \partial y}{ \partial z}  &amp; \frac{ \partial y}{ \partial w}   \end{vmatrix} dz dw \)</p>
+<p>となります．</p>
+
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-04_01.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

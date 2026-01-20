@@ -1,0 +1,87 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-03_02</span></h1>
+<h1 class="Large-Bold-Red">標準正規分布からの計算</h1>
+<p>&nbsp;</p>
+<p>平均：０ 　分散：１ の標準正規分布としての，</p>
+<p>\(\Large \displaystyle   = \frac{1}{\sqrt{ 2 \pi }}  \displaystyle \int_{\frac{-a}{ \sqrt{\frac{\sigma^2}{n}}}}^{\frac{a}{ \sqrt{\frac{\sigma^2}{n}}}}  exp \left[ - \frac{t^2}{2 } \right] \ dx = 0.95 \)</p>
+<p>a，を求めればいいことになります．となる． この分布は，左右対称なので，</p>
+<p>\(\Large \displaystyle   = \frac{1}{\sqrt{ 2 \pi }}  \displaystyle \int_{0}^{\frac{a}{ \sqrt{\frac{\sigma^2}{n}}}}  exp \left[ - \frac{t^2}{2 } \right] \ dx = \frac{0.95 }{2} \)</p>
+<p>を計算すればいいことになります．</p>
+<p>ここで指数項を変数変換すると（2度手間です）,</p>
+<p>\(\Large  \frac{t^2}{2 } \equiv w^2   \)</p>
+<p>とすれば，</p>
+<p>\(\Large  \frac{t}{ \sqrt{2}} = w   \)</p>
+<p>\(\Large  \frac{dt}{ \sqrt{2}} = dw   \)</p>
+<p>となるので，tの範囲からwの範囲を計算すると，</p>
+<p>\(\Large  0 \hspace{12 pt} \rightarrow  \hspace{12 pt} t \hspace{12 pt} \rightarrow  \hspace{12 pt} \frac{-a}{ \sqrt{\frac{\sigma^2}{n}}} \)</p>
+<p>\(\Large  0 \hspace{13 pt} \rightarrow  \hspace{10 pt} w \hspace{10 pt} \rightarrow  \hspace{10 pt} \frac{-a}{ \sqrt{2 \frac{\sigma^2}{n}}} \)</p>
+<p>したがって，</p>
+<p>\(\Large \displaystyle   = \frac{\sqrt{2}}{\sqrt{ 2 \pi }}  \displaystyle \int_{0}^{\frac{a}{ \sqrt{2 \frac{\sigma^2}{n}}}}  exp \left[ - w^2 \right] \ dw = \frac{0.95 }{2} \)</p>
+<p>\(\Large \displaystyle   = \frac{1}{\sqrt{  \pi }}  \displaystyle \int_{0}^{\frac{a}{ \sqrt{2 \frac{\sigma^2}{n}}}}  exp \left[ - w^2 \right] \ dw = \frac{0.95 }{2} \)</p>
+<p>となります．ここで，誤差関数，</p>
+<p>\(\Large \displaystyle   erf(x) = \frac{2}{\sqrt{  \pi }}  \displaystyle \int_{0}^{x}  exp \left[ - w^2 \right] \ dw  \)</p>
+<p>を利用すると，</p>
+<p>\(\Large \displaystyle     \displaystyle \int_{0}^{x}  exp \left[ - w^2 \right] \ dw  =  \frac{\sqrt{  \pi }}{2} erf(x)\)</p>
+<p>となります．したがって，</p>
+<p>\(\Large \displaystyle    \frac{1}{\sqrt{  \pi }}  \displaystyle \int_{0}^{\frac{a}{ \sqrt{2 \frac{\sigma^2}{n}}}}  exp \left[ - w^2 \right] \ dw <br />
+=  \frac{1}{\sqrt{  \pi }} \frac{\sqrt{  \pi }}{2} erf \left( \frac{a}{ \sqrt{2 \frac{\sigma^2}{n}}} \right) <br />
+= \frac{0.95 }{2} \)</p>
+<p>\(\Large \displaystyle     erf \left( \frac{a}{ \sqrt{2 \frac{\sigma^2}{n}}} \right) 
+= 2 \frac{0.95 }{2} = 0.95 \)</p>
+<p>を計算すればいいことになります．．逆関数を考えると，</p>
+<p>\(\Large \displaystyle     erf^{-1} (0.95) = \frac{a}{ \sqrt{2 \frac{\sigma^2}{n}}}  
+\)</p>
+<p>\(\Large \displaystyle     a = \sqrt{2 \frac{\sigma^2}{n}} erf^{-1} (0.95)   
+\)</p>
+<p>\(\Large \displaystyle      erf^{-1} (0.95)   
+\)</p>
+<p>は，<a href="Excel-Gauss-03.html">ここ</a>，で述べたように，</p>
+<p>\(\Large \displaystyle   \begin{eqnarray}  ERFINV(x) &amp;=&amp; \frac{1}{\sqrt{2}} NORMSINV \left\{ \frac{1+x}{2} \right\}  \\<br />
+&amp;=&amp; NORMINV 
+\left\{ \frac{1+x}{2}, 0, \frac{1}{\sqrt{2}} \right\}  \\<br />
+\end{eqnarray}  \)</p>
+<p>ですので，エクセルで計算すると，</p>
+<p>\(\Large \displaystyle      erf^{-1} (0.95)   
+=1.3859 \)</p>
+<p>となります．したがって，</p>
+
+<p>\(\Large \displaystyle     a = \sqrt{2 \frac{\sigma^2}{n}} erf^{-1} (0.95)   
+=  \sqrt{\frac{\sigma^2}{n}} \sqrt{2} \cdot 1.3859 = \sqrt{\frac{\sigma^2}{n}} \times 1.96\)</p>
+<p>と<span class="Large-Bold-Red">1.96</span>が出てきました．</p>
+
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-03_1.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Interval Estimation-03_2.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

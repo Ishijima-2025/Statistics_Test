@@ -1,0 +1,106 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-04_01</span></h1>
+<h1 class="Large-Bold-Red">ｔ分布を導出する</h1>
+<p>&nbsp;</p>
+<p>ｔ分布自体は，自由度n-1の場合，</p>
+<p>\(\Large     \displaystyle     f(t) = \frac{ \Gamma (\frac{n}{2}) }{ \sqrt{(n-1) \pi} \ \Gamma ( \frac{n-1}{2})} \left( 1 + \frac{t^2}{n-1} \right)^{- \frac{n}{2}}\)</p>
+<p>となりますが，</p>
+<p>この導出は．．．．．<a href="https://www.hello-statisticians.com/explain-terms-cat/t_dist1.html" target="_blank">ここ</a>，<a href="https://masamunetogetoge.com/t-distribution" target="_blank">ここ</a>，<a href="https://qcplanets.com/method/statistics-method/t-distribution-function/" target="_blank">ここ</a>，<a href="https://jikaopages.azurewebsites.net/pages/distr/t_distr.html" target="_blank">ここ</a>，などにありましたので，参考にさせていただきました．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・確率密度</p>
+<p><span class="Blue-Bold">標準正規分布</span>の確率密度は，</p>
+<p>\(\Large  \displaystyle  f(z) = \frac{1}{ \sqrt{2 \pi}} exp \left[ - \frac{z^2}{2} \right] \)</p>
+<p><span class="Blue-Bold">自由度mのカイ二乗分布</span>の確率密度関数は，</p>
+<p>\(\Large  \displaystyle  f(u) = \frac{1}{ 2^{ \frac{m}{2}} \Gamma \left( \frac{m}{2} \right)} \ u^{ \frac{m}{2}-1} \ exp \left[ - \frac{u}{2} \right]\)</p>
+<p>となりますが，それぞれ独立なので，<span class="Blue-Bold">同時確率分布は積</span>となります．</p>
+<p>\(\Large  \displaystyle  f(z,u) = \frac{1}{ \sqrt{2 \pi}} exp \left[ - \frac{z^2}{2} \right] \cdot<br />
+\frac{1}{ 2^{ \frac{m}{2}} \Gamma \left( \frac{m}{2} \right)} \ u^{ \frac{m}{2}-1} \ exp \left[ - \frac{u}{2} \right]\)</p>
+<p>\(\Large  \displaystyle  f(z,u) = 
+\frac{1}{ \sqrt{ \pi}} \frac{1}{  \Gamma \left( \frac{m}{2} \right)} \frac{1}{2^{ \frac{m+1}{2}}}\ u^{ \frac{m}{2}-1} \ exp \left[ - \frac{z^2 + u}{2} \right]\)</p>
+<p>とまとめることができます．ここで，<span class="Blue-Bold">変数変換</span>を行います．</p>
+<p>\(\Large  \displaystyle t = \frac{z}{ \sqrt{ \mathstrut \frac{ u}{m}}}\rightarrow \frac{dz}{dt} = \sqrt {\mathstrut \frac{u}{m}}\)</p>
+<p>\(\Large  \displaystyle u = u \)</p>
+<p>とします．ここで<span class="Blue">なぜ，u=u，にしなくてはならないか，という数学的根拠は．．．．わかりません．（</span>一つの変数変換で行っているサイトもあるようです．）</p>
+<p>この<span class="Blue-Bold">ヤコビアン</span>は，（ヤコビアンの計算は，<a href="Interval Estimation-04_02.html">ここ</a>）</p>
+<p>\(\Large  \displaystyle dz \ du = det \begin{vmatrix} \frac{\partial z}{ \partial t} &amp; \frac{\partial z}{ \partial u}  \\ \frac{\partial u}{ \partial t}  &amp; \frac{\partial u}{ \partial u}  \end{vmatrix} dt \ du\)</p>
+<p>\(\Large  \displaystyle = det \begin{vmatrix} \sqrt{ \mathstrut \frac{u}{m}} &amp; \frac{t}{ 2 \sqrt{um}} \\ 0  &amp; 1  \end{vmatrix} dt \ du\)</p>
+<p>\(\Large  \displaystyle =    \sqrt{ \frac{u}{m}} dt \ du\)</p>
+<p>となるようです．．．．ここで，</p>
+<p>\(\Large  \displaystyle  \frac{\partial z}{ \partial t} = \sqrt{ \mathstrut \frac{u}{m}}  , \ \frac{\partial z}{ \partial u}  = \frac{t}{ 2 \sqrt{um}}, \ \frac{\partial u}{ \partial u}  = 1 \)</p>
+<p>はわかるのですが，</p>
+<p>\(\Large  \displaystyle  \frac{\partial u}{ \partial t}  = 0 \)</p>
+<p class="Blue">がまだ私にはわかりません．．．．uはｔの関数のはずなのに．．．．</p>
+<p>とりあえず，変数変換が完了したとして，上記の式は，</p>
+<p>\(\Large  \displaystyle  f(t,u) = 
+\frac{1}{ \sqrt{ \pi}} \frac{1}{  \Gamma \left( \frac{m}{2} \right)} \frac{1}{2^{ \frac{m+1}{2}}}\ u^{ \frac{m}{2}-1} \ exp \left[ - \frac{\left( \sqrt {\frac{u}{m} t} \right)^2 + u}{2} \right] <br />
+\sqrt {\frac{u}{m} } \)</p>
+<p>\(\Large  \displaystyle   = 
+\frac{1}{ \sqrt{ \pi m}} \frac{1}{  \Gamma \left( \frac{m}{2} \right)} \frac{1}{2^{ \frac{m+1}{2}}}\ u^{ \frac{m}{2}-1 + \frac{1}{2}} \ exp \left[ - \frac{u}{2}  \left( \frac{t^2}{m} +1 \right) \right]  \)</p>
+<p>\(\Large  \displaystyle   = 
+\frac{1}{ \sqrt{ \pi m}} \frac{1}{  \Gamma \left( \frac{m}{2} \right)} \frac{1}{2^{ \frac{m+1}{2}}}\ u^{ \frac{m+1}{2}-1 } \ exp \left[ - \frac{u}{2}  \left( \frac{t^2}{m} +1 \right) \right]  \)</p>
+<p>次に，ｔだけの関数にしたいので，uに関して積分すると，</p>
+<p>\(\Large  \displaystyle   f(t) = 
+\frac{1}{ \sqrt{ \pi m}} \frac{1}{  \Gamma \left( \frac{m}{2} \right)} \frac{1}{2^{ \frac{m+1}{2}}}\ \int_0^{ \infty} u^{ \frac{m+1}{2}-1 } \ exp \left[ - \frac{u}{2}  \left( \frac{t^2}{m} +1 \right) \right]  du \)</p>
+<p>積分項を考えます．</p>
+<p>\(\Large  \displaystyle   I(t) = \int_0^{ \infty} u^{ \frac{m+1}{2}-1 } \ exp \left[ - \frac{u}{2}  \left( \frac{t^2}{m} +1 \right) \right]  du \)</p>
+<p>ここで，</p>
+<p>\(\Large  \displaystyle s = \frac{\frac{t^2}{m} +1}{2} u \)</p>
+<p>とすると，</p>
+<p>\(\Large  \displaystyle ds = \frac{\frac{t^2}{m} +1}{2} du \)</p>
+<p>\(\Large  \displaystyle   I(t) = \int_0^{ \infty} \left(\frac{2}{\frac{t^2}{m} +1} \right)^{ \frac{m+1}{2}-1 } s^{ \frac{m+1}{2}-1 }\ exp \left[ - s \right]  \frac{2}{\frac{t^2}{m} +1}ds \)</p>
+<p>\(\Large  \displaystyle   I(t) = \int_0^{ \infty} exp \left[ - s \right] \left(\frac{2}{\frac{t^2}{m} +1} \right)^{ \frac{m+1}{2} } s^{ \frac{m+1}{2}-1 } ds \)</p>
+<p>\(\Large  \displaystyle   I(t) =  2^{ \frac{m+1}{2}} \left(\frac{1}{\frac{t^2}{m} +1} \right)^{ \frac{m+1}{2} }\int_0^{ \infty} exp \left[ - s \right]  s^{ \frac{m+1}{2}-1 } ds \)</p>
+<p>この積分項は，<span class="Blue-Bold">ガンマ関数</span>，</p>
+<p>\(\Large  \displaystyle \Gamma (z) = \int_0^{ \infty} t^{z-1} \cdot e^{-t} dt\)</p>
+<p>\(\Large  \displaystyle \Gamma (z+1) = \int_0^{ \infty} t^{z} \cdot e^{-t} dt\)</p>
+<p>から，</p>
+<p>\(\Large  \displaystyle   \int_0^{ \infty}  exp \left[ - s \right]  s^{ \frac{m+1}{2}-1 } ds = \Gamma \left( \frac{m+1}{2} \right) \)</p>
+<p>となるので，まとめると，<span class="Blue-Bold">自由度ｍのｔ分布</span>は，</p>
+<p>\(\Large  \displaystyle   f(t) = 
+\frac{1}{ \sqrt{ \pi m}} \frac{1}{  \Gamma \left( \frac{m}{2} \right)} \frac{1}{2^{ \frac{m+1}{2}}}\ 2^{ \frac{m+1}{2}} \left(\frac{1}{\frac{t^2}{m} +1} \right)^{ \frac{m+1}{2} } \Gamma \left( \frac{m+1}{2} \right)\)</p>
+<p>\(\Large  \displaystyle    = 
+\frac{\Gamma \left( \frac{m+1}{2} \right)}{  \Gamma \left( \frac{m}{2} \right)} \frac{1}{ \sqrt{ \pi m}}  \left(\frac{1}{\frac{t^2}{m} +1} \right)^{ \frac{m+1}{2} } \)</p>
+<p>\(\Large  \displaystyle    = 
+\frac{\Gamma \left( \frac{m+1}{2} \right)}{  \Gamma \left( \frac{m}{2} \right)} \frac{1}{ \sqrt{ \pi m}}  \left(1 + \frac{t^2}{m}  \right)^{ -\frac{m+1}{2} } \)</p>
+<p>となります，したがって，<span class="Blue-Bold">ｔ分布自体は，自由度n-1の場合</span>，</p>
+<p>\(\Large     \displaystyle     f(t) = \frac{ \Gamma (\frac{n}{2}) }{ \sqrt{(n-1) \pi} \ \Gamma ( \frac{n-1}{2})} \left( 1 + \frac{t^2}{n-1} \right)^{- \frac{n}{2}}\)</p>
+<p>と一致します．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-04.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

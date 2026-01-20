@@ -1,0 +1,115 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">検定-01</span></h1>
+<h1 class="Large-Bold-Red">検定とは？</h1>
+<p>私の理解では，検定とは，</p>
+<p>二つの集団に有意な差があるか，ないか（あるとは言えないか），</p>
+<p>を議論する手法と理解しています．</p>
+<p>しかし，そこには必ず，</p>
+<p class="X-Large-Bold-Blue">　帰無仮説</p>
+<p class="X-Large-Bold-Blue">　対立仮設</p>
+<p>という概念があり，いつもこんがらがってしまいます．</p>
+<p><span class="Blue-Bold">EdgeのCopilot</span>によると，</p>
+<p class="Blue-Bold">帰無仮説とは何か？ </p>
+<p class="Blue">帰無仮説は、差がないことを否定する仮説です。統計的検定では、差があることを証明するのではなく、<span class="Blue-Bold">差がないことを証明</span>する論理を用います。 統計学的検定は、データに基づいて結論に至るための形式的手法であり、帰無仮説と対立仮説は母集団の統計モデルに関する推測です。 </p>
+<p class="Blue-Bold">対立仮説との関係 </p>
+<p class="Blue">対立仮説（Alternative Hypothesis）は、差があることを証明したい仮説です。帰無仮説とは逆の立場を取ります。 統計的検定では、帰無仮説と対立仮説の2つの仮説を比較し、差があるかどうかを判断します。</p>
+<p class="Blue-Bold">&nbsp;</p>
+<p>他のサイトでは，</p>
+<p>　<a href="https://www.jspt.or.jp/ebpt_glossary/null-hypothesis.html#:~:text=%E5%B8%B0%E7%84%A1%E4%BB%AE%E8%AA%AC%EF%BC%88H0,%E9%81%95%E3%81%84%EF%BC%89%E3%82%92%E8%A8%BC%E6%98%8E%E3%81%97%E3%81%BE%E3%81%99%EF%BC%8E" target="_blank">差がないを意味する仮説</a></p>
+<p>　<a href="https://www.onoff.ne.jp/blog/?p=7447" target="_blank">何か特別な差や関係がないという仮説</a></p>
+<p>など，言っていることは同じようですが．．．．こんがらがっちゃいます．．</p>
+<p>&nbsp;</p>
+<p>これを，今までに計算してきた区間推定からもう一度見直してみましょう．</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Red">・対応がある場合</span>で，</p>
+<p><span class="Red-Bold">母分散がわかっている場合</span>は，</p>
+<p>\(\Large     \displaystyle     - 1.96  \hspace{20 pt}\leq   \hspace{12 pt}   \frac{\mu_d - \bar{x}_d}{ \sqrt{\frac{\color{red}{\sigma}^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   1.96   \)</p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">母分散がわからない場合</span>には，</p>
+<p>\(\Large     \displaystyle     - t_{\alpha/2} (n-1)  \hspace{12 pt}\leq   \hspace{12 pt}   \frac{\mu_d - \bar{x}_d}{ \sqrt{\frac{\color{red}{s_d}^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1) \)</p>
+<p>\(\Large    \displaystyle   \bar{x}_d = \frac{1}{n}\sum_{i=1}^n (x_{1i} - x_{2i} ) \)</p>
+<p>\(\Large    \displaystyle   \mu_d \equiv \mu_X - \mu_Y \)</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Red">・対応のないデータの場合</span>で，</p>
+<p><span class="Red-Bold">母分散が未知で等しい場合</span>では，</p>
+<p>\(\Large    \displaystyle  - t_{\alpha/2} (n-1)  \hspace{12 pt}\leq   \hspace{12 pt} \frac{(\bar{X}_1 - \bar{X}_2) -( \mu_1 - \mu_2)}<br />
+  {\sqrt{ \left(\frac{1}{n_1} + \frac{1}{n_2} \right)<br />
+  s_p^2 }} \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1) \)</p>
+<p>\(\Large    \displaystyle  s_p^2 \equiv
+\frac{(n_1 -1) s_1^2 + (n_2 - 1) s_2^2}{n_1 + n_2 -2} \)</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Red"><span class="Red-Bold">母分散が未知で等しいかどうか不明の場合</span></span>は，</p>
+<p>\(\Large    \displaystyle - t_{\alpha/2} (f)  \hspace{12 pt}\leq   \hspace{12 pt}    \frac{ (\overline{x}_1 - \overline{x}_2) -( \mu_1 - \mu_2)} {\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}　\leq  \hspace{12 pt}   t_{\alpha/2} (f)\)</p>
+<p>Welchの方法の自由度は</p>
+<p>\(\Large    \displaystyle f = \frac{\left( \frac{s_1^2}{n_1} + \frac{s_2^2}{n_2} \right)^2}<br />
+  {\frac{ \left( \frac{s_1^2}{n_1} \right)^2}{n_1 - 1} + <br />
+  \frac{\left( \frac{s_2^2}{n_2}\right)^2}{n_2 - 1}} \)</p>
+<p>&nbsp;</p>
+<p>4つの場合を示しましたが，これらの式において，</p>
+<p>\(\Large    \displaystyle   \mu_d = \mu_X - \mu_Y = 0 \)</p>
+<p>\(\Large    \displaystyle  \mu_1 - \mu_2 = 0 \)</p>
+<p>としちゃいましょう！つまり，</p>
+<p>　<span class="X-Large-Bold-RED">二つの母集団の母平均には差がない</span></p>
+<p>という仮定を立てるのです．すると，</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Red">対応がある場合</span>で，</p>
+<p><span class="Red-Bold">母分散がわかっている場合</span>は，</p>
+<p>\(\Large     \displaystyle     - 1.96  \hspace{20 pt}\leq   \hspace{12 pt}   \frac{ \bar{x}_d}{ \sqrt{\frac{\color{red}{\sigma}^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   1.96   \)</p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">母分散がわからない場合</span>には，</p>
+<p>\(\Large     \displaystyle     - t_{\alpha/2} (n-1)  \hspace{12 pt}\leq   \hspace{12 pt}   \frac{ \bar{x}_d}{ \sqrt{\frac{\color{red}{s_d}^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1) \)</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Red">・対応のないデータの場合</span>で，</p>
+<p><span class="Red-Bold">母分散が未知で等しい場合</span>では，</p>
+<p>\(\Large    \displaystyle  - t_{\alpha/2} (n-1)  \hspace{12 pt}\leq   \hspace{12 pt} \frac{\bar{X}_1 - \bar{X}_2}<br />
+  {\sqrt{ \left(\frac{1}{n_1} + \frac{1}{n_2} \right)<br />
+s_p^2 }} \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1) \)</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Red"><span class="Red-Bold">母分散が未知で等しいかどうか不明の場合</span></span>は，</p>
+<p>\(\Large    \displaystyle - t_{\alpha/2} (f)  \hspace{12 pt}\leq   \hspace{12 pt}    \frac{ \overline{x}_1 - \overline{x}_2} {\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}　\leq  \hspace{12 pt}   t_{\alpha/2} (f)\)</p>
+<p>と，これらの<span class="Large-Bold-Red">標本平均の差，が信頼空間のどこに位置するかを検討</span>すればいいことになります．</p>
+<p>&nbsp;</p>
+<p>つまり，<span class="Large-Bold-Red">各式の二つの不等号が成り立てば</span>，</p>
+<p>　<span class="Large-Bold-Red">二つの母平均に差がないことが確率的に実証される</span></p>
+<p>逆に，<span class="Large-Bold-Blue">各式の二つの不等号の範囲外</span>であれば，</p>
+<p>　<span class="Large-Bold-Blue">二つの母集団に差がないとは言えない</span></p>
+<p>ということになるのです．</p>
+<p>式で書くとすっきりします．</p>
+<p>では，次から実際に値を入れてみて検証していきましょう．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-08.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="t-test-02.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

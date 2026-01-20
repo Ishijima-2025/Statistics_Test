@@ -1,0 +1,403 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Non_parametric</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED"><span class="Red-Bold">ウィルコクソンの符号順位統計量</span></p>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">ウィルコクソンの符号順位統計量</span>，は<br>
+　<span class="Blue-Bold">対応のあるデータのデータの差がプラスかマイナスか</span><br>
+という検定となります．</p>
+<p><a href="https://radi-toko.com/wilcoxon-signed-rank-test/" target="_blank">こちらのサイト</a>を参考にさせていただきました．データ，を少しいじりました，同列の順位があるとややこしいので変えてあります．．データをいじっても順位が変わらなければ結果は同じとなります．</p>
+<p>10セットのデータを用意します．</p>
+<p>今回は単純のため，<span class="Blue-Bold">変化なしのデータ，やタイデータは考慮しない</span>データセットとしました（<span class="Blue-Bold">変化なしの場合は除く</span>，らしい．<span class="Blue-Bold">タイデータの場合は？？？</span>）</p>
+<table width="200" border="1">
+
+  <col width="70" span="3">
+  <tr>
+    <td width="70" style="text-align: center"></td>
+    <td width="70" style="text-align: center">before</td>
+    <td width="70" style="text-align: center">after</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td width="70" align="right" style="text-align: center">12</td>
+    <td width="70" align="right" style="text-align: center">8</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">B</td>
+    <td align="right" style="text-align: center">7</td>
+    <td align="right" style="text-align: center">20</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">C</td>
+    <td align="right" style="text-align: center">19</td>
+    <td align="right" style="text-align: center">28</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">D</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="right" style="text-align: center">23</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">E</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">22</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">F</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">20</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">G</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">23</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">H</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">17</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">I</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">13</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">J</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">8</td>
+  </tr>
+</table>
+<p>差分をとります．</p>
+<table width="308" border="1">
+  <col width="70" span="3">
+  <tr>
+    <td width="70" style="text-align: center"></td>
+    <td width="70" style="text-align: center">before</td>
+    <td width="70" style="text-align: center">after</td>
+    <td width="70" style="text-align: center">差</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td width="70" align="right" style="text-align: center">12</td>
+    <td width="70" align="right" style="text-align: center">8</td>
+    <td width="70" align="center" style="color: #FF0004">4</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">B</td>
+    <td align="right" style="text-align: center">7</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-13</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">C</td>
+    <td align="right" style="text-align: center">19</td>
+    <td align="right" style="text-align: center">28</td>
+    <td align="center" style="color: #FF0004">-9</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">D</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-1</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">E</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="center" style="color: #FF0004">-7</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">F</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-5</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">G</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-8</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">H</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">17</td>
+    <td align="center" style="color: #FF0004">-6</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">I</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">13</td>
+    <td align="center" style="color: #FF0004">2</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">J</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">8</td>
+    <td align="center" style="color: #FF0004">3</td>
+  </tr>
+</table>
+<p>絶対値をとり，絶対値による順位を付けます．</p>
+<table width="600" border="1">
+  <col width="70" span="3">
+  <tr>
+    <td width="76" style="text-align: center"></td>
+    <td width="88" style="text-align: center">before</td>
+    <td width="88" style="text-align: center">after</td>
+    <td width="86" style="text-align: center">差</td>
+    <td width="94" style="text-align: center">差の絶対値</td>
+    <td width="128" style="text-align: center">絶対値の順位</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td width="88" align="right" style="text-align: center">12</td>
+    <td width="88" align="right" style="text-align: center">8</td>
+    <td width="86" align="center" style="color: #FF0004">4</td>
+    <td width="94" align="center" style="color: #FF0004">4</td>
+    <td width="128" align="center" style="color: #FF0004">4</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">B</td>
+    <td align="right" style="text-align: center">7</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-13</td>
+    <td align="center" style="color: #FF0004">13</td>
+    <td align="center" style="color: #FF0004">10</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">C</td>
+    <td align="right" style="text-align: center">19</td>
+    <td align="right" style="text-align: center">28</td>
+    <td align="center" style="color: #FF0004">-9</td>
+    <td align="center" style="color: #FF0004">9</td>
+    <td align="center" style="color: #FF0004">9</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">D</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-1</td>
+    <td align="center" style="color: #FF0004">1</td>
+    <td align="center" style="color: #FF0004">1</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">E</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="center" style="color: #FF0004">-7</td>
+    <td align="center" style="color: #FF0004">7</td>
+    <td align="center" style="color: #FF0004">7</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">F</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-5</td>
+    <td align="center" style="color: #FF0004">5</td>
+    <td align="center" style="color: #FF0004">5</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">G</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-8</td>
+    <td align="center" style="color: #FF0004">8</td>
+    <td align="center" style="color: #FF0004">8</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">H</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">17</td>
+    <td align="center" style="color: #FF0004">-6</td>
+    <td align="center" style="color: #FF0004">6</td>
+    <td align="center" style="color: #FF0004">6</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">I</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">13</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">J</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">8</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p>変化量がプラスの場合とマイナスの場合に分けます．</p>
+<table width="868" border="1">
+  <col width="70" span="3">
+  <tr>
+    <td width="76" style="text-align: center"></td>
+    <td width="88" style="text-align: center">before</td>
+    <td width="88" style="text-align: center">after</td>
+    <td width="86" style="text-align: center">差</td>
+    <td width="94" style="text-align: center">差の絶対値</td>
+    <td width="128" style="text-align: center">絶対値の順位</td>
+    <td width="128" style="text-align: center">プラスの順位</td>
+    <td width="128" style="text-align: center">マイナスの順位</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">A</td>
+    <td width="88" align="right" style="text-align: center">12</td>
+    <td width="88" align="right" style="text-align: center">8</td>
+    <td width="86" align="center" style="color: #FF0004">4</td>
+    <td width="94" align="center" style="color: #FF0004">4</td>
+    <td width="128" align="center" style="color: #FF0004">4</td>
+    <td width="128" align="center" style="color: #FF0004">4</td>
+    <td width="128" align="center" style="color: #FF0004">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">B</td>
+    <td align="right" style="text-align: center">7</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-13</td>
+    <td align="center" style="color: #FF0004">13</td>
+    <td align="center" style="color: #FF0004">10</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004">10</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">C</td>
+    <td align="right" style="text-align: center">19</td>
+    <td align="right" style="text-align: center">28</td>
+    <td align="center" style="color: #FF0004">-9</td>
+    <td align="center" style="color: #FF0004">9</td>
+    <td align="center" style="color: #FF0004">9</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004">9</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">D</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-1</td>
+    <td align="center" style="color: #FF0004">1</td>
+    <td align="center" style="color: #FF0004">1</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004">1</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">E</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">22</td>
+    <td align="center" style="color: #FF0004">-7</td>
+    <td align="center" style="color: #FF0004">7</td>
+    <td align="center" style="color: #FF0004">7</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004">7</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">F</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">20</td>
+    <td align="center" style="color: #FF0004">-5</td>
+    <td align="center" style="color: #FF0004">5</td>
+    <td align="center" style="color: #FF0004">5</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004">5</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">G</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">23</td>
+    <td align="center" style="color: #FF0004">-8</td>
+    <td align="center" style="color: #FF0004">8</td>
+    <td align="center" style="color: #FF0004">8</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004">8</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">H</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">17</td>
+    <td align="center" style="color: #FF0004">-6</td>
+    <td align="center" style="color: #FF0004">6</td>
+    <td align="center" style="color: #FF0004">6</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004">6</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">I</td>
+    <td align="right" style="text-align: center">15</td>
+    <td align="right" style="text-align: center">13</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">2</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="text-align: center">J</td>
+    <td align="right" style="text-align: center">11</td>
+    <td align="right" style="text-align: center">8</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">3</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+  </tr>
+  <tr>
+    <td style="text-align: center; color: #FF0004;">合計</td>
+    <td align="right" style="text-align: center">&nbsp;</td>
+    <td align="right" style="text-align: center">&nbsp;</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004">&nbsp;</td>
+    <td align="center" style="color: #FF0004"><strong>9</strong></td>
+    <td align="center" style="color: #FF0004"><strong>46</strong></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<p><span class="Red-Bold">期待値，分散値</span>は，</p>
+<p>\(\Large  \displaystyle E(T)= \frac{n(n+1)}{4}　= \frac{10(10+1)}{4} = 27.5 \)</p>
+<p>\(\Large  \displaystyle V(T)= \frac{n(n+1)(1n+1)}{24}　= \frac{10(10+1)(2 \cdot 10 +1)}{24} = 96.25 \)</p>
+<p>となりますので，ｚ値は，</p>
+<p>\(\Large  \displaystyle z_+ = \frac{T_+-E(T_+)}{\sqrt{V(T_+)}} =  \frac{9-27.5}{\sqrt{96.25}} = -1.886　\)</p>
+<p>\(\Large  \displaystyle z_- = \frac{T_--E(T_-)}{\sqrt{V(T_-)}} =  \frac{46-27.5}{\sqrt{96.25}} = 1.886　\)</p>
+<p>標準正規分布における両側５％の範囲は，<a href="https://www.fbs.osaka-u.ac.jp/labs/ishijima/Interval%20Estimation-03.html">こちら</a>に，記載しましたように，±1.96，となるので，</p>
+<p>\(\Large  \displaystyle -1.96 &lt; \frac{T-E(T)}{\sqrt{V(T)}} &lt; 1.96　\)</p>
+<p>となり，±1.96の範囲内なので，<span class="Blue-Bold">有意さがあるとは言えない</span>，ことになります．</p>
+<p>&nbsp;</p>
+<p>次ページに，<span class="Red-Bold">期待値</span>と，<span class="Red-Bold">分散値</span>の求め方を考えていきましょう．</p>
+<p>&nbsp;</p>
+<p><span class="style7"><a href="Non_parametric-03-04.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Non_parametric-04-02.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Regression-Analysis</title>
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+</script>
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+.style10 {color: #000000; }
+.style1 {color: #0000FF}
+</style>
+</head>
+
+<body>
+<h1 class="style1">回帰分析　-　01</h1>
+<p class="Large-Bold-Blue">線形回帰</p>
+<p>線形回帰はいろいろなサイトで説明がありますが，それぞれ推定したバラメータの分散・標準偏差・標準誤差，についてはあまり詳しく書かれていません．</p>
+<p>そこで，<a href="http://www2.econ.osaka-u.ac.jp/~tanizaki/class/2018/basic_econome/index.htm" target="_blank">ここのサイト</a>を全面的に（ほぼコピー）させていただいて，自分の備忘録として残すことにしました．ありがとうございます．</p>
+<p>目標は，</p>
+<p class="Red-Bold">　線形回帰の場合の各パラメータの誤差</p>
+<p>ですが，ゆくゆくは，</p>
+<p class="Red-Bold">　非線形回帰の場合の各パラメータの誤差</p>
+<p>を求めて行きたいと思っています（まだまだ先が長そうですが）．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Blue">単回帰</p>
+<p>n個の点，\(\Large \displaystyle  (X_1, Y_1), (X_2, Y_2), .......(X_n, Y_n), \)，があり，各結果には誤差が含まれています．</p>
+<p>これを切片を持つ直線で近似する場合を考えます．近似式は，</p>
+<p>\(\Large \displaystyle  Y_i  = a_0 + a_1 X_i \)</p>
+<p>となります．ここで，<span class="Large-Bold-Blue">a<sub>0</sub>が切片，a<sub>1</sub>が傾き</span>となります．</p>
+<p><img src="Regression-Analysis---01.png" width="600" height="444" alt=""/></p>
+<p>α，βの推定値を求めるのが目的なので，各パラメータの推定値を，</p>
+<p>\(\Large \displaystyle   \hat{a_0}, \hat{a_1} \)</p>
+<p>とすると，</p>
+<p>\(\Large \displaystyle  Y_i  = \hat{a_0} + \hat{a_1} X_i + \hat{u_i} \)</p>
+<p>と記します．ここで，u<sub>i</sub>はi番目のY<sub>i</sub>と推定結果との誤差となります（なぜuにもhatがかかるかは疑問ですが．．．<span class="Large-Red">たぶん，各パラメータは推定値なのでそれに対する誤差も推定値，という意味かと</span>）</p>
+<p>ここで前提として，<span class="Blue-Bold">X<sub>i</sub>は誤差を含まないもの</span>，<span class="Blue-Bold">Y<sub>i</sub>は実験誤差などを含むもの</span>として考えます．</p>
+<p>この，\(\Large \displaystyle \hat{u_i}^2 \)が最小値をとる\(\Large \displaystyle  \hat{a_0}, \hat{a_1} \)を推定すればいいので，</p>
+<p>\(\Large \displaystyle  S \left( \hat{a_0}, \hat{a_1} \right) = \sum_{i=1}^{n} \hat{u_i}^2 = \sum_{i=1}^{n} \left( Y_i  - \hat{a_0} - \hat{a_1} X_i \right)^2 \)</p>
+<p>が最小値をとる\(\Large \displaystyle  \hat{a_0}, \hat{a_1} \)を求めます．これを，<span class="Large-Bold-Red">最小二乗法</span>，と呼びます．</p>
+<p>最小値を求めるには各パラメータで微分した値が０となればいいので，</p>
+<p>\(\Large \displaystyle  \frac{ \partial S \left( \hat{a_0}, \hat{a_1} \right) }{ \partial \hat{a_0} } = 0 \)</p>
+<p>\(\Large \displaystyle  \frac{ \partial S \left( \hat{a_0}, \hat{a_1} \right) }{ \partial \hat{a_1} } = 0 \)</p>
+<p>を計算すればいいことになります．</p>
+<p>&nbsp;</p>
+<p><span class="style10"><a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Regression Analysis - 02.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+</body>
+</html>

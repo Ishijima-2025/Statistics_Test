@@ -1,0 +1,64 @@
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {
+    inlineMath: [ ['$','$'], ['\\(','\\)'] ],
+    processEscapes: true
+  },
+  TeX: {
+    extensions: ["mhchem.js"]
+  },
+  CommonHTML: {
+    matchFontHeight: false
+  }
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS_CHTML">
+</script>
+
+
+	
+
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+<title>Welch</title>
+</head>
+
+<body>
+<p class="X-Large-Bold-RED">Welchの自由度の求め方-03</p>
+<p><br />
+<span class="Large-Bold-Red">　w/gという確率変数は自由度ｆのカイ二乗分布に従う</span>．</p>
+<p>を検証していきます．</p>
+<p class="Blue-Bold">α：形状母数=f/2</p>
+<p class="Blue-Bold">β：尺度母数=2g</p>
+<p>の場合のガンマ分布は，変数をｗとすると，</p>
+<p>\(\Large    \displaystyle G \left( w| \ \frac{f}{2},2 g \right) =      \frac{1}{(2g)^{ \frac{f}{2} } \ \Gamma ( \frac{f}{2} )} \ w^{ \frac{f}{2} -1} \ exp \left( - \frac{w}{ 2g} \right) \)</p>
+<p>\(\Large    \displaystyle  =      \frac{1}{\ \Gamma ( \frac{f}{2} )} e^{ - \frac{w}{ 2g}} \ w^{ \frac{f}{2} } w^{-1} \  (2g)^{ - \frac{f}{2} } \)</p>
+<p>\(\Large    \displaystyle  =      \frac{1}{\ \Gamma ( \frac{f}{2} )} e^{ - \frac{w}{ 2g}} \ \left( \frac{w}{2g} \right)^{ \frac{f}{2} } w^{-1}  \)</p>
+<p>ここで，<span class="Blue-Bold">変数を置き換えます（ここら辺が自信ありません．．．はたしてこのプロセスでいいのかどうか．．．）</span></p>
+<p>\(\Large    \displaystyle           \frac{w}{ g} = x
+\)</p>
+<p>すると，</p>
+<p>\(\Large    \displaystyle  =      \frac{1}{\ \Gamma ( \frac{f}{2} )} e^{ - \frac{x}{ 2}} \ \left( \frac{x}{2} \right)^{ \frac{f}{2} } (gx)^{-1}  \)</p>
+<p>\(\Large    \displaystyle  =      \frac{1}{2^{ f/2}\ \Gamma ( \frac{f}{2} )} e^{ - \frac{x}{ 2}} \ x^{ \frac{f}{2} } (gx)^{-1}  \)</p>
+<p>\(\Large    \displaystyle  =      \frac{1}{2^{ f/2}\ \Gamma ( \frac{f}{2} )} e^{ - \frac{x}{ 2}} \ x^{ \frac{f}{2} } \frac{x^{-1}}{g}   \)</p>
+<p>\(\Large    \displaystyle  =      \frac{1}{g}\frac{1}{2^{ f/2}\ \Gamma ( \frac{f}{2} )} e^{ - \frac{x}{ 2}} \ x^{ \frac{f}{2}-1 }    \)</p>
+<p>自由度nのカイ二乗分布の確率密度関数は，</p>
+<p>\(\Large    \displaystyle 
+f_n (x) =      \frac{1}{2^{ \frac{n}{2}} \ \Gamma \left( \frac{n}{2} \right)} \ x^{ \frac{n}{2}-1} \ exp \left( - \frac{x}{2} \right) \)</p>
+<p>ですので， 
+<span class="Red-Bold">自由度fのカイ二乗分布の確率密度関数をｇで割ったもの</span>になります． </p>
+<p>これでいいのだろうか．．．適当に変数を変えているだけのような気がするが．．．ほんと自信がありません．</p>
+<p>次ページにｔ分布を導入していきます．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p><span class="style10"><a href="Welch-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="Welch-04.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+</body>
+</html>

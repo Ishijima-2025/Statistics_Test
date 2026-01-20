@@ -1,0 +1,81 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-03-04</span></h1>
+<h1 class="Large-Bold-Red">95%とは</h1>
+<p>この，95％とは，たぶんですが，そんなに意味がない値と思います．まあキリがいいからということでしょう．</p>
+<p>実際区間推定では99％の場合もありますし．</p>
+<p>ここでは，分散値σ<sup>2</sup>，もしくは分散値の平方根（標準偏差）σとの関係を考えていきましょう</p>
+<p>&nbsp;</p>
+<p>母集団の平均μ，分散σ<sup>2</sup>の場合，その集団の分布は，</p>
+<p>\(\Large \displaystyle   p(x) =  \frac{1}{\sqrt{ 2 \pi \sigma^2}} exp \left[ - \frac{(x - \mu)^2}{2 \sigma^2} \right]\)</p>
+<p>ここで単純に，平均は０，μ=0，として考えていきます．</p>
+<p>\(\Large \displaystyle   p(x) =  \frac{1}{\sqrt{ 2 \pi \sigma^2}} exp \left[ - \frac{x ^2}{2 \sigma^2} \right]\)</p>
+<p>左右対称なので，片側だけを考え，2倍すればその範囲の面積を計算できます．</p>
+<p>\(\Large \displaystyle   p(a) =  \int_0^a \frac{1}{\sqrt{ 2 \pi \sigma^2}} exp \left[ - \frac{x ^2}{2 \sigma^2} \right] dx \)</p>
+<p>変数変換を，</p>
+<p>\(\Large  \frac{x^2}{ 2 \sigma^2} \equiv t^2   \)</p>
+<p>とします．</p>
+<p>\(\Large  \frac{x}{ \sqrt{ 2 \sigma^2}} = t   \)</p>
+<p>\(\Large  x = \sqrt{2 \sigma^2}  t  \)</p>
+<p>\(\Large  dx = \sqrt{2 \sigma^2}  \ dt  \)</p>
+<p>となるので，\(\Large   \bar{x}   \)の範囲からｔの範囲を計算すると，</p>
+<p>\(\Large  0 \hspace{12 pt} \rightarrow  \hspace{12 pt} x \hspace{12 pt} \rightarrow  \hspace{12 pt} a\)</p>
+<p>\(\Large  0 \hspace{13 pt} \rightarrow  \hspace{11 pt} t \hspace{12 pt} \rightarrow  \hspace{8 pt} \frac{a}{ \sqrt{2 \sigma^2}} \)</p>
+<p>したがって，</p>
+<p>\(\Large \displaystyle   \int_0^a \frac{1}{\sqrt{ 2 \pi \sigma^2}} exp \left[ - \frac{x ^2}{2 \sigma^2} \right] dx <br />
+= \frac{1}{\sqrt{ 2 \pi \sigma^2}} \sqrt{2 \sigma^2} \int_0^{\frac{a}{ \sqrt{2 \sigma^2}}} exp \left[ - t^2 \right] dt<br />
+= \frac{1}{\sqrt{  \pi}} \int_0^{\frac{a}{ \sqrt{2 \sigma^2}}} exp \left[ - t^2 \right] dt \)</p>
+<p>となります． ここで，誤差関数，</p>
+<p>\(\Large \displaystyle   erf(x) = \frac{2}{\sqrt{  \pi }}  \displaystyle \int_{0}^{x}  exp \left[ - t^2 \right] \ dt  \)</p>
+<p>を利用すると，</p>
+<p>\(\Large \displaystyle      \int_{0}^{x}  exp \left[ - t^2 \right] \ dt  =  \frac{\sqrt{  \pi }}{2} erf(x)\)</p>
+<p>となります．したがって，</p>
+<p>\(\Large \displaystyle    \frac{1}{\sqrt{ \pi}} \int_0^{\frac{a}{ \sqrt{2 \sigma^2}}} exp \left[ - t^2 \right] dt <br />
+  = \frac{1}{\sqrt{  \pi }} \frac{\sqrt{  \pi }}{2} erf(\frac{a}{ \sqrt{2 \sigma^2}}) <br />
+= \frac{1}{2} erf(\frac{a}{ \sqrt{2 \sigma^2}}) \)</p>
+<p>2倍すると，</p>
+<p>\(\Large \displaystyle    = erf(\frac{a}{ \sqrt{2 \sigma^2}}) \)</p>
+<p>となります．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Blue">・ a = σの場合</p>
+<p>\(\Large \displaystyle erf(\frac{ \sigma}{ \sqrt{2 \sigma^2}}) =  erf(\frac{1}{ \sqrt{2 }}) = 0.6827...\)</p>
+<p>と約70%となります．</p>
+<p class="Large-Bold-Blue">・ a = 2σの場合</p>
+<p>\(\Large \displaystyle erf(\frac{ 2 \sigma}{ \sqrt{2 \sigma^2}}) =  erf(\frac{2}{ \sqrt{2 }}) = 0.9545...\)</p>
+<p>と約95%となります．</p>
+<p><span class="Large-Bold-Red">区間推定の95％</span>とほぼ同じなので，<span class="Large-Bold-Red">2σの範囲</span>ということになりますね．</p>
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-03_1.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+
