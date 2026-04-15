@@ -1,0 +1,115 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">区間推定を理解する-04_03</span></h1>
+<h1 class="Large-Bold-Red">ｔ分布を図示する</h1>
+<p>&nbsp;</p>
+<p>ｔ分布自体は，自由度n-1の場合，</p>
+<p>\(\Large     \displaystyle     f(t) = \frac{ \Gamma (\frac{n}{2}) }{ \sqrt{(n-1) \pi} \ \Gamma ( \frac{n-1}{2})} \left( 1 + \frac{t^2}{n-1} \right)^{- \frac{n}{2}}\)</p>
+<p>となります．</p>
+<p>ややこしいのがガンマ関数ですが，幸いエクセルに実装されています（<span class="Red-Bold">gamma()</span>）．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・グラフ化</p>
+<p>グラフ化すると，</p>
+<p><img src="Interval Estimation-04-02.png" width="745" height="471" alt=""/></p>
+<p>うーん，ｎの値を変えてみましたが，正直，そんなに変化がないような．．．．</p>
+<p>自由度を厳密に考えるより，より正確な実験結果を得るほうが．．．．</p>
+<p>正直，正規分布とほとんど似ている分布なので，その違いを見てみました．</p>
+<p>n=6，の場合のｔ分布と正規分布（ピーク値を固定して偏差をソルバーで最適化）との違いは，</p>
+<p><img src="Interval Estimation-04-03.png" width="747" height="425" alt=""/></p>
+<p>これまた，微妙な．．．．正規分布で十分じゃない？なんて考えは，いけないのかもしれない．．．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・ｔ分布との比較</p>
+<p>実際にｔ分布の値との比較を行ってみましょう．</p>
+<p>ｔ分布表は色々なサイトにありますが，まずは，<a href="https://toukei.link/distributiontable/tscoretable/" target="_blank">ここ</a>，を使ってみます．</p>
+<p>n=6（自由度５）の場合，<a href="https://toukei.link/distributiontable/tscoretable/t5/" target="_blank">ここ</a>，を使ってみます．</p>
+<p><span class="Blue-Bold">片側５％，（0.95）</span>の場合，0.95近辺は，</p>
+<p>　<span class="Red-Bold">2.01 - 2.02</span></p>
+<p>で0.95を超えます．</p>
+<p>エクセルにおいては，</p>
+<p class="Blue-Bold">=T.INV(範囲,自由度) = =T.INV(0.95,6-1)</p>
+<p>を計算すれば良く，結果は，<span class="Red-Bold">2.015048...</span>，となり，一致します．</p>
+<p>エクセルにおいて，0.01，刻みでグラフ化し，-∞から累積していった場合も，<span class="Blue-Bold">2.02，で0.95を超え</span>ましたので，一致します．</p>
+<p>しかし，これ以上刻み幅を小さくすると，エクセルではとても重くなるので，Labviewで計算してみると，</p>
+<p><span class="Red-Bold">1E-5，刻みで，2.01505</span>，となり，一致することがわかります．</p>
+<p><span class="Blue-Bold">両側の場合は，0.975</span>で計算すれば良く</p>
+<table width="569" border="1">
+  <tbody>
+    <tr>
+      <td width="115">n=5</td>
+      <td width="123">&nbsp;</td>
+      <td width="102">&nbsp;</td>
+      <td width="112">&nbsp;</td>
+      <td width="83">&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>ｔ分布表</td>
+      <td><p>エクセル計算<br />
+      （0.01）</p></td>
+      <td>Labview計算<br />
+      （1e-5）</td>
+      <td>エクセル<br />
+      (T.INV)</td>
+    </tr>
+    <tr>
+      <td>片側(0.95)</td>
+      <td>2.01-2.02</td>
+      <td>2.02</td>
+      <td>2.01505</td>
+      <td>2.015048</td>
+    </tr>
+    <tr>
+      <td>両側(0.975)</td>
+      <td>2.57-2.58</td>
+      <td>2.57</td>
+      <td>2.57058</td>
+      <td>2.570582</td>
+    </tr>
+  </tbody>
+</table>
+<p>となりました．</p>
+<p>&nbsp;</p>
+<p class="Large-Bold-Red">・まとめ</p>
+<p>グラフと数値との関係をまとめてみました．</p>
+<p>エクセルには色々な関数が合って便利なのですが，なかなか使い方が難しい．</p>
+<p>個別の説明は，<a href="Excel-t_distribution-01.html">別の場所</a>，にまとめましたが，全体をまとめた図にしてみました．</p>
+<p><img src="Interval Estimation-04-04.png" width="780" height="603" alt=""/></p>
+<p>&nbsp;</p>
+<p>次は，カイ二乗分布，です．</p>
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="Interval Estimation-04_02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="kenkyu.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span><a href="Interval Estimation-05.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></p>
+
+</body>
+
+</html>
+
