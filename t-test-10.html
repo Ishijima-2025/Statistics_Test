@@ -1,0 +1,359 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>t-test</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="style1"><span class="X-Large-Bold-Blue">検定-10</span></h1>
+<h1 class="Large-Bold-Red">&nbsp;</h1>
+<p class="X-Large-Bold-RED">有意差検定の注意点</p>
+<p>ごくごく当たり前のことですが，</p>
+<p>　<span class="Large-Bold-Blue">データ数が変わると，有意差検定の結論が変わってくる</span></p>
+<p>ことに注意です．その例をお示しします．</p>
+<p><a href="t-test-02.html">ここ</a>，に記したように，<span class="Large-Bold-Red">対応がある場合</span>で，<span class="Red-Bold">母分散がわからない場合</span>を考えていきましょう．</p>
+<p>繰り返しになりますが，同じデータをお示しします．</p>
+<table width="200" border="1">
+  <tr>
+    <td></td>
+    <td>before</td>
+    <td>after</td>
+    <td>difference</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td align="right">170</td>
+    <td align="right">140</td>
+    <td align="right">30</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td align="right">150</td>
+    <td align="right">155</td>
+    <td align="right">-5</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td align="right">160</td>
+    <td align="right">140</td>
+    <td align="right">20</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td align="right">140</td>
+    <td align="right">135</td>
+    <td align="right">5</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td align="right">150</td>
+    <td align="right">150</td>
+    <td align="right">0</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="right">&nbsp;</td>
+    <td align="right">&nbsp;</td>
+    <td align="right">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Average</td>
+    <td align="right">154</td>
+    <td align="right">144</td>
+    <td align="right">10</td>
+  </tr>
+  <tbody>
+  </tbody>
+</table>
+<p>ここで，<span class="X-Large-Bold-Blue">n=5</span>，なので，差分の不偏分散は，</p>
+<p>\(\Large    \displaystyle s_d^2 = \frac{(30-10)^2+(-5-10)^2+(20-10)^2+(5-10)^2+(0-10)^2}{5-1} = 212.5 \)</p>
+<p>t値は，</p>
+<p>\(\Large    \displaystyle t = \frac{10}{\sqrt {\frac{212.5}{5}}} = 1.53393 \)</p>
+<p>ｔ境界値（片側）は，エクセル関数から，</p>
+<p>\(\Large    \displaystyle =T.INV(1-0.05,5-1) = 2.131847 \)</p>
+<p>となり，ｔ値は，推定した区間の中に入って<span class="Large-Bold-Blue">いる</span>ので，仮説，</p>
+<p><span class="Red-Bold"> 　二つの母集団の母平均には差がない</span></p>
+<p>が認められるため，</p>
+<p>　<span class="Large-Bold-Red">二つの母平均に差がないことが確率的に実証される</span></p>
+<p>ことになり，<span class="Blue-Bold">before -&gt; after，で変化があったとは言えない</span>，ことになります．</p>
+<p class="Red-Bold">エクセル</p>
+<p>の，データ分析，でも，</p>
+<p class="Blue-Bold">t-検定:    一対の標本による平均の検定ツール</p>
+<table width="379" border="1">
+  <tr>
+    <td width="140"></td>
+    <td width="148"></td>
+    <td width="69"></td>
+  </tr>
+  <tr>
+    <td>　</td>
+    <td>変数 1</td>
+    <td>変数 2</td>
+  </tr>
+  <tr>
+    <td>平均</td>
+    <td align="right">154</td>
+    <td align="right">144</td>
+  </tr>
+  <tr>
+    <td>分散</td>
+    <td align="right">130</td>
+    <td align="right">67.5</td>
+  </tr>
+  <tr>
+    <td>観測数</td>
+    <td align="right">5</td>
+    <td align="right">5</td>
+  </tr>
+  <tr>
+    <td>ピアソン相関</td>
+    <td align="right">-0.08006</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>仮説平均との差異</td>
+    <td align="right">0</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>自由度</td>
+    <td align="right">4</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#F9FF00">t </td>
+    <td align="right" bgcolor="#F9FF00">1.53393</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>P(T&lt;=t) 片側</td>
+    <td align="right">0.099915</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#F9FF00">t 境界値 片側</td>
+    <td align="right" bgcolor="#F9FF00">2.131847</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>P(T&lt;=t) 両側</td>
+    <td align="right">0.199829</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>t 境界値 両側</td>
+    <td align="right">2.776445</td>
+    <td>　</td>
+  </tr>
+</table>
+<p>と一致しています．</p>
+<p><span class="Large-Bold-Blue">ｐ値も0.05以上</span>，となっています</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p class="X-Large-Bold-RED">・データ数が倍になった場合</p>
+<p>ここで，新たに，<span class="Large-Bold-Blue">同じ性質のデータ数を増やした場合を考えましょう</span>．単純に，同じデータを重複させます．</p>
+<table width="200" border="1">
+  <tr>
+    <td></td>
+    <td>before</td>
+    <td>after</td>
+    <td>difference</td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td align="right">170</td>
+    <td align="right">140</td>
+    <td align="right">30</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td align="right">150</td>
+    <td align="right">155</td>
+    <td align="right">-5</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td align="right">160</td>
+    <td align="right">140</td>
+    <td align="right">20</td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td align="right">140</td>
+    <td align="right">135</td>
+    <td align="right">5</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td align="right">150</td>
+    <td align="right">150</td>
+    <td align="right">0</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td align="right">170</td>
+    <td align="right">140</td>
+    <td align="right">30</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td align="right">150</td>
+    <td align="right">155</td>
+    <td align="right">-5</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td align="right">160</td>
+    <td align="right">140</td>
+    <td align="right">20</td>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td align="right">140</td>
+    <td align="right">135</td>
+    <td align="right">5</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td align="right">150</td>
+    <td align="right">150</td>
+    <td align="right">0</td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td align="right">&nbsp;</td>
+    <td align="right">&nbsp;</td>
+    <td align="right">&nbsp;</td>
+  </tr>
+  <tr>
+    <td>Average</td>
+    <td align="right">154</td>
+    <td align="right">144</td>
+    <td align="right">10</td>
+  </tr>
+  <tbody>
+  </tbody>
+</table>
+<p><span class="Large-Bold-Blue">実際の実験ではこのような作業はぜっていに行ってはいけません！！！</span>しかし，数学的な観点から行っているだけですので，注意が必要です</p>
+<p>n=<span class="X-Large-Bold-Blue">10</span>，なので，差分の不偏分散は，</p>
+<p>\(\Large    \displaystyle s_d^2 = \frac{(30-10)^2+(-5-10)^2+(20-10)^2+(5-10)^2+(0-10)^2+(30-10)^2+(-5-10)^2+(20-10)^2+(5-10)^2+(0-10)^2}{10-1} \)</p>
+<p>\(\Large    \displaystyle = 188.89 \)</p>
+<p>t値は，</p>
+<p>\(\Large    \displaystyle t = \frac{10}{\sqrt {\frac{188.89}{10}}} = 2.301 \)</p>
+<p>ｔ境界値（片側）は，エクセル関数から，</p>
+<p>\(\Large    \displaystyle =T.INV(1-0.05,10-1) = 1.833 \)</p>
+<p>ｔ境界値（両側）は，エクセル関数から，</p>
+<p>\(\Large    \displaystyle =T.INV.2T(0.05,10-1) = 2.26 \)</p>
+<p>となり，ｔ値は，推定した区間の中に入って<span class="Large-Bold-Blue">いない</span>ので，仮説，</p>
+<p><span class="Red-Bold"> 　二つの母集団の母平均には差が</span><span class="X-Large-Bold-Blue">ある</span></p>
+<p>が認められるため，</p>
+<p>　<span class="Large-Bold-Red">二つの母平均に差が<span class="X-Large-Bold-Blue">ある</span>ことが確率的に実証される</span></p>
+<p>ことになり，<span class="Blue-Bold">before -&gt; after，で変化があったとは</span><span class="X-Large-Bold-Blue">言える</span>，ことになります．</p>
+<p class="Red-Bold">エクセル</p>
+<p>の，データ分析，でも，</p>
+<p class="Blue-Bold">t-検定:    一対の標本による平均の検定ツール</p>
+<table width="379" border="1">
+  <tr>
+    <td width="140"></td>
+    <td width="148"></td>
+    <td width="69"></td>
+  </tr>
+  <tr>
+    <td>　</td>
+    <td>変数 1</td>
+    <td>変数 2</td>
+  </tr>
+  <tr>
+    <td>平均</td>
+    <td align="right">154</td>
+    <td align="right">144</td>
+  </tr>
+  <tr>
+    <td>分散</td>
+    <td align="right" width="70">115.5556</td>
+    <td align="right" width="70">60</td>
+  </tr>
+  <tr>
+    <td>観測数</td>
+    <td align="right">10</td>
+    <td align="right">10</td>
+  </tr>
+  <tr>
+    <td>ピアソン相関</td>
+    <td align="right">-0.08006</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>仮説平均との差異</td>
+    <td align="right">0</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>自由度</td>
+    <td align="right">9</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#F9FF00">t </td>
+    <td align="right" bgcolor="#F9FF00">2.300895</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>P(T&lt;=t) 片側</td>
+    <td align="right">0.023465</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td bgcolor="#F9FF00">t 境界値 片側</td>
+    <td align="right" bgcolor="#F9FF00">1.833113</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>P(T&lt;=t) 両側</td>
+    <td align="right">0.046931</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td>t 境界値 両側</td>
+    <td align="right">2.262157</td>
+    <td>　</td>
+  </tr>
+</table>
+<p>となり，<span class="Large-Bold-Blue">ｐ値も0.05以下</span>となります</p>
+<p>つまり，</p>
+<p class="Large-Bold-Blue">同じクオリティのデータ数が倍になると，検定結果が異なり，有意差あり，となることがある．</p>
+<p>ということです．</p>
+<p> これはある意味，デ<span class="Large-Bold-Red">ータ数が増えると精度が上がる</span>，ということを示しているに過ぎないので当たり前といえばあたりまです．</p>
+<p>しかし，これを利用して， <span class="Large-Bold-Blue">”有意差があるように結論づけたいから，実験を増やす”</span>という事になりかねないです．</p>
+<p> 十分注意しなくてはならないですね．</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="t-test-04.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

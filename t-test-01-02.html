@@ -1,0 +1,57 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<title>Interval Estimation</title>
+
+<script type="text/javascript"
+
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML">
+
+</script>
+
+
+<link href="160324.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.style7 {color: #000000; }
+</style>
+
+</head>
+
+
+
+<body>
+
+<h1 class="X-Large-Bold-Blue">検定-01-02</h1>
+<h1>&nbsp;</h1>
+    <p class="Large-Bold-Red">別の考え方    </p>
+    <p>一般的な方法は， </p>
+<p>　<span class="X-Large-Bold-RED">二つの母集団の母平均には差がない</span></p>
+<p>という仮定を立てています．しかし，この過程を行わないで計算してみましょう．</p>
+<p>&nbsp;</p>
+<p>例として，<span class="Large-Bold-Blue">対応がある場合，母分散がわからない場合</span> で考えてみましょう．</p>
+<p>\(\Large     \displaystyle     - t_{\alpha/2} (n-1)  \hspace{12 pt}\leq   \hspace{12 pt}   \frac{\mu_d - \bar{x}_d}{ \sqrt{\frac{\color{red}{s_d}^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1) \)</p>
+<p>この式を変形していきます．</p>
+<p>\(\Large     \displaystyle     \color{blue}{\rightarrow} - t_{\alpha/2} (n-1)  \cdot \sqrt{\frac{{s_d}^2}{n}} \hspace{12 pt}\leq   \hspace{12 pt}   \mu_d - \bar{x}_d \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1)   \cdot \sqrt{\frac{{s_d}^2}{n}}\)</p>
+<p>\(\Large     \displaystyle          \color{blue}{\rightarrow} -  \bar{x}_d - t_{\alpha/2} (n-1)  \cdot \sqrt{\frac{{s_d}^2}{n}} \hspace{12 pt}\leq   \hspace{12 pt}   \mu_d  \hspace{12 pt} \leq  \hspace{12 pt}    \bar{x}_d + t_{\alpha/2} (n-1)   \cdot \sqrt{\frac{{s_d}^2}{n}}\)</p>
+<p>となり，</p>
+<p>\(\Large     \displaystyle             \mu_d  =      \bar{x}_d \pm t_{\alpha/2} (n-1)   \cdot \sqrt{\frac{{s_d}^2}{n}}\)</p>
+<p>となるのです（±，という概念はちょっと異なりますが）．</p>
+<p>差がない，ということは，</p>
+<p>\(\Large     \displaystyle             \mu_d  =      0 \)</p>
+<p>ということなのでこの<span class="Large-Bold-Red">プラスマイナスの値の間に0が含まれているかどうか</span>となります． </p>
+<p>&nbsp;</p>
+<p>では，次から実際に値を入れてみて検証していきましょう．</p>
+<p>&nbsp;</p>
+
+<p><span class="style10"><a href="t-test-01.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="t-test-02.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+
+</body>
+
+</html>
+

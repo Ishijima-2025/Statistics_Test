@@ -29,10 +29,12 @@
 
 <h1 class="style1"><span class="X-Large-Bold-Blue">検定-02</span></h1>
 <h1 class="Large-Bold-Red">&nbsp;</h1>
+<p class="X-Large-Bold-RED">・　二つの母集団の母平均には差がない，と仮定した場合</p>
 <p><span class="Large-Bold-Red">対応がある場合</span>で，<span class="Red-Bold">母分散がわからない場合</span>をまず考えていきましょう．</p>
 <p>\(\Large     \displaystyle     - t_{\alpha/2} (n-1)  \hspace{12 pt}\leq   \hspace{12 pt}   \frac{ \bar{x}_d}{ \sqrt{\frac{\color{red}{s_d}^2}{n}}} \hspace{12 pt} \leq  \hspace{12 pt}   t_{\alpha/2} (n-1) \)</p>
 <p>サンプルデータは，<a href="https://bellcurve.jp/statistics/course/9453.html" target="_blank">統計ウェッブ 24-5</a>，を参考にさせていただきました．</p>
 <p>そのまま値を使うのはあまりよくないかな？と思い，少し値を変えています．</p>
+<p>&nbsp;</p>
 <p>&nbsp;</p>
 <table width="200" border="1">
   <tr>
@@ -168,9 +170,29 @@
   </tr>
 </table>
 <p>と一致しています．</p>
+<p>&nbsp;</p>
+<p class="X-Large-Bold-RED">・　差がないと仮定しない場合</p>
+<p>次に，新しく考えた計算方法で，同様の計算をしていきましょう．</p>
+<p>\(\Large     \displaystyle             \mu_d  =      \bar{x}_d \pm t_{\alpha/2} (n-1)   \cdot \sqrt{\frac{{s_d}^2}{n}}\)</p>
+<p>\(\Large    \displaystyle s_d^2 = \frac{(30-10)^2+(-5-10)^2+(20-10)^2+(5-10)^2+(0-10)^2}{5-1} = 212.5 \)</p>
+<p>\(\Large    \displaystyle \sqrt{ \frac{s_d^2}{n}} = \sqrt{ \frac{212.5}{5}} = 6.52 \)</p>
+<p>\(\Large    \displaystyle \overline{x}_d = 10 \)</p>
+<p>&nbsp;</p>
+<p><span class="Large-Bold-Blue">t境界値</span>は，片側・両側ともエクセルで計算すると，</p>
+<p>\(\Large    \displaystyle t_{\alpha/2} (n-1)  = T.INV(1-0.05,5-1) = 2.13\) </p>
+<p>\(\Large    \displaystyle \hspace{70 pt} = T.INV.2T(0.05,5-1) = 2.78 \)</p>
+<p>両側を使うとした場合，</p>
+<p>\(\Large    \displaystyle \overline{x}_d - t_{\alpha/2} (n-1) \cdot \sqrt{ \frac{s_d^2}{n}}  \hspace{10 pt} \leq   \hspace{10 pt}\displaystyle \mu_d   \hspace{10 pt} \leq   \hspace{10 pt}\overline{x}_d + t_{\alpha/2} (n-1) \cdot \sqrt{ \frac{s_d^2}{n}}\)</p>
+<p>\(\Large    \displaystyle    \hspace{40 pt} 10  -2.78 \times6.52   \hspace{10 pt} \leq   \hspace{10 pt} \mu_d   \hspace{10 pt} \leq   \hspace{10 pt} 10+2.78 \times6.52 \)</p>
+<p>\(\Large    \displaystyle    \hspace{105 pt} -8.13    \hspace{10 pt} \leq   \hspace{10 pt} \mu_d   \hspace{10 pt} \leq   \hspace{10 pt} 28.13 \)</p>
+<p>となり，<span class="Large-Bold-Red">区間に０を含む</span>ことになります． </p>
+<p>したがって，<span class="Large-Bold-Blue">母平均の差が０（母平均が等しい），場合も否定できない</span>，ことになり<span class="Large-Bold-Red">，有意差があるとは言えない</span>，となるのです．</p>
+<p>こちらのほうがわかりやすいかな？</p>
+<p>&nbsp;</p>
 <p>次は，<span class="Large-Bold-Red">対応のないデータの場合</span>で，<span class="Red-Bold">母分散が未知で等しい場合</span>です．</p>
+<p>&nbsp;</p>
 
-<p><span class="style10"><a href="t-test-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="t-test-03.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
+<p><span class="style10"><a href="t-test-01-02.html"><img src="L-arrow.png" alt="l" width="57" height="34" /></a> <a href="index.html"><img src="TOP.png" alt="t" width="57" height="34" /></a> <a href="t-test-03.html"><img src="R-arrow.png" alt="r" width="57" height="34" /></a></span></p>
 
 </body>
 
